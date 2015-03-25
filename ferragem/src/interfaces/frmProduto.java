@@ -16,11 +16,13 @@ public class frmProduto extends javax.swing.JInternalFrame {
         this.produtoDAO = new ProdutoDAO();
         
         /*
+        
         txtIdProduto.setDocument(new AceitaNumeros());
-         txtIdProduto.setDocument(new LimitarNumeros(6));
+        txtIdProduto.setDocument(new LimitarNumeros(6));
         txtDescricao.setDocument(new AceitaStrings()); 
+        txtDescricao.setDocument();
+        
         */
-        txtDescricao.setDocument(new LimitarLetras(45));
         
         estadoInicial();
     }
