@@ -6,12 +6,12 @@ import dao.ProdutoDAO;
 import javax.swing.JOptionPane;
 
 
-public class frmProduto extends javax.swing.JInternalFrame {
+public class frmAcesso extends javax.swing.JInternalFrame {
 
     private boolean status;
     private ProdutoDAO produtoDAO;
 
-    public frmProduto() {
+    public frmAcesso() {
         initComponents();
         this.produtoDAO = new ProdutoDAO();
         

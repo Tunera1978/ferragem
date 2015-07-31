@@ -9,27 +9,16 @@ package beans;
  *
  * @author Tune
  */
-public class Produto {
-    private int idProduto;
+public class Acesso {
+    private int idtblacesso;
     private String descricao;
-    private float peso;
-     
 
-    
-    public float getPeso() {
-        return peso;
+    public int getIdtblacesso() {
+        return idtblacesso;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
-   
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setIdtblacesso(int idtblacesso) {
+        this.idtblacesso = idtblacesso;
     }
 
     public String getDescricao() {
@@ -39,6 +28,8 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+     
+
 
     
 }

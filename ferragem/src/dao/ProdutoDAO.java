@@ -13,11 +13,12 @@ public class ProdutoDAO extends GenericDAO {
     }
     
         public boolean inserir(Produto produto){
-        String sql = "INSERT INTO tblproduto(descricao) VALUES(?)";
+        String sql = "INSERT INTO tblproduto(descricao, pesoBarra) VALUES(?, ?)";
         try{
             this.prepareStmte(sql);
             //this.stmte.setInt(1, produto.getIdProduto());
             this.stmte.setString(1, produto.getDescricao());
+            this.stmte.setFloat(2, produto.getPeso() );
             this.stmte.execute();
             return true;
         }
