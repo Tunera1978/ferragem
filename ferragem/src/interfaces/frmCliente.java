@@ -1299,7 +1299,7 @@ public class frmCliente extends javax.swing.JInternalFrame
         jTabbedPane1.addTab("Contatos", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Cliente");
+        jLabel1.setText("Cadastro de Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
