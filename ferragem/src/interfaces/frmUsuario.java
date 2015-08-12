@@ -23,7 +23,7 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
         txtNome.setDocument(new LimitarLetras(45));
         // txtSenha.setDocument(new LimitarLetras(10));
-        //comboNivel.
+        CarregandoCmboxNivel();
 
         estadoInicial();
 
