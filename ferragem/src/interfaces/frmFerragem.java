@@ -8,6 +8,10 @@ import beans.Produto;
 import dao.FerragemDAO;
 import dao.ProdutoDAO;
 import javax.swing.JOptionPane;
+import utils.AceitaNumeros;
+import utils.AceitaStrings;
+import utils.LimitarLetras;
+import utils.LimitarNumeros;
 
 public class frmFerragem extends javax.swing.JInternalFrame {
 
@@ -656,6 +660,7 @@ public class frmFerragem extends javax.swing.JInternalFrame {
             if (p == null) {
 
                 txtMensagem.setText("Produto não encontrado !");
+                txtIdProduto.grabFocus();
 
             } else {
                 txtDescricaoProduto.setText(p.getDescricao());
