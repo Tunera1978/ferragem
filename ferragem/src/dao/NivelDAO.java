@@ -108,7 +108,7 @@ public class NivelDAO extends GenericDAO {
             while(rs.next())
             {
                 Nivel u = new Nivel();
-                u.setIdtblnivelacesso(rs.getInt("idtblnivelacesso"));
+                //u.setIdtblnivelacesso(rs.getInt("idtblnivelacesso"));
                 u.setDescricao(rs.getString("descricao"));                
                 nivel.add(u);
             }
