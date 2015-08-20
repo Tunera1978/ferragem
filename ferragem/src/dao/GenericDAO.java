@@ -41,5 +41,10 @@ public class GenericDAO {
         catch(SQLException e){
             System.out.println("Erro ao fechar conexao");
         }
-    }    
+    } 
+    public void inicializaBanco() {
+      
+      this.conn = new ConnectionFactory().cria();
+      
+    }
 }
