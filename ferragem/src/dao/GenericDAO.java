@@ -21,6 +21,7 @@ public class GenericDAO {
     protected PreparedStatement stmte;
     
     public GenericDAO(){
+  
         this.conn = new ConnectionFactory().getConnection();
     }
     
@@ -41,7 +42,8 @@ public class GenericDAO {
         catch(SQLException e){
             System.out.println("Erro ao fechar conexao");
         }
-    } 
+    }
+    
     public void inicializaBanco() {
       
       this.conn = new ConnectionFactory().cria();

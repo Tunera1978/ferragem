@@ -1,19 +1,15 @@
 create database ferragem;
-
 use ferragem;
-
 CREATE TABLE `tblacesso` (
   `idtblacesso` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(45) NOT NULL,
   PRIMARY KEY (`idtblacesso`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblnivel` (
   `idtblnivelacesso` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(20) NOT NULL,
   PRIMARY KEY (`idtblnivelacesso`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblnivelacesso` (
   `idtblacesso` int(11) NOT NULL,
   `idtblnivelacesso` int(11) NOT NULL,
@@ -23,7 +19,6 @@ CREATE TABLE `tblnivelacesso` (
   CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblacesso1` FOREIGN KEY (`idtblacesso`) REFERENCES `tblacesso` (`idtblacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblnivelacesso1` FOREIGN KEY (`idtblnivelacesso`) REFERENCES `tblnivel` (`idtblnivelacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblusuario` (
   `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
@@ -33,7 +28,6 @@ CREATE TABLE `tblusuario` (
   KEY `fk_tblusuario_tblnivelacesso1_idx` (`idtblnivelacesso`),
   CONSTRAINT `fk_tblusuario_tblnivelacesso1` FOREIGN KEY (`idtblnivelacesso`) REFERENCES `tblnivel` (`idtblnivelacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tbllog` (
   `idlog` int(11) NOT NULL,
   `data` datetime NOT NULL,
@@ -46,7 +40,6 @@ CREATE TABLE `tbllog` (
   CONSTRAINT `fk_tbllog_tblacesso1` FOREIGN KEY (`idtblacesso`) REFERENCES `tblacesso` (`idtblacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tbllog_tblusuario1` FOREIGN KEY (`idusuario`) REFERENCES `tblusuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblcidade` (
   `idcidade` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(40) NOT NULL,
@@ -55,20 +48,17 @@ CREATE TABLE `tblcidade` (
   `estado` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`idcidade`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblproduto` (
   `idproduto` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(45) NOT NULL,
   `pesoBarra` float NOT NULL,
   PRIMARY KEY (`idproduto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tbltipoendereco` (
   `idtbltipoendereco` int(11) NOT NULL,
   `descricao` varchar(20) NOT NULL,
   PRIMARY KEY (`idtbltipoendereco`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblentidade` (
   `idtblcliente` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
@@ -79,7 +69,6 @@ CREATE TABLE `tblentidade` (
   `rg` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`idtblcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblcontato` (
   `idtblcontato` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
@@ -93,7 +82,6 @@ CREATE TABLE `tblcontato` (
   KEY `fk_tblcontato_tblcliente1_idx` (`idcliente`),
   CONSTRAINT `fk_tblcontato_tblcliente1` FOREIGN KEY (`idcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblendereco` (
   `idtblendentrega` int(11) NOT NULL AUTO_INCREMENT,
   `endereco` varchar(45) NOT NULL,
@@ -108,7 +96,6 @@ CREATE TABLE `tblendereco` (
   CONSTRAINT `fk_tblendereco_tblcliente1` FOREIGN KEY (`idtblcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblendereco_tbltipoendereco1` FOREIGN KEY (`idtipoendereco`) REFERENCES `tbltipoendereco` (`idtbltipoendereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblpedido` (
   `idpedido` int(11) NOT NULL,
   `data` datetime NOT NULL,
@@ -121,7 +108,6 @@ CREATE TABLE `tblpedido` (
   CONSTRAINT `fk_tblpedido_tblcliente1` FOREIGN KEY (`idtblcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblpedido_tblusuario1` FOREIGN KEY (`idusuario`) REFERENCES `tblusuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblferragem` (
   `idferragem` int(11) NOT NULL,
   `qtde` int(11) NOT NULL,
@@ -134,7 +120,6 @@ CREATE TABLE `tblferragem` (
   KEY `fk_tblferragem_tblpedido1_idx` (`idpedido`),
   CONSTRAINT `fk_tblferragem_tblpedido1` FOREIGN KEY (`idpedido`) REFERENCES `tblpedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `tblitemferragem` (
   `iditemferragem` int(11) NOT NULL,
   `diametro` varchar(10) NOT NULL,
@@ -149,6 +134,7 @@ CREATE TABLE `tblitemferragem` (
   CONSTRAINT `fk_tblitemferragem_tblferragem1` FOREIGN KEY (`idferragem`) REFERENCES `tblferragem` (`idferragem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblitemferragem_tblproduto1` FOREIGN KEY (`idproduto`) REFERENCES `tblproduto` (`idproduto`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 INSERT INTO `tblacesso` VALUES (1,'Inclusão Usuario'),(2,'Alteração Usuario'),(3,'Exclusão Usuario'),(4,'Consulta Usuario');
 INSERT INTO `tblnivel` VALUES (1,'Administrador');
