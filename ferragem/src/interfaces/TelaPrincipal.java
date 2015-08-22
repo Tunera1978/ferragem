@@ -225,6 +225,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     jMenu1.add(jMenuItem7);
 
     jMenuItem8.setText("Nivel");
+    jMenuItem8.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        jMenuItem8ActionPerformed(evt);
+      }
+    });
     jMenu1.add(jMenuItem8);
 
     jMenuItem14.setText("Cidade");
@@ -489,6 +496,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.DesktopPane.add(frmUsuario);
         frmUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+  private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem8ActionPerformed
+  {//GEN-HEADEREND:event_jMenuItem8ActionPerformed
+    // TODO add your handling code here:
+     JInternalFrame frmNivel = new frmNivel();
+        this.DesktopPane.add(frmNivel);
+        frmNivel.setVisible(true);
+  }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
