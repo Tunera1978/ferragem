@@ -3,6 +3,7 @@ package interfaces;
 import beans.Usuario;
 import dao.GenericDAO;
 import dao.UsuarioDAO;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class frmSenha extends javax.swing.JFrame {
@@ -51,6 +52,14 @@ public class frmSenha extends javax.swing.JFrame {
     jLabel3.setText("Usuário");
 
     jLabel4.setText("Senha");
+
+    txtSenha.addKeyListener(new java.awt.event.KeyAdapter()
+    {
+      public void keyPressed(java.awt.event.KeyEvent evt)
+      {
+        txtSenhaKeyPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -161,6 +170,33 @@ public class frmSenha extends javax.swing.JFrame {
     GenericDAO g = new GenericDAO();
     g.inicializaBanco();
   }//GEN-LAST:event_formWindowActivated
+
+  private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtSenhaKeyPressed
+  {//GEN-HEADEREND:event_txtSenhaKeyPressed
+    // TODO add your handling code here:
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER){     
+       Usuario u = new Usuario();
+        String nome = txtNome.getText();
+        char[] pass = txtSenha.getPassword();
+        String senha = String.valueOf(pass);
+        u = this.usuarioDAO.getUsuarioBySenha(nome, senha);
+
+        if (u == null) {
+
+            JOptionPane.showMessageDialog(null, "Usuario ou senha não conferem !");
+
+        } else {
+            
+            UsuarioLogado = txtNome.getText();
+            IdUsuarioLogado = u.getIdusuario();
+            TelaPrincipal principal = new TelaPrincipal();
+            principal.setVisible(true);
+
+        }
+      
+      
+    }  
+  }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments
