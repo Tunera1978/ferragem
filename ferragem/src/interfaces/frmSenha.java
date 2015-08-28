@@ -159,6 +159,7 @@ public class frmSenha extends javax.swing.JFrame {
             IdUsuarioLogado = u.getIdusuario();
             TelaPrincipal principal = new TelaPrincipal();
             principal.setVisible(true);
+            this.setVisible(false);
 
         }
 
@@ -191,6 +192,8 @@ public class frmSenha extends javax.swing.JFrame {
             IdUsuarioLogado = u.getIdusuario();
             TelaPrincipal principal = new TelaPrincipal();
             principal.setVisible(true);
+            this.setVisible(false);
+            
 
         }
       
