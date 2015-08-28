@@ -1,23 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
-import java.sql.Time;
-import java.util.Date;
-
-/**
- *
- * @author Tune
- */
 public class Log
 {
 
   private int idlog;
-  private Date data;
-  private Time hora;
+  private String data;
+  private String hora;
   private int idusuario;
   private int acesso;
 
@@ -31,22 +19,22 @@ public class Log
     this.idlog = idlog;
   }
 
-  public Date getData()
+  public String getData()
   {
     return data;
   }
 
-  public void setData(Date data)
+  public void setData(String data)
   {
     this.data = data;
   }
 
-  public Time getHora()
+  public String getHora()
   {
     return hora;
   }
 
-  public void setHora(Time hora)
+  public void setHora(String hora)
   {
     this.hora = hora;
   }
