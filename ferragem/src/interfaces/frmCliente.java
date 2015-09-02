@@ -207,6 +207,7 @@ public class frmCliente extends javax.swing.JInternalFrame
 
     jMenuItem1.setText("jMenuItem1");
 
+    setClosable(true);
     setName("Cadastro de Clientes"); // NOI18N
 
     btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/838_32x32.png"))); // NOI18N
@@ -1459,7 +1460,7 @@ public class frmCliente extends javax.swing.JInternalFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rdbArame)))))
                 .addGap(4, 4, 4))
-              .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE))
+              .addComponent(jTabbedPane1))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)

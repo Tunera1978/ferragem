@@ -4,28 +4,34 @@ import java.awt.Rectangle;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import java.util.Date;
+import utils.ControleForms;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame
+{
 
-    public TelaPrincipal() {
-        initComponents();
-        txtDataHora.setText(getDateTime());
-        txtLogin.setText(frmSenha.UsuarioLogado);
+  ControleForms cf = new ControleForms();
 
-    }
+  public TelaPrincipal()
+  {
+    initComponents();
+    txtDataHora.setText(getDateTime());
+    txtLogin.setText(frmSenha.UsuarioLogado);
 
-    private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
+  }
 
-    @SuppressWarnings("unchecked")
+  private String getDateTime()
+  {
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    return dateFormat.format(date);
+  }
+
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -365,166 +371,204 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmFerragem = new frmFerragem();
-        this.DesktopPane.add(frmFerragem);
-        frmFerragem.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmFerragem = new frmFerragem();
+      this.DesktopPane.add(frmFerragem);
+      frmFerragem.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        // TODO add your handling code here:
+      // TODO add your handling code here:
 
-        System.exit(0);
+      System.exit(0);
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmConsultaUsuario = new frmConsultaUsuario();
-        this.DesktopPane.add(frmConsultaUsuario);
-        frmConsultaUsuario.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmConsultaUsuario = new frmConsultaUsuario();
+      this.DesktopPane.add(frmConsultaUsuario);
+      frmConsultaUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmConsultaFerragem = new frmConsultaFerragem();
-        this.DesktopPane.add(frmConsultaFerragem);
-        frmConsultaFerragem.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmConsultaFerragem = new frmConsultaFerragem();
+      this.DesktopPane.add(frmConsultaFerragem);
+      frmConsultaFerragem.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmConsultaProduto = new frmConsultaProduto();
-        this.DesktopPane.add(frmConsultaProduto);
-        frmConsultaProduto.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmConsultaProduto = new frmConsultaProduto();
+      this.DesktopPane.add(frmConsultaProduto);
+      frmConsultaProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void txtDataHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataHoraActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_txtDataHoraActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
 
-        System.exit(0);
+      System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmUsuario = new frmUsuario();
-        this.DesktopPane.add(frmUsuario);
-        frmUsuario.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmUsuario = new frmUsuario();
+      this.DesktopPane.add(frmUsuario);
+      frmUsuario.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
+      /* JInternalFrame frmProduto = new frmProduto();
+      this.DesktopPane.add(frmProduto);
+      frmProduto.setVisible(true); 
+      if (cf.isMproduto() == false)
+      {
+        cf.setMproduto(true);
         JInternalFrame frmProduto = new frmProduto();
         this.DesktopPane.add(frmProduto);
         frmProduto.setVisible(true);
+      }
+      */
+      JInternalFrame frmProduto; 
+      if(frmProduto != null){
+         frmProduto = new frmProduto();
+      
+        this.DesktopPane.add(frmProduto);
+        frmProduto.setVisible(true);
+      
+      }
+      
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmFerragem = new frmFerragem();
-        this.DesktopPane.add(frmFerragem);
-        frmFerragem.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmFerragem = new frmFerragem();
+      this.DesktopPane.add(frmFerragem);
+      frmFerragem.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void menuPedFerragemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedFerragemActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmPedido = new frmPedido();
-        this.DesktopPane.add(frmPedido);
-        frmPedido.setVisible(true);
-        // TelaPrincipal.set
+      // TODO add your handling code here:
+      JInternalFrame frmPedido = new frmPedido();
+      this.DesktopPane.add(frmPedido);
+      frmPedido.setVisible(true);
+      // TelaPrincipal.set
     }//GEN-LAST:event_menuPedFerragemActionPerformed
 
     private void menuCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCidadeActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_menuCidadeActionPerformed
 
     private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmCliente = new frmCliente();
-        this.DesktopPane.add(frmCliente);
-        frmCliente.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmCliente = new frmCliente();
+      this.DesktopPane.add(frmCliente);
+      frmCliente.setVisible(true);
     }//GEN-LAST:event_menuClienteActionPerformed
 
+
     private void menuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProdutoActionPerformed
-        // TODO add your handling code here:
-        //JInternalFrame frmProduto = new frmProduto();
-        //this.DesktopPane.add(frmProduto);
-        //frmProduto.setVisible(true);
-
+      // TODO add your handling code here:      
+      if (cf.isMproduto() == false)
+      {
+        cf.setMproduto(true);
         JInternalFrame frmProduto = new frmProduto();
-        JDialog dia = new JDialog();
-        dia.setModal(true);         
-        dia.setContentPane(frmProduto.getContentPane());
-        dia.setBounds(frmProduto.getBounds());
-        dia.setUndecorated(true);
-        dia.findComponentAt(200, 200);
-        dia.setVisible(true);
-
+        this.DesktopPane.add(frmProduto);
+        frmProduto.setVisible(true);
+      }
+      /* JInternalFrame frmProduto = new frmProduto();
+       JDialog dia = new JDialog();
+       dia.setModal(true);         
+       dia.setContentPane(frmProduto.getContentPane());
+       dia.setBounds(frmProduto.getBounds());
+       dia.setUndecorated(true);
+       dia.findComponentAt(200, 200);
+       dia.setVisible(true); */
 
     }//GEN-LAST:event_menuProdutoActionPerformed
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
-        // TODO add your handling code here:
-        JInternalFrame frmUsuario = new frmUsuario();
-        this.DesktopPane.add(frmUsuario);
-        frmUsuario.setVisible(true);
+      // TODO add your handling code here:
+      JInternalFrame frmUsuario = new frmUsuario();
+      this.DesktopPane.add(frmUsuario);
+      frmUsuario.setVisible(true);
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
   private void menuNivelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuNivelActionPerformed
   {//GEN-HEADEREND:event_menuNivelActionPerformed
-      // TODO add your handling code here:
-      JInternalFrame frmNivel = new frmNivel();
-      this.DesktopPane.add(frmNivel);
-      frmNivel.setVisible(true);
+    // TODO add your handling code here:
+    JInternalFrame frmNivel = new frmNivel();
+    this.DesktopPane.add(frmNivel);
+    frmNivel.setVisible(true);
   }//GEN-LAST:event_menuNivelActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[])
+  {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try
+    {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+      {
+        if ("Nimbus".equals(info.getName()))
+        {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
         }
-        //</editor-fold>
-
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            System.out.println("Error setting native LAF: " + e);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
+      }
     }
+    catch (ClassNotFoundException ex)
+    {
+      java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (InstantiationException ex)
+    {
+      java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (IllegalAccessException ex)
+    {
+      java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (javax.swing.UnsupportedLookAndFeelException ex)
+    {
+      java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+
+    try
+    {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    }
+    catch (Exception e)
+    {
+      System.out.println("Error setting native LAF: " + e);
+    }
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable()
+    {
+      public void run()
+      {
+        new TelaPrincipal().setVisible(true);
+      }
+    });
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
