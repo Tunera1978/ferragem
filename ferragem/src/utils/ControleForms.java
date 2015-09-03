@@ -2,17 +2,9 @@ package utils;
 
 public class ControleForms
 {
-  private boolean mproduto;
+  public static int mproduto;
 
-  public boolean isMproduto()
-  {
-    return mproduto;
-  }
-
-  public void setMproduto(boolean mproduto)
-  {
-    this.mproduto = mproduto;
-  }
+  
     
   
 }

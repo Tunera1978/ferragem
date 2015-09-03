@@ -6,6 +6,7 @@ import dao.ProdutoDAO;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import utils.ControleForms;
+import static utils.ControleForms.mproduto;
 
 
 public class frmProduto extends javax.swing.JInternalFrame {
@@ -1082,8 +1083,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
     // TODO add your handling code here:
-      ControleForms cf = new ControleForms();
-      cf.setMproduto(false);
+      mproduto = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
 
