@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beans;
 
-/**
- *
- * @author Tune
- */
+
 public class Cidade {
     private int idcidade;
     private String descricao;
@@ -67,7 +60,19 @@ public class Cidade {
   }
     
 
+    //metodo to string para retornar o nome do idioma ao inves do codigo no preenchimento do combo
+     public String toString(){
+        return this.descricao;
+    }
     
+    public boolean equals(Object obj){
+        if(obj instanceof Cidade){
+            Cidade iVO = (Cidade) obj;
+            return iVO.getDescricao().equals(this.getDescricao());
+        }else{
+            return false;
+        }
+    }
     
      
 
