@@ -1,22 +1,24 @@
 package interfaces;
 
-import java.awt.Rectangle;
+//import java.awt.Rectangle;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import java.util.Date;
-import utils.ControleForms;
+//import utils.ControleForms;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
+//import javax.swing.JDesktopPane;
+//import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import static utils.ControleForms.mcliente;
+import static utils.ControleForms.mnivel;
 import static utils.ControleForms.mproduto;
+import static utils.ControleForms.musuario;
 
 public class TelaPrincipal extends javax.swing.JFrame
 {
 
   //ControleForms cf = new ControleForms();
-
   public TelaPrincipal()
   {
     initComponents();
@@ -55,6 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame
     txtLogin = new javax.swing.JTextField();
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
+    jPanel1 = new javax.swing.JPanel();
     jMenuBar1 = new javax.swing.JMenuBar();
     menuCadastro = new javax.swing.JMenu();
     menuUsuario = new javax.swing.JMenuItem();
@@ -108,14 +111,14 @@ public class TelaPrincipal extends javax.swing.JFrame
     DesktopPane.setLayout(DesktopPaneLayout);
     DesktopPaneLayout.setHorizontalGroup(
       DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 996, Short.MAX_VALUE)
+      .addGap(0, 0, Short.MAX_VALUE)
     );
     DesktopPaneLayout.setVerticalGroup(
       DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 1060, Short.MAX_VALUE)
     );
 
-    jToolBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    jToolBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
     jToolBar1.setRollover(true);
 
     jButton1.setFocusable(false);
@@ -193,6 +196,17 @@ public class TelaPrincipal extends javax.swing.JFrame
     jLabel2.setText("Data : ");
 
     jLabel3.setText("User:");
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 406, Short.MAX_VALUE)
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 0, Short.MAX_VALUE)
+    );
 
     menuCadastro.setText("Cadastros");
 
@@ -358,39 +372,43 @@ public class TelaPrincipal extends javax.swing.JFrame
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(10, 10, 10)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(DesktopPane)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jLabel2)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtDataHora, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(24, 24, 24)
-            .addComponent(jLabel3)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtLogin)))
-        .addContainerGap())
+            .addComponent(DesktopPane)
+            .addContainerGap())
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDataHora, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtLogin)
+                .addContainerGap())
+              .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(5, 5, 5)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addGap(5, 5, 5)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(txtDataHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel2)
-              .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel3))
-            .addGap(18, 18, 18)))
-        .addComponent(DesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap())
+              .addComponent(txtDataHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel3)
+              .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(DesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     setSize(new java.awt.Dimension(1016, 741));
@@ -456,40 +474,45 @@ public class TelaPrincipal extends javax.swing.JFrame
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
       // TODO add your handling code here:
       /* JInternalFrame frmProduto = new frmProduto();
+       this.DesktopPane.add(frmProduto);
+       frmProduto.setVisible(true); 
+       if (cf.isMproduto() == false)
+       {
+       cf.setMproduto(true);
+       JInternalFrame frmProduto = new frmProduto();
+       this.DesktopPane.add(frmProduto);
+       frmProduto.setVisible(true);
+       }
+       */
+
+      JInternalFrame frmProduto = new frmProduto();
       this.DesktopPane.add(frmProduto);
-      frmProduto.setVisible(true); 
-      if (cf.isMproduto() == false)
+      frmProduto.setVisible(true);
+      try
       {
-        cf.setMproduto(true);
-        JInternalFrame frmProduto = new frmProduto();
-        this.DesktopPane.add(frmProduto);
-        frmProduto.setVisible(true);
+        if (frmProduto.isVisible())
+        {
+          DesktopPane.remove(frmProduto);
+          DesktopPane.add(frmProduto);
+          frmProduto.setLocation(DesktopPane.getWidth() / 2 - frmProduto.getWidth() / 2, DesktopPane.getHeight() / 2 - frmProduto.getHeight() / 2);
+          frmProduto.moveToFront();
+          frmProduto.setSelected(true);
+          frmProduto.show();
+          DesktopPane.repaint();
+        }
+        else
+        {
+          DesktopPane.add(frmProduto);
+          frmProduto.setLocation(DesktopPane.getWidth() / 2 - frmProduto.getWidth() / 2, DesktopPane.getHeight() / 2 - frmProduto.getHeight() / 2);
+          frmProduto.show();
+        }
       }
-      */
-     
-        JInternalFrame frmProduto = new frmProduto();
-        this.DesktopPane.add(frmProduto);
-        frmProduto.setVisible(true);
-      try{
-        if (frmProduto.isVisible()){
-            DesktopPane.remove(frmProduto);
-            DesktopPane.add(frmProduto);
-            frmProduto.setLocation(DesktopPane.getWidth()/2-frmProduto.getWidth()/2, DesktopPane.getHeight()/2-frmProduto.getHeight()/2);
-            frmProduto.moveToFront();
-            frmProduto.setSelected(true);
-            frmProduto.show();
-            DesktopPane.repaint();
-        }else {
-            DesktopPane.add(frmProduto);
-            frmProduto.setLocation(DesktopPane.getWidth()/2-frmProduto.getWidth()/2, DesktopPane.getHeight()/2-frmProduto.getHeight()/2);
-            frmProduto.show();
-        }
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-      
-      
-      
+      catch (Exception e)
+      {
+        JOptionPane.showMessageDialog(null, e);
+      }
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -513,25 +536,71 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
       // TODO add your handling code here:
-      JInternalFrame frmCliente = new frmCliente();
-      this.DesktopPane.add(frmCliente);
-      frmCliente.setVisible(true);
+      if (mcliente == 0)
+      {
+        mcliente = 1;
+        JInternalFrame frmCliente = new frmCliente();
+        this.DesktopPane.add(frmCliente);
+        frmCliente.setLocation(DesktopPane.getWidth() / 2 - frmCliente.getWidth() / 2, DesktopPane.getHeight() / 4 - frmCliente.getHeight() / 4);
+        frmCliente.setVisible(true);
+      }
+      else
+      {
+        JOptionPane.showMessageDialog(null, "Tela de Clientes já esta aberta !!!");
+      }
+
+
     }//GEN-LAST:event_menuClienteActionPerformed
 
 
     private void menuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProdutoActionPerformed
       // TODO add your handling code here:      
-     
-      if(mproduto == 0){  
-         mproduto = 1;
-         JInternalFrame frmProduto = new frmProduto();
-         this.DesktopPane.add(frmProduto);
-         frmProduto.setLocation(DesktopPane.getWidth()/2-frmProduto.getWidth()/2, DesktopPane.getHeight()/2-frmProduto.getHeight()/2);
-         frmProduto.setVisible(true);         
-      }else{
-      //frmProduto. ; 
-        //frmProduto.moveToFront();
+
+     /* 
+      try
+      {
+        JInternalFrame frmProduto = new frmProduto();
+        if (frmProduto.isVisible())
+        {
+          DesktopPane.remove(frmProduto);
+          DesktopPane.add(frmProduto);
+          frmProduto.setLocation(DesktopPane.getWidth() / 2 - frmProduto.getWidth() / 2, DesktopPane.getHeight() / 4 - frmProduto.getHeight() / 4);
+          frmProduto.moveToFront();
+          frmProduto.setSelected(true);
+          frmProduto.show();
+          DesktopPane.repaint();
+        }
+        else
+        {
+          DesktopPane.add(frmProduto);
+          frmProduto.setLocation(DesktopPane.getWidth() / 2 - frmProduto.getWidth() / 2, DesktopPane.getHeight() / 4 - frmProduto.getHeight() / 4);
+          frmProduto.show();
+        }
       }
+      catch (Exception e)
+      {
+        JOptionPane.showMessageDialog(null, e);
+      }
+
+      */
+      
+      
+      
+       if (mproduto == 0)
+       {
+       mproduto = 1;
+       JInternalFrame frmProduto = new frmProduto();
+       this.DesktopPane.add(frmProduto);
+       frmProduto.setLocation(DesktopPane.getWidth() / 2 - frmProduto.getWidth() / 2, DesktopPane.getHeight() / 4 - frmProduto.getHeight() / 4);
+       frmProduto.setVisible(true);
+        
+       }
+       else
+       {
+       JOptionPane.showMessageDialog(null, "Tela Produtos já esta aberta !!!");
+        //frmProduto.moveToFront();
+        
+       }
       
       /* JInternalFrame frmProduto = new frmProduto();
        JDialog dia = new JDialog();
@@ -546,17 +615,36 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
       // TODO add your handling code here:
-      JInternalFrame frmUsuario = new frmUsuario();
-      this.DesktopPane.add(frmUsuario);
-      frmUsuario.setVisible(true);
+      if (musuario == 0)
+      {
+        musuario = 1;
+        JInternalFrame frmUsuario = new frmUsuario();
+        this.DesktopPane.add(frmUsuario);
+        frmUsuario.setLocation(DesktopPane.getWidth() / 2 - frmUsuario.getWidth() / 2, DesktopPane.getHeight() / 4 - frmUsuario.getHeight() / 4);
+        frmUsuario.setVisible(true);
+      }
+      else
+      {
+        JOptionPane.showMessageDialog(null, "Tela Usuario já esta aberta !!!");
+      }
+
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
   private void menuNivelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_menuNivelActionPerformed
   {//GEN-HEADEREND:event_menuNivelActionPerformed
     // TODO add your handling code here:
-    JInternalFrame frmNivel = new frmNivel();
-    this.DesktopPane.add(frmNivel);
-    frmNivel.setVisible(true);
+    if (mnivel == 0)
+    {
+      mnivel = 1;
+      JInternalFrame frmNivel = new frmNivel();
+      this.DesktopPane.add(frmNivel);
+      frmNivel.setLocation(DesktopPane.getWidth() / 2 - frmNivel.getWidth() / 2, DesktopPane.getHeight() / 4 - frmNivel.getHeight() / 4);
+      frmNivel.setVisible(true);
+    }
+    else
+    {
+      JOptionPane.showMessageDialog(null, "Tela Nivel já esta aberta !!!");
+    }
   }//GEN-LAST:event_menuNivelActionPerformed
 
   /**
@@ -648,6 +736,7 @@ public class TelaPrincipal extends javax.swing.JFrame
   private javax.swing.JMenuItem jMenuItem4;
   private javax.swing.JMenuItem jMenuItem5;
   private javax.swing.JMenuItem jMenuItem6;
+  private javax.swing.JPanel jPanel1;
   private javax.swing.JToolBar jToolBar1;
   private javax.swing.JMenu menuCadastro;
   private javax.swing.JMenu menuCalculo;

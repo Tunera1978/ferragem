@@ -202,24 +202,24 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtOrcamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtOrcamento" alignment="3" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtUsuarioLogado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUsuarioLogado" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtQtdeColunas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtQtdeColunas" alignment="3" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtComprimentoColuna" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtComprimentoColuna" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtQtdeColunas4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtQtdeColunas4" alignment="3" max="-2" attributes="0"/>
                           <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtComprimentoColuna4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtComprimentoColuna4" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -234,33 +234,33 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtMensagem" min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="txtMensagem" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="217" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
                   <Component id="jInternalFrame1" min="-2" pref="0" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="218" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="222" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="217" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
                   <Component id="jInternalFrame2" min="-2" pref="0" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="218" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="222" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
                   <Component id="jScrollPane6" min="-2" pref="0" max="-2" attributes="0"/>
-                  <EmptySpace pref="202" max="32767" attributes="0"/>
+                  <EmptySpace pref="210" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="244" max="32767" attributes="0"/>
+                  <EmptySpace pref="252" max="32767" attributes="0"/>
                   <Component id="jScrollPane7" min="-2" pref="0" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
               </Group>
@@ -1796,6 +1796,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCidadeActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
 

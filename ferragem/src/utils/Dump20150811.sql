@@ -140,3 +140,4 @@ INSERT INTO `tblacesso` VALUES (1,'Inclusão Usuario'),(2,'Alteração Usuario')
 INSERT INTO `tblnivel` VALUES (1,'Administrador');
 INSERT INTO `tblusuario` VALUES (1,'admin','admin',1);
 INSERT INTO `tblproduto` VALUES (1,'verg /38',17),(16,'teste',0);
+INSERT INTO `ferragem`.`tblcidade` (`idcidade`, `descricao`, `codMunicipio`, `codSiafi`, `estado`) VALUES (01, 'CAPIVARI', '11111', '11111', 'SP');

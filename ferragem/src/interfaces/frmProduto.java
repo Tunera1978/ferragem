@@ -3,14 +3,15 @@ package interfaces;
 
 import beans.Produto;
 import dao.ProdutoDAO;
-import java.util.Locale;
+//import java.util.Locale;
 import javax.swing.JOptionPane;
-import utils.ControleForms;
+//import utils.ControleForms;
 import static utils.ControleForms.mproduto;
 
 
 public class frmProduto extends javax.swing.JInternalFrame {
 
+  
     private boolean status;
     private ProdutoDAO produtoDAO;
       
