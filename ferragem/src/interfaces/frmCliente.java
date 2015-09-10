@@ -6,6 +6,7 @@ import dao.CidadeDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static utils.ControleForms.mcliente;
 
 
 public class frmCliente extends javax.swing.JInternalFrame
@@ -182,16 +183,16 @@ public class frmCliente extends javax.swing.JInternalFrame
     jLabel44 = new javax.swing.JLabel();
     txtComprimentoColuna4 = new javax.swing.JTextField();
     cbCidade = new javax.swing.JComboBox();
-    jTabbedPane1 = new javax.swing.JTabbedPane();
+    pnContato = new javax.swing.JTabbedPane();
     jPanel1 = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable5 = new javax.swing.JTable();
+    tblEndereco = new javax.swing.JTable();
     jButton1 = new javax.swing.JButton();
     jButton2 = new javax.swing.JButton();
     jButton5 = new javax.swing.JButton();
     jPanel2 = new javax.swing.JPanel();
     jScrollPane9 = new javax.swing.JScrollPane();
-    jTable6 = new javax.swing.JTable();
+    tblContato = new javax.swing.JTable();
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
     jLabel45 = new javax.swing.JLabel();
@@ -221,6 +222,31 @@ public class frmCliente extends javax.swing.JInternalFrame
 
     setClosable(true);
     setName("Cadastro de Clientes"); // NOI18N
+    addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+    {
+      public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+      {
+        formInternalFrameClosing(evt);
+      }
+      public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+    });
 
     btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/838_32x32.png"))); // NOI18N
     btnNovo.setText("Novo");
@@ -1281,7 +1307,7 @@ public class frmCliente extends javax.swing.JInternalFrame
       }
     });
 
-    jTable5.setModel(new javax.swing.table.DefaultTableModel(
+    tblEndereco.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
       {
         {null, null, null},
@@ -1305,7 +1331,7 @@ public class frmCliente extends javax.swing.JInternalFrame
         return canEdit [columnIndex];
       }
     });
-    jScrollPane1.setViewportView(jTable5);
+    jScrollPane1.setViewportView(tblEndereco);
 
     jButton1.setText("Novo");
 
@@ -1343,9 +1369,9 @@ public class frmCliente extends javax.swing.JInternalFrame
         .addContainerGap())
     );
 
-    jTabbedPane1.addTab("Endereços", jPanel1);
+    pnContato.addTab("Endereços", jPanel1);
 
-    jTable6.setModel(new javax.swing.table.DefaultTableModel(
+    tblContato.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
       {
         {null, null, null, null},
@@ -1358,7 +1384,7 @@ public class frmCliente extends javax.swing.JInternalFrame
         "Nome", "Telefone", "Celular", "Email"
       }
     ));
-    jScrollPane9.setViewportView(jTable6);
+    jScrollPane9.setViewportView(tblContato);
 
     jButton3.setText("Novo");
 
@@ -1422,7 +1448,7 @@ public class frmCliente extends javax.swing.JInternalFrame
           .addContainerGap(93, Short.MAX_VALUE)))
     );
 
-    jTabbedPane1.addTab("Contatos", jPanel2);
+    pnContato.addTab("Contatos", jPanel2);
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Cadastro de Clientes");
@@ -1478,7 +1504,7 @@ public class frmCliente extends javax.swing.JInternalFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rdbArame)))))
                 .addGap(4, 4, 4))
-              .addComponent(jTabbedPane1))
+              .addComponent(pnContato))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1564,7 +1590,7 @@ public class frmCliente extends javax.swing.JInternalFrame
               .addComponent(rdbEstribo)
               .addComponent(rdbArame))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(pnContato, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(txtMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
@@ -1758,6 +1784,34 @@ public class frmCliente extends javax.swing.JInternalFrame
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /*
+    private void preencherTblContato(int id) {
+    
+    DefaultTableModel jtblContato = (DefaultTableModel) tblContato.getModel();
+    jtblContato.setNumRows(0);
+    
+    
+    ContatoDAO dDao = new ContatoDAO();
+    ArrayList<RelatorioDisciplina> relatorio = new ArrayList<RelatorioDisciplina>();
+    relatorio = dDao.getDisciplinaRelatorio(id);
+    
+    if (relatorio.size()== 0){
+      JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+      return;
+    }
+
+    for (int i = 0; i < relatorio.size(); i++)
+    {
+      Object[] obj = new Object[]
+      {
+        relatorio.get(i).getProntuaio(),
+        relatorio.get(i).getNome(),
+        relatorio.get(i).getNomeDisciplina()        
+      };
+      jtblRelatorio.addRow(obj);
+    }
+  }
+    */
     private void txtMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensagemActionPerformed
       // TODO add your handling code here:
     }//GEN-LAST:event_txtMensagemActionPerformed
@@ -1899,6 +1953,12 @@ public class frmCliente extends javax.swing.JInternalFrame
     // TODO add your handling code here:
   }//GEN-LAST:event_cbCidadeActionPerformed
 
+  private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
+  {//GEN-HEADEREND:event_formInternalFrameClosing
+    // TODO add your handling code here:
+    mcliente = 0;
+  }//GEN-LAST:event_formInternalFrameClosing
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnAlterar;
@@ -1997,15 +2057,13 @@ public class frmCliente extends javax.swing.JInternalFrame
   private javax.swing.JScrollPane jScrollPane7;
   private javax.swing.JScrollPane jScrollPane9;
   private javax.swing.JSeparator jSeparator1;
-  private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JTable jTable2;
   private javax.swing.JTable jTable3;
-  private javax.swing.JTable jTable5;
-  private javax.swing.JTable jTable6;
   private javax.swing.JTextArea jTextArea1;
   private javax.swing.JTextArea jTextArea2;
   private javax.swing.JTextArea jTextArea3;
   private javax.swing.JTextArea jTextArea4;
+  private javax.swing.JTabbedPane pnContato;
   private javax.swing.JRadioButton rdbArame;
   private javax.swing.JRadioButton rdbArame1;
   private javax.swing.JRadioButton rdbArame2;
@@ -2017,6 +2075,8 @@ public class frmCliente extends javax.swing.JInternalFrame
   private javax.swing.JRadioButton rdbVergalhao1;
   private javax.swing.JRadioButton rdbVergalhao2;
   private javax.swing.JRadioButton rdbVergalhao3;
+  private javax.swing.JTable tblContato;
+  private javax.swing.JTable tblEndereco;
   private javax.swing.JTextField txtComprimentoColuna;
   private javax.swing.JTextField txtComprimentoColuna1;
   private javax.swing.JTextField txtComprimentoColuna2;

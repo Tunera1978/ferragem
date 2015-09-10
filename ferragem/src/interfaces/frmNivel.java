@@ -4,6 +4,7 @@ package interfaces;
 import beans.Produto;
 import dao.ProdutoDAO;
 import javax.swing.JOptionPane;
+import static utils.ControleForms.mnivel;
 
 
 public class frmNivel extends javax.swing.JInternalFrame {
@@ -175,6 +176,31 @@ public class frmNivel extends javax.swing.JInternalFrame {
     jScrollPane1.setViewportView(jTable1);
 
     setClosable(true);
+    addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+    {
+      public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+      {
+        formInternalFrameClosing(evt);
+      }
+      public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+    });
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Cadastro de Nivel de Acesso");
@@ -1525,6 +1551,12 @@ public class frmNivel extends javax.swing.JInternalFrame {
   {//GEN-HEADEREND:event_DefinirActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_DefinirActionPerformed
+
+  private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
+  {//GEN-HEADEREND:event_formInternalFrameClosing
+    // TODO add your handling code here:
+    mnivel = 0 ;
+  }//GEN-LAST:event_formInternalFrameClosing
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

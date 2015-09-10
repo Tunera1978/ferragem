@@ -1,9 +1,6 @@
 package beans;
 
-/**
- *
- * @author Tune
- */
+
 public class Contato
 {
 
@@ -97,5 +94,4 @@ public class Contato
   }
 
   
-
 }
