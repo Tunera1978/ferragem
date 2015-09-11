@@ -10,20 +10,20 @@ package beans;
  * @author Tune
  */
 public class Endereco {
-    private int idtblnivelacesso;
+    private int idtblentrega;
     private String descricao;
     private int idcidade;
     private int idtipoendereco;
     private int idtblcliente;
 
-  public int getIdtblnivelacesso()
+  public int getIdtblentrega()
   {
-    return idtblnivelacesso;
+    return idtblentrega;
   }
 
-  public void setIdtblnivelacesso(int idtblnivelacesso)
+  public void setIdtblentrega(int idtblentrega)
   {
-    this.idtblnivelacesso = idtblnivelacesso;
+    this.idtblentrega = idtblentrega;
   }
 
   public String getDescricao()
@@ -65,11 +65,5 @@ public class Endereco {
   {
     this.idtblcliente = idtblcliente;
   }
-
-    
-    
-     
-
-    
-    
+   
 }
