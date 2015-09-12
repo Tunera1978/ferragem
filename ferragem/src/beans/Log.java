@@ -7,11 +7,21 @@ public class Log
   private String data;
   private String hora;
   private int idusuario;
-  private int acesso;
+  private int idtblacesso;
 
   public int getIdlog()
   {
     return idlog;
+  }
+
+  public int getIdtblacesso()
+  {
+    return idtblacesso;
+  }
+
+  public void setIdtblacesso(int idtblacesso)
+  {
+    this.idtblacesso = idtblacesso;
   }
 
   public void setIdlog(int idlog)
@@ -49,14 +59,6 @@ public class Log
     this.idusuario = idusuario;
   }
 
-  public int getAcesso()
-  {
-    return acesso;
-  }
-
-  public void setAcesso(int acesso)
-  {
-    this.acesso = acesso;
-  }
+  
 
 }

@@ -1,12 +1,9 @@
 
 package dao;
 
-
-import beans.Acesso;
 import beans.Acesso;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 
 public class AcessoDAO extends GenericDAO {
   
