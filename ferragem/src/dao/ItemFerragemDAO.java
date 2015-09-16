@@ -1,30 +1,30 @@
 package dao;
 
-import beans.Ferragem;
+import beans.PedidoItem;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class FerragemDAO extends GenericDAO
+public class ItemFerragemDAO extends GenericDAO
 {
 
-  public FerragemDAO()
+  public ItemFerragemDAO()
   {
     super();//a classe mãe pega a conexão
   }
 
-  public boolean inserir(Ferragem ferragem)
+  public boolean inserir(PedidoItem pedidoitem)
   {
-    String sql = "INSERT INTO tblferragem(qtde, estriboaltura, estribolargura, comprimento, estriboespaco, idpedido) VALUES(?,?,?,?,?,?)";
+    String sql = "INSERT INTO tblitemferragem(diametro, qtdeferro,qtdepecas, qtdematerial, idferragem, idproduto) VALUES(?,?,?,?,?,?)";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, ferragem.getQtdeFerragem());
-      this.stmte.setDouble(2, ferragem.getEstriboAltura());
-      this.stmte.setDouble(3, ferragem.getEstriboLargura());
-      this.stmte.setDouble(4, ferragem.getComprimento());
-      this.stmte.setDouble(5, ferragem.getEspacoEstribo());
-      this.stmte.setInt(6, ferragem.getIdPedido());
+      this.stmte.setString(1, pedidoitem.getDiametro());
+      this.stmte.setDouble(2, pedidoitem.getQtdeferro());
+      this.stmte.setDouble(3, pedidoitem.getQtdematerial());
+      this.stmte.setInt(4, pedidoitem.getIdferragem());
+      this.stmte.setInt(5, pedidoitem.getIdproduto());
+      this.stmte.setInt(6, pedidoitem.getIdItemFerragem());
       this.stmte.execute();
       return true;
     }
@@ -35,13 +35,13 @@ public class FerragemDAO extends GenericDAO
     }
   }
 
-  public boolean excluir(Ferragem u)
+  public boolean excluir(PedidoItem u)
   {
-    String sql = "DELETE FROM tblferragem WHERE idferragem = ?";
+    String sql = "DELETE FROM tblitemferragem WHERE iditemferragem = ?";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, u.getIdFerragem());//1 significa o 1º que será visto no caso idferragem
+      this.stmte.setInt(1, u.getIdItemFerragem());//1 significa o 1º que será visto no caso idferragem
       this.stmte.execute();
       return true;
     }
@@ -51,19 +51,18 @@ public class FerragemDAO extends GenericDAO
     }
   }
 
-  public boolean editar(Ferragem ferragem)
+  public boolean editar(PedidoItem pedidoitem)
   {
-    String sql = "UPDATE tblferragem SET qtde = ?, estriboaltura = ?, estribolargura = ?, comprimento = ?, estriboespaco = ?, idpedido = ? WHERE idferragem = ?";
+    String sql = "UPDATE tblitemferragem SET diametro = ?, qtdeferro = ?,qtdepecas = ?, qtdematerial = ?, idferragem = ?, idproduto = ? WHERE idferragem = ?";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, ferragem.getQtdeFerragem());
-      this.stmte.setDouble(2, ferragem.getEstriboAltura());
-      this.stmte.setDouble(3, ferragem.getEstriboLargura());
-      this.stmte.setDouble(4, ferragem.getComprimento());
-      this.stmte.setDouble(5, ferragem.getEspacoEstribo());
-      this.stmte.setInt(6, ferragem.getIdPedido());
-      this.stmte.setInt(7, ferragem.getIdFerragem());
+      this.stmte.setString(1, pedidoitem.getDiametro());
+      this.stmte.setDouble(2, pedidoitem.getQtdeferro());
+      this.stmte.setDouble(3, pedidoitem.getQtdematerial());
+      this.stmte.setInt(4, pedidoitem.getIdferragem());
+      this.stmte.setInt(5, pedidoitem.getIdproduto());
+      this.stmte.setInt(6, pedidoitem.getIdItemFerragem());
       this.stmte.executeUpdate();
       return true;
     }
@@ -73,7 +72,7 @@ public class FerragemDAO extends GenericDAO
     }
   }
 
-  public Ferragem getFerragemById(int idferragem)
+  public PedidoItem getFerragemById(int idferragem)
   {
     Ferragem u = new Ferragem();
     String sql = "SELECT * FROM tblferragem WHERE idferragem = ?";

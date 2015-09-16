@@ -1,6 +1,6 @@
 package beans;
 
-import java.math.BigDecimal;
+
 
 public class Ferragem {
 
@@ -9,109 +9,86 @@ public class Ferragem {
     private double estriboLargura;
     private double estriboAltura;
     private double comprimento;
-    private double qtdeFerro;
-    private int idUsuario;
-    private int idProduto;
-    private double espacoEstribo;
-    private String diametro;
-    private double quantidadeBarrasColunas;
-    private double estriboTotal;
-    private double quantidadeBarrasEstribos;
-    private double quantidadeArames;
-    private double qtdeEstribos;
-    private String data;
+    private double espacoEstribo;    
+    private int idPedido;
+    
 
-    public String getData() {
-        return data;
-    }
+  public int getIdFerragem()
+  {
+    return idFerragem;
+  }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+  public void setIdFerragem(int idFerragem)
+  {
+    this.idFerragem = idFerragem;
+  }
 
-    public String getDiametro() {
-        return diametro;
-    }
+  public int getQtdeFerragem()
+  {
+    return qtdeFerragem;
+  }
 
-    public void setDiametro(String diametro) {
-        this.diametro = diametro;
-    }
+  public void setQtdeFerragem(int qtdeFerragem)
+  {
+    this.qtdeFerragem = qtdeFerragem;
+  }
 
-    public int getIdFerragem() {
-        return idFerragem;
-    }
+  public double getEstriboLargura()
+  {
+    return estriboLargura;
+  }
 
-    public void setIdFerragem(int idFerragem) {
-        this.idFerragem = idFerragem;
-    }
+  public void setEstriboLargura(double estriboLargura)
+  {
+    this.estriboLargura = estriboLargura;
+  }
 
-    public int getQtdeFerragem() {
-        return qtdeFerragem;
-    }
+  public double getEstriboAltura()
+  {
+    return estriboAltura;
+  }
 
-    public void setQtdeFerragem(int qtdeFerragem) {
-        this.qtdeFerragem = qtdeFerragem;
-    }
+  public void setEstriboAltura(double estriboAltura)
+  {
+    this.estriboAltura = estriboAltura;
+  }
 
-    public double getEstriboLargura() {
-        return estriboLargura;
-    }
+  public double getComprimento()
+  {
+    return comprimento;
+  }
 
-    public void setEstriboLargura(double estriboLargura) {
-        this.estriboLargura = estriboLargura;
-    }
+  public void setComprimento(double comprimento)
+  {
+    this.comprimento = comprimento;
+  }
 
-    public double getEstriboAltura() {
-        return estriboAltura;
-    }
+  public double getEspacoEstribo()
+  {
+    return espacoEstribo;
+  }
 
-    public void setEstriboAltura(double estriboAltura) {
-        this.estriboAltura = estriboAltura;
-    }
+  public void setEspacoEstribo(double espacoEstribo)
+  {
+    this.espacoEstribo = espacoEstribo;
+  }
 
-    public double getEspacoEstribo() {
-        return espacoEstribo;
-    }
+  public int getIdPedido()
+  {
+    return idPedido;
+  }
 
-    public void setEspacoEstribo(double espacoEstribo) {
-        this.espacoEstribo = espacoEstribo;
-    }
+  public void setIdPedido(int idPedido)
+  {
+    this.idPedido = idPedido;
+  }
+    
 
-    public double getComprimento() {
-        return comprimento;
-    }
-
-    public void setComprimento(double comprimento) {
-        this.comprimento = comprimento;
-    }
-
-    public double getQtdeFerro() {
-        return qtdeFerro;
-    }
-
-    public void setQtdeFerro(double qtdeFerro) {
-        this.qtdeFerro = qtdeFerro;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-
+    
     //---------------------------------------------------
     //Calculos
     //---------------------------------------------------
+    /*
     public double calculoTotalEstribo() {
         double xx = ((this.estriboAltura * 2) + (this.estriboLargura * 2) + 10);
         BigDecimal yy = new BigDecimal(xx);
@@ -152,5 +129,5 @@ public class Ferragem {
         return this.quantidadeArames;
 
     }
-
+*/
 }

@@ -4,13 +4,11 @@ package beans;
 
 public class PedidoFerragem {
 
-    private int idFerragem;
-    private int qtdeFerragem;
-    private double estriboLargura;
-    private double estriboAltura;
-    private double comprimento;
-    private double espacoEstribo;
-    private int idpedido;
+    private int idPedido;    
+    private String Data;
+    private String dataEntrega;
+    private int idTblCliente;
+    private int idUsuario;
 
    
 
@@ -59,73 +57,55 @@ public class PedidoFerragem {
     }
 */
 
-  public int getIdFerragem()
+  public int getIdPedido()
   {
-    return idFerragem;
+    return idPedido;
   }
 
-  public void setIdFerragem(int idFerragem)
+  public void setIdPedido(int idPedido)
   {
-    this.idFerragem = idFerragem;
+    this.idPedido = idPedido;
   }
 
-  public int getQtdeFerragem()
+  public String getData()
   {
-    return qtdeFerragem;
+    return Data;
   }
 
-  public void setQtdeFerragem(int qtdeFerragem)
+  public void setData(String Data)
   {
-    this.qtdeFerragem = qtdeFerragem;
+    this.Data = Data;
   }
 
-  public double getEstriboLargura()
+  public String getDataEntrega()
   {
-    return estriboLargura;
+    return dataEntrega;
   }
 
-  public void setEstriboLargura(double estriboLargura)
+  public void setDataEntrega(String dataEntrega)
   {
-    this.estriboLargura = estriboLargura;
+    this.dataEntrega = dataEntrega;
   }
 
-  public double getEstriboAltura()
+  public int getIdTblCliente()
   {
-    return estriboAltura;
+    return idTblCliente;
   }
 
-  public void setEstriboAltura(double estriboAltura)
+  public void setIdTblCliente(int idTblCliente)
   {
-    this.estriboAltura = estriboAltura;
+    this.idTblCliente = idTblCliente;
   }
 
-  public double getComprimento()
+  public int getIdUsuario()
   {
-    return comprimento;
+    return idUsuario;
   }
 
-  public void setComprimento(double comprimento)
+  public void setIdUsuario(int idUsuario)
   {
-    this.comprimento = comprimento;
+    this.idUsuario = idUsuario;
   }
 
-  public double getEspacoEstribo()
-  {
-    return espacoEstribo;
-  }
-
-  public void setEspacoEstribo(double espacoEstribo)
-  {
-    this.espacoEstribo = espacoEstribo;
-  }
-
-  public int getIdpedido()
-  {
-    return idpedido;
-  }
-
-  public void setIdpedido(int idpedido)
-  {
-    this.idpedido = idpedido;
-  }
+  
 }
