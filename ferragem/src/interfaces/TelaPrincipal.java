@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import static utils.ControleForms.mcliente;
 import static utils.ControleForms.mnivel;
+import static utils.ControleForms.mpedidoferragem;
 import static utils.ControleForms.mproduto;
 import static utils.ControleForms.musuario;
 
@@ -66,7 +67,6 @@ public class TelaPrincipal extends javax.swing.JFrame
     menuNivel = new javax.swing.JMenuItem();
     menuCidade = new javax.swing.JMenuItem();
     menuCalculo = new javax.swing.JMenu();
-    jMenuItem3 = new javax.swing.JMenuItem();
     menuPedFerragem = new javax.swing.JMenuItem();
     menuPedSapata = new javax.swing.JMenuItem();
     jMenu3 = new javax.swing.JMenu();
@@ -264,16 +264,6 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     menuCalculo.setText("Calculos");
 
-    jMenuItem3.setText("Ferragem Simples");
-    jMenuItem3.addActionListener(new java.awt.event.ActionListener()
-    {
-      public void actionPerformed(java.awt.event.ActionEvent evt)
-      {
-        jMenuItem3ActionPerformed(evt);
-      }
-    });
-    menuCalculo.add(jMenuItem3);
-
     menuPedFerragem.setText("Pedido Ferragem");
     menuPedFerragem.addActionListener(new java.awt.event.ActionListener()
     {
@@ -416,13 +406,6 @@ public class TelaPrincipal extends javax.swing.JFrame
   }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      // TODO add your handling code here:
-      JInternalFrame frmFerragem = new frmFerragem();
-      this.DesktopPane.add(frmFerragem);
-      frmFerragem.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
       // TODO add your handling code here:
 
@@ -524,9 +507,24 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     private void menuPedFerragemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedFerragemActionPerformed
       // TODO add your handling code here:
-      JInternalFrame frmPedido = new frmPedido();
-      this.DesktopPane.add(frmPedido);
-      frmPedido.setVisible(true);
+                 
+      if (mpedidoferragem == 0)
+       {
+       mpedidoferragem = 1;
+       JInternalFrame frmPedido = new frmPedido();
+       this.DesktopPane.add(frmPedido);
+       frmPedido.setLocation(DesktopPane.getWidth() / 2 - frmPedido.getWidth() / 2, DesktopPane.getHeight() / 4 - frmPedido.getHeight() / 4);
+       frmPedido.setVisible(true);
+        
+       }
+       else
+       {
+         
+       JOptionPane.showMessageDialog(null, "Tela Produtos já esta aberta !!!");
+        //frmProduto.moveToFront();
+        
+       }
+          
       // TelaPrincipal.set
     }//GEN-LAST:event_menuPedFerragemActionPerformed
 
@@ -732,7 +730,6 @@ public class TelaPrincipal extends javax.swing.JFrame
   private javax.swing.JMenuItem jMenuItem17;
   private javax.swing.JMenuItem jMenuItem18;
   private javax.swing.JMenuItem jMenuItem19;
-  private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItem4;
   private javax.swing.JMenuItem jMenuItem5;
   private javax.swing.JMenuItem jMenuItem6;

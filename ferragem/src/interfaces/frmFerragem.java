@@ -526,21 +526,21 @@ public class frmFerragem extends javax.swing.JInternalFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
         u = new Ferragem();
-        u.setDiametro(txtDiametroEstribo.getText());
-        u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-        u.setIdUsuario(1);
+        //u.setDiametro(txtDiametroEstribo.getText());
+      //  u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+       // u.setIdUsuario(1);
         u.setComprimento(Double.parseDouble(txtComprimentoColuna.getText()));
         u.setEspacoEstribo(Double.parseDouble(txtEspacoEstribo.getText()));
         u.setEstriboAltura(Double.parseDouble(txtEstriboAltura.getText()));
         u.setEstriboLargura(Double.parseDouble(txtEstriboLargura.getText()));
         u.setQtdeFerragem(Integer.parseInt(txtQtdeColunas.getText()));
-        u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+      //  u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
 
-        txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
-        txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
-        txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
-        txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
-        txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
+      //  txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
+      //  txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
+      //  txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
+      //  txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
+      //  txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
 
         estadoInicial();
         txtMensagem.setText("");
@@ -559,22 +559,22 @@ public class frmFerragem extends javax.swing.JInternalFrame {
 
         if (status == (true)) {
 
-            u.setDiametro(txtDiametroEstribo.getText());
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-            u.setIdUsuario(frmSenha.IdUsuarioLogado);
+     //       u.setDiametro(txtDiametroEstribo.getText());
+     //       u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+     //       u.setIdUsuario(frmSenha.IdUsuarioLogado);
             u.setComprimento(Double.parseDouble(txtComprimentoColuna.getText()));
             u.setEspacoEstribo(Double.parseDouble(txtEspacoEstribo.getText()));
             u.setEstriboAltura(Double.parseDouble(txtEstriboAltura.getText()));
             u.setEstriboLargura(Double.parseDouble(txtEstriboLargura.getText()));
             u.setQtdeFerragem(Integer.parseInt(txtQtdeColunas.getText()));
-            u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
-            u.setData(String.valueOf(getDate()));
+     //       u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+      //      u.setData(String.valueOf(getDate()));
 
-            txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
-            txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
-            txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
-            txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
-            txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
+       //     txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
+      //      txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
+      //      txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
+      //      txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
+      //      txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
 
             if (this.ferragemDAO.inserir(u) == true) {
 
@@ -586,23 +586,23 @@ public class frmFerragem extends javax.swing.JInternalFrame {
             }
         } else {
 
-            u.setDiametro(txtDiametroEstribo.getText());
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-            u.setIdUsuario(frmSenha.IdUsuarioLogado);
+        //    u.setDiametro(txtDiametroEstribo.getText());
+      //      u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+       //     u.setIdUsuario(frmSenha.IdUsuarioLogado);
             u.setComprimento(Double.parseDouble(txtComprimentoColuna.getText()));
             u.setEspacoEstribo(Double.parseDouble(txtEspacoEstribo.getText()));
             u.setEstriboAltura(Double.parseDouble(txtEstriboAltura.getText()));
             u.setEstriboLargura(Double.parseDouble(txtEstriboLargura.getText()));
             u.setQtdeFerragem(Integer.parseInt(txtQtdeColunas.getText()));
-            u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+        //    u.setQtdeFerro(Double.parseDouble(txtQtdeFerroColuna.getText()));
             u.setIdFerragem(Integer.parseInt(txtIdFerragem.getText()));
-            u.setData(getDate());
+       //     u.setData(getDate());
 
-            txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
-            txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
-            txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
-            txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
-            txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
+       //     txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
+       //     txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
+       //     txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
+       //     txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
+        //    txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
 
             if (this.ferragemDAO.editar(u) == true) {
                 txtMensagem.setText("Ferragem Editada");
@@ -632,21 +632,21 @@ public class frmFerragem extends javax.swing.JInternalFrame {
             txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
             txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
             txtComprimentoColuna.setText(String.valueOf(u.getComprimento()));
-            txtDiametroEstribo.setText(u.getDiametro());   // já esta em string
+       //     txtDiametroEstribo.setText(u.getDiametro());   // já esta em string
             txtEspacoEstribo.setText(String.valueOf(u.getEspacoEstribo()));
             txtEstriboAltura.setText(String.valueOf(u.getEstriboAltura()));
             txtEstriboLargura.setText(String.valueOf(u.getEstriboLargura()));
             txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
-            txtIdProduto.setText(String.valueOf(u.getIdProduto()));
-            txtUsuarioLogado.setText(String.valueOf(u.getIdUsuario()));
+      //      txtIdProduto.setText(String.valueOf(u.getIdProduto()));
+       //     txtUsuarioLogado.setText(String.valueOf(u.getIdUsuario()));
             txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
-            txtQtdeFerroColuna.setText(String.valueOf(u.getQtdeFerro()));
+       //     txtQtdeFerroColuna.setText(String.valueOf(u.getQtdeFerro()));
 
-            txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
-            txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
-            txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
-            txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
-            txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
+       //     txtTotalEstribo.setText(String.valueOf(u.calculoTotalEstribo()));
+        //    txtTotalBarrasColuna.setText(String.valueOf(u.calculoQuantidadeBarrasColunas()));
+         //   txtTotalBarrasEstribo.setText(String.valueOf(u.calculoQuantidadeBarrasEstribos()));
+       //     txtTotalArame.setText(String.valueOf(u.calculoQuantidadeArames()));
+       //     txtTotalQtdeEstribos.setText(String.valueOf(u.calculoQtdeEstribos()));
 
             btnCancelar.setEnabled(true);
             btnNovo.setEnabled(false);

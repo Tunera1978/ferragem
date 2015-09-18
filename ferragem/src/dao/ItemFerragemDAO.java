@@ -72,9 +72,9 @@ public class ItemFerragemDAO extends GenericDAO
     }
   }
 
-  public PedidoItem getFerragemById(int idferragem)
+  public PedidoItem getPedidoItemById(int idferragem)
   {
-    Ferragem u = new Ferragem();
+    PedidoItem u = new PedidoItem();
     String sql = "SELECT * FROM tblferragem WHERE idferragem = ?";
     try
     {
@@ -82,13 +82,12 @@ public class ItemFerragemDAO extends GenericDAO
       this.stmte.setInt(1, idferragem);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
-      u.setIdFerragem(rs.getInt("idferragem"));
-      u.setQtdeFerragem(rs.getInt("qtde"));
-      u.setEstriboLargura(rs.getDouble("estriboaltura"));
-      u.setEstriboAltura(rs.getDouble("estribolargura"));
-      u.setComprimento(rs.getDouble("comprimento"));
-      u.setEspacoEstribo(rs.getDouble("estriboespaco"));
-      u.setIdPedido(rs.getInt("idpedido"));
+      u.setDiametro(rs.getString("diametro"));
+      u.setQtdeferro(rs.getDouble("qtdeferro"));
+      u.setQtdepecas(rs.getDouble("qtdepecas"));
+      u.setQtdematerial(rs.getDouble("idferragem"));
+      u.setIdferragem(rs.getInt("idferagem"));
+      u.setIdproduto(rs.getInt("idproduto"));
       return u;
     }
     catch (Exception e)
@@ -97,9 +96,9 @@ public class ItemFerragemDAO extends GenericDAO
     }
   }
 
-  public Ferragem getFerragemByMax()
+  public PedidoItem getPedidoItemByMax()
   {
-    Ferragem u = new Ferragem();
+    PedidoItem u = new PedidoItem();
     String sql = "select max(?) FROM tblferragem;";
     try
     {
@@ -109,8 +108,12 @@ public class ItemFerragemDAO extends GenericDAO
       while (rs.next())
       {
         System.out.println(u);
-        // u = new Ferragem();
-        u.setIdFerragem(rs.getInt("idferragem"));
+        u.setDiametro(rs.getString("diametro"));
+        u.setQtdeferro(rs.getDouble("qtdeferro"));
+        u.setQtdepecas(rs.getDouble("qtdepecas"));
+        u.setQtdematerial(rs.getDouble("idferragem"));
+        u.setIdferragem(rs.getInt("idferagem"));
+        u.setIdproduto(rs.getInt("idproduto"));
         System.out.println(u);
       }
       System.out.println(u);
@@ -122,9 +125,9 @@ public class ItemFerragemDAO extends GenericDAO
     }
   }
 
-  public ArrayList<Ferragem> getFerragemByMaxId()
+  public ArrayList<ItemFerragemDAO> getPedidoItemByMaxId()
   {
-    ArrayList<Ferragem> ferragem = new ArrayList<Ferragem>();
+    ArrayList<ItemFerragemDAO> ferragem = new ArrayList<ItemFerragemDAO>();
     String sql = "select max(?) FROM tblferragem;";
 
     try
@@ -135,8 +138,8 @@ public class ItemFerragemDAO extends GenericDAO
 
       while (rs.next())
       {
-        Ferragem f = new Ferragem();
-        f.setIdFerragem(rs.getInt("idferragem"));
+        ItemFerragemDAO f = new ItemFerragemDAO();
+        //f.set(rs.getInt("idferragem"));
         ferragem.add(f);
       }
       return ferragem;

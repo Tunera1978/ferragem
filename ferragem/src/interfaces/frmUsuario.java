@@ -6,6 +6,7 @@ import dao.UsuarioDAO;
 import dao.NivelDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static utils.ControleForms.musuario ;
 import utils.AceitaNumeros;
 import utils.AceitaStrings;
 import utils.LimitarLetras;
@@ -78,6 +79,31 @@ public class frmUsuario extends javax.swing.JInternalFrame {
     comboNivel = new javax.swing.JComboBox();
 
     setClosable(true);
+    addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+    {
+      public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+      {
+        formInternalFrameClosing(evt);
+      }
+      public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+      public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+      {
+      }
+    });
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Cadastro de Usuario");
@@ -449,6 +475,12 @@ public class frmUsuario extends javax.swing.JInternalFrame {
     private void txtMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensagemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMensagemActionPerformed
+
+  private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
+  {//GEN-HEADEREND:event_formInternalFrameClosing
+    // TODO add your handling code here:
+    musuario = 0;
+  }//GEN-LAST:event_formInternalFrameClosing
 
     
 
