@@ -15,6 +15,7 @@ import static utils.ControleForms.mnivel;
 import static utils.ControleForms.mpedidoferragem;
 import static utils.ControleForms.mproduto;
 import static utils.ControleForms.musuario;
+import static utils.ControleForms.mcidade;
 
 public class TelaPrincipal extends javax.swing.JFrame
 {
@@ -530,6 +531,21 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     private void menuCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCidadeActionPerformed
       // TODO add your handling code here:
+      if (mcidade == 0)
+      {
+        mcidade = 1;
+        JInternalFrame frmCidade = new frmCidade();
+        this.DesktopPane.add(frmCidade);
+        frmCidade.setLocation(DesktopPane.getWidth() / 2 - frmCidade.getWidth() / 2, DesktopPane.getHeight() / 4 - frmCidade.getHeight() / 4);
+        frmCidade.setVisible(true);
+      }
+      else
+      {
+        JOptionPane.showMessageDialog(null, "Tela de Cidades já esta aberta !!!");
+      }
+      
+      
+      
     }//GEN-LAST:event_menuCidadeActionPerformed
 
     private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
@@ -616,10 +632,10 @@ public class TelaPrincipal extends javax.swing.JFrame
       if (musuario == 0)
       {
         musuario = 1;
-        JInternalFrame frmUsuario = new frmUsuario();
-        this.DesktopPane.add(frmUsuario);
-        frmUsuario.setLocation(DesktopPane.getWidth() / 2 - frmUsuario.getWidth() / 2, DesktopPane.getHeight() / 4 - frmUsuario.getHeight() / 4);
-        frmUsuario.setVisible(true);
+        JInternalFrame frmUsuarios = new frmUsuarios();
+        this.DesktopPane.add(frmUsuarios);
+        frmUsuarios.setLocation(DesktopPane.getWidth() / 2 - frmUsuarios.getWidth() / 2, DesktopPane.getHeight() / 4 - frmUsuarios.getHeight() / 4);
+        frmUsuarios.setVisible(true);
       }
       else
       {

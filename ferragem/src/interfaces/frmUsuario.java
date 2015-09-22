@@ -79,6 +79,7 @@ public class frmUsuario extends javax.swing.JInternalFrame {
     comboNivel = new javax.swing.JComboBox();
 
     setClosable(true);
+    setVisible(true);
     addInternalFrameListener(new javax.swing.event.InternalFrameListener()
     {
       public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
