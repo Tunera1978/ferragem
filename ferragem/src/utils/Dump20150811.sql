@@ -1,166 +1,333 @@
-create database ferragem;
-use ferragem;
-CREATE TABLE `tblacesso` (
-  `idtblacesso` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) NOT NULL,
-  PRIMARY KEY (`idtblacesso`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-CREATE TABLE `tblnivel` (
-  `idtblnivelacesso` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(20) NOT NULL,
-  PRIMARY KEY (`idtblnivelacesso`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-CREATE TABLE `tblnivelacesso` (
-  `idtblacesso` int(11) NOT NULL,
-  `idtblnivelacesso` int(11) NOT NULL,
-  PRIMARY KEY (`idtblacesso`,`idtblnivelacesso`),
-  KEY `fk_tblacesso_has_tblnivelacesso_tblnivelacesso1_idx` (`idtblnivelacesso`),
-  KEY `fk_tblacesso_has_tblnivelacesso_tblacesso1_idx` (`idtblacesso`),
-  CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblacesso1` FOREIGN KEY (`idtblacesso`) REFERENCES `tblacesso` (`idtblacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblnivelacesso1` FOREIGN KEY (`idtblnivelacesso`) REFERENCES `tblnivel` (`idtblnivelacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblusuario` (
-  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `senha` varchar(12) NOT NULL,
-  `idtblnivelacesso` int(11) NOT NULL,
-  PRIMARY KEY (`idusuario`,`idtblnivelacesso`),
-  KEY `fk_tblusuario_tblnivelacesso1_idx` (`idtblnivelacesso`),
-  CONSTRAINT `fk_tblusuario_tblnivelacesso1` FOREIGN KEY (`idtblnivelacesso`) REFERENCES `tblnivel` (`idtblnivelacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
-CREATE TABLE `tbllog` (
-  `idlog` int(11) NOT NULL,
-  `data` datetime NOT NULL,
-  `hora` datetime NOT NULL,
-  `idusuario` int(11) NOT NULL,
-  `idtblacesso` int(11) NOT NULL,
-  PRIMARY KEY (`idlog`,`idusuario`,`idtblacesso`),
-  KEY `fk_tbllog_tblusuario1_idx` (`idusuario`),
-  KEY `fk_tbllog_tblacesso1_idx` (`idtblacesso`),
-  CONSTRAINT `fk_tbllog_tblacesso1` FOREIGN KEY (`idtblacesso`) REFERENCES `tblacesso` (`idtblacesso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tbllog_tblusuario1` FOREIGN KEY (`idusuario`) REFERENCES `tblusuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE SCHEMA IF NOT EXISTS `ferragem` DEFAULT CHARACTER SET latin1 ;
+USE `ferragem` ;
 
-CREATE TABLE IF NOT EXISTS `pais` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(60) DEFAULT NULL,
-  `sigla` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblpais`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblpais` (
+  `idpais` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(60) NULL DEFAULT NULL ,
+  `sigla` VARCHAR(10) NULL DEFAULT NULL ,
+  PRIMARY KEY (`idpais`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
-CREATE TABLE IF NOT EXISTS `estado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(75) DEFAULT NULL,
-  `uf` varchar(5) DEFAULT NULL,
-  `pais` int(7) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Estado_pais` (`pais`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `cidade` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(120) DEFAULT NULL,
-  `estado` int(5) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Cidade_estado` (`estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblestado`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblestado` (
+  `idestado` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(75) NULL DEFAULT NULL ,
+  `uf` VARCHAR(5) NULL DEFAULT NULL ,
+  `idpais` INT(11) NOT NULL ,
+  PRIMARY KEY (`idestado`, `idpais`) ,
+  INDEX `fk_tblestado_tblpais1` (`idpais` ASC) ,
+  CONSTRAINT `fk_tblestado_tblpais1`
+    FOREIGN KEY (`idpais` )
+    REFERENCES `ferragem`.`tblpais` (`idpais` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
-CREATE TABLE `tblproduto` (
-  `idproduto` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) NOT NULL,
-  `pesoBarra` float NOT NULL,
-  PRIMARY KEY (`idproduto`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-CREATE TABLE `tbltipoendereco` (
-  `idtbltipoendereco` int(11) NOT NULL,
-  `descricao` varchar(20) NOT NULL,
-  PRIMARY KEY (`idtbltipoendereco`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblentidade` (
-  `idtblcliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `fisicoJuridico` tinyint(1) NOT NULL,
-  `cnpj` varchar(19) DEFAULT NULL,
-  `incricao` varchar(12) DEFAULT NULL,
-  `cpf` varchar(12) DEFAULT NULL,
-  `rg` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`idtblcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblcontato` (
-  `idtblcontato` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
-  `telefone` varchar(45) DEFAULT NULL,
-  `celular` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `setor` varchar(45) DEFAULT NULL,
-  `observacao` varchar(45) DEFAULT NULL,
-  `idcliente` int(11) NOT NULL,
-  PRIMARY KEY (`idtblcontato`,`idcliente`),
-  KEY `fk_tblcontato_tblcliente1_idx` (`idcliente`),
-  CONSTRAINT `fk_tblcontato_tblcliente1` FOREIGN KEY (`idcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblendereco` (
-  `idtblendentrega` int(11) NOT NULL AUTO_INCREMENT,
-  `endereco` varchar(45) NOT NULL,
-  `idcidade` int(11) NOT NULL,
-  `idtipoendereco` int(11) NOT NULL,
-  `idtblcliente` int(11) NOT NULL,
-  PRIMARY KEY (`idtblendentrega`,`idcidade`,`idtipoendereco`,`idtblcliente`),
-  KEY `fk_tblendereco_tblcidade1_idx` (`idcidade`),
-  KEY `fk_tblendereco_tbltipoendereco1_idx` (`idtipoendereco`),
-  KEY `fk_tblendereco_tblcliente1_idx` (`idtblcliente`),
-  CONSTRAINT `fk_tblendereco_tblcidade1` FOREIGN KEY (`idcidade`) REFERENCES `tblcidade` (`idcidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblendereco_tblcliente1` FOREIGN KEY (`idtblcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblendereco_tbltipoendereco1` FOREIGN KEY (`idtipoendereco`) REFERENCES `tbltipoendereco` (`idtbltipoendereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblpedido` (
-  `idpedido` int(11) NOT NULL,
-  `data` datetime NOT NULL,
-  `dataentrega` datetime NOT NULL,
-  `idtblcliente` int(11) NOT NULL,
-  `idusuario` int(11) NOT NULL,
-  PRIMARY KEY (`idpedido`,`idtblcliente`,`idusuario`),
-  KEY `fk_tblpedido_tblcliente1_idx` (`idtblcliente`),
-  KEY `fk_tblpedido_tblusuario1_idx` (`idusuario`),
-  CONSTRAINT `fk_tblpedido_tblcliente1` FOREIGN KEY (`idtblcliente`) REFERENCES `tblentidade` (`idtblcliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblpedido_tblusuario1` FOREIGN KEY (`idusuario`) REFERENCES `tblusuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblferragem` (
-  `idferragem` int(11) NOT NULL,
-  `qtde` int(11) NOT NULL,
-  `estriboaltura` double DEFAULT NULL,
-  `estribolargura` double DEFAULT NULL,
-  `comprimento` double DEFAULT NULL,
-  `estriboespaco` double DEFAULT NULL,
-  `idpedido` int(11) NOT NULL,
-  PRIMARY KEY (`idferragem`,`idpedido`),
-  KEY `fk_tblferragem_tblpedido1_idx` (`idpedido`),
-  CONSTRAINT `fk_tblferragem_tblpedido1` FOREIGN KEY (`idpedido`) REFERENCES `tblpedido` (`idpedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `tblitemferragem` (
-  `iditemferragem` int(11) NOT NULL,
-  `diametro` varchar(10) NOT NULL,
-  `qtdeferro` double NOT NULL,
-  `qtdepecas` double NOT NULL,
-  `qtdematerial` double NOT NULL,
-  `idferragem` int(11) NOT NULL,
-  `idproduto` int(11) NOT NULL,
-  PRIMARY KEY (`iditemferragem`,`idferragem`,`idproduto`),
-  KEY `fk_tblitemferragem_tblferragem1_idx` (`idferragem`),
-  KEY `fk_tblitemferragem_tblproduto1_idx` (`idproduto`),
-  CONSTRAINT `fk_tblitemferragem_tblferragem1` FOREIGN KEY (`idferragem`) REFERENCES `tblferragem` (`idferragem`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tblitemferragem_tblproduto1` FOREIGN KEY (`idproduto`) REFERENCES `tblproduto` (`idproduto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblcidade`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblcidade` (
+  `idcidade` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(120) NULL DEFAULT NULL ,
+  `idestado` INT(11) NOT NULL ,
+  PRIMARY KEY (`idcidade`, `idestado`) ,
+  INDEX `fk_tblcidade_tblestado1` (`idestado` ASC) ,
+  CONSTRAINT `fk_tblcidade_tblestado1`
+    FOREIGN KEY (`idestado` )
+    REFERENCES `ferragem`.`tblestado` (`idestado` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblacesso`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblacesso` (
+  `idacesso` INT(11) NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idacesso`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblentidade`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblentidade` (
+  `idcliente` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  `fisicoJuridico` TINYINT(1) NOT NULL ,
+  `cnpj` VARCHAR(19) NULL DEFAULT NULL ,
+  `incricao` VARCHAR(12) NULL DEFAULT NULL ,
+  `cpf` VARCHAR(12) NULL DEFAULT NULL ,
+  `rg` VARCHAR(10) NULL DEFAULT NULL ,
+  PRIMARY KEY (`idcliente`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblcontato`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblcontato` (
+  `idcontato` INT(11) NOT NULL ,
+  `nome` VARCHAR(45) NOT NULL ,
+  `telefone` VARCHAR(45) NULL DEFAULT NULL ,
+  `celular` VARCHAR(45) NULL DEFAULT NULL ,
+  `email` VARCHAR(45) NULL DEFAULT NULL ,
+  `setor` VARCHAR(45) NULL DEFAULT NULL ,
+  `observacao` VARCHAR(45) NULL DEFAULT NULL ,
+  `idcliente` INT(11) NOT NULL ,
+  PRIMARY KEY (`idcontato`, `idcliente`) ,
+  INDEX `fk_tblcontato_tblcliente1_idx` (`idcliente` ASC) ,
+  CONSTRAINT `fk_tblcontato_tblcliente1`
+    FOREIGN KEY (`idcliente` )
+    REFERENCES `ferragem`.`tblentidade` (`idcliente` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tbltipoendereco`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tbltipoendereco` (
+  `idtipoendereco` INT(11) NOT NULL ,
+  `descricao` VARCHAR(20) NOT NULL ,
+  PRIMARY KEY (`idtipoendereco`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblendereco`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblendereco` (
+  `idendentrega` INT(11) NOT NULL AUTO_INCREMENT ,
+  `endereco` VARCHAR(45) NOT NULL ,
+  `idtipoendereco` INT(11) NOT NULL ,
+  `idcliente` INT(11) NOT NULL ,
+  `idcidade` INT(11) NOT NULL ,
+  PRIMARY KEY (`idendentrega`, `idtipoendereco`, `idcliente`, `idcidade`) ,
+  INDEX `fk_tblendereco_tbltipoendereco1_idx` (`idtipoendereco` ASC) ,
+  INDEX `fk_tblendereco_tblcliente1_idx` (`idcliente` ASC) ,
+  INDEX `fk_tblendereco_tblcidade1` (`idcidade` ASC) ,
+  CONSTRAINT `fk_tblendereco_tblcliente1`
+    FOREIGN KEY (`idcliente` )
+    REFERENCES `ferragem`.`tblentidade` (`idcliente` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblendereco_tbltipoendereco1`
+    FOREIGN KEY (`idtipoendereco` )
+    REFERENCES `ferragem`.`tbltipoendereco` (`idtipoendereco` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblendereco_tblcidade1`
+    FOREIGN KEY (`idcidade` )
+    REFERENCES `ferragem`.`tblcidade` (`idcidade` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblnivel`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblnivel` (
+  `idlnivelacesso` INT(11) NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(20) NOT NULL ,
+  PRIMARY KEY (`idlnivelacesso`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblusuario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblusuario` (
+  `idusuario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  `senha` VARCHAR(12) NOT NULL ,
+  `idnivelacesso` INT(11) NOT NULL ,
+  PRIMARY KEY (`idusuario`, `idnivelacesso`) ,
+  INDEX `fk_tblusuario_tblnivelacesso1_idx` (`idnivelacesso` ASC) ,
+  CONSTRAINT `fk_tblusuario_tblnivelacesso1`
+    FOREIGN KEY (`idnivelacesso` )
+    REFERENCES `ferragem`.`tblnivel` (`idlnivelacesso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 27
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblpedido`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblpedido` (
+  `idpedido` INT(11) NOT NULL ,
+  `data` DATETIME NOT NULL ,
+  `dataentrega` DATETIME NOT NULL ,
+  `idcliente` INT(11) NOT NULL ,
+  `idusuario` INT(11) NOT NULL ,
+  PRIMARY KEY (`idpedido`, `idcliente`, `idusuario`) ,
+  INDEX `fk_tblpedido_tblcliente1_idx` (`idcliente` ASC) ,
+  INDEX `fk_tblpedido_tblusuario1_idx` (`idusuario` ASC) ,
+  CONSTRAINT `fk_tblpedido_tblcliente1`
+    FOREIGN KEY (`idcliente` )
+    REFERENCES `ferragem`.`tblentidade` (`idcliente` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblpedido_tblusuario1`
+    FOREIGN KEY (`idusuario` )
+    REFERENCES `ferragem`.`tblusuario` (`idusuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblferragem`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblferragem` (
+  `idferragem` INT(11) NOT NULL ,
+  `qtde` INT(11) NOT NULL ,
+  `estriboaltura` DOUBLE NULL DEFAULT NULL ,
+  `estribolargura` DOUBLE NULL DEFAULT NULL ,
+  `comprimento` DOUBLE NULL DEFAULT NULL ,
+  `estriboespaco` DOUBLE NULL DEFAULT NULL ,
+  `idpedido` INT(11) NOT NULL ,
+  PRIMARY KEY (`idferragem`, `idpedido`) ,
+  INDEX `fk_tblferragem_tblpedido1_idx` (`idpedido` ASC) ,
+  CONSTRAINT `fk_tblferragem_tblpedido1`
+    FOREIGN KEY (`idpedido` )
+    REFERENCES `ferragem`.`tblpedido` (`idpedido` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblproduto`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblproduto` (
+  `idproduto` INT(11) NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(45) NOT NULL ,
+  `pesoBarra` FLOAT NOT NULL ,
+  PRIMARY KEY (`idproduto`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 17
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblitemferragem`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblitemferragem` (
+  `iditemferragem` INT(11) NOT NULL ,
+  `diametro` VARCHAR(10) NOT NULL ,
+  `qtdeferro` DOUBLE NOT NULL ,
+  `qtdepecas` DOUBLE NOT NULL ,
+  `qtdematerial` DOUBLE NOT NULL ,
+  `idferragem` INT(11) NOT NULL ,
+  `idproduto` INT(11) NOT NULL ,
+  PRIMARY KEY (`iditemferragem`, `idferragem`, `idproduto`) ,
+  INDEX `fk_tblitemferragem_tblferragem1_idx` (`idferragem` ASC) ,
+  INDEX `fk_tblitemferragem_tblproduto1_idx` (`idproduto` ASC) ,
+  CONSTRAINT `fk_tblitemferragem_tblferragem1`
+    FOREIGN KEY (`idferragem` )
+    REFERENCES `ferragem`.`tblferragem` (`idferragem` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblitemferragem_tblproduto1`
+    FOREIGN KEY (`idproduto` )
+    REFERENCES `ferragem`.`tblproduto` (`idproduto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tbllog`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tbllog` (
+  `idlog` INT(11) NOT NULL ,
+  `data` DATETIME NOT NULL ,
+  `hora` DATETIME NOT NULL ,
+  `idusuario` INT(11) NOT NULL ,
+  `idacesso` INT(11) NOT NULL ,
+  PRIMARY KEY (`idlog`, `idusuario`, `idacesso`) ,
+  INDEX `fk_tbllog_tblusuario1_idx` (`idusuario` ASC) ,
+  INDEX `fk_tbllog_tblacesso1_idx` (`idacesso` ASC) ,
+  CONSTRAINT `fk_tbllog_tblacesso1`
+    FOREIGN KEY (`idacesso` )
+    REFERENCES `ferragem`.`tblacesso` (`idacesso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tbllog_tblusuario1`
+    FOREIGN KEY (`idusuario` )
+    REFERENCES `ferragem`.`tblusuario` (`idusuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `ferragem`.`tblnivelacesso`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `ferragem`.`tblnivelacesso` (
+  `idacesso` INT(11) NOT NULL ,
+  `idnivelacesso` INT(11) NOT NULL ,
+  PRIMARY KEY (`idacesso`, `idnivelacesso`) ,
+  INDEX `fk_tblacesso_has_tblnivelacesso_tblnivelacesso1_idx` (`idnivelacesso` ASC) ,
+  INDEX `fk_tblacesso_has_tblnivelacesso_tblacesso1_idx` (`idacesso` ASC) ,
+  CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblacesso1`
+    FOREIGN KEY (`idacesso` )
+    REFERENCES `ferragem`.`tblacesso` (`idacesso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tblacesso_has_tblnivelacesso_tblnivelacesso1`
+    FOREIGN KEY (`idnivelacesso` )
+    REFERENCES `ferragem`.`tblnivel` (`idlnivelacesso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- inserts automaticos
+-- -----------------------------------------------------
 
 INSERT INTO `tblacesso` VALUES (1,'Inclusão Usuario'),(2,'Alteração Usuario'),(3,'Exclusão Usuario'),(4,'Consulta Usuario');
+
 INSERT INTO `tblnivel` VALUES (1,'Administrador');
+
 INSERT INTO `tblusuario` VALUES (1,'admin','admin',1);
+
 INSERT INTO `tblproduto` VALUES (1,'verg /38',17),(16,'teste',0);
 
-INSERT INTO `pais` (`id`, `nome`, `sigla`) VALUES (1, 'Brasil', 'BR');
+INSERT INTO `tblpais` (`idpais`, `nome`, `sigla`) VALUES (1, 'Brasil', 'BR');
 
-INSERT INTO `estado` (`id`, `nome`, `uf`, `pais`) VALUES
+INSERT INTO `tblestado` (`idestado`, `nome`, `uf`, `idpais`) VALUES
 (1, 'Acre', 'AC', 1),
 (2, 'Alagoas', 'AL', 1),
 (3, 'Amazonas', 'AM', 1),
@@ -189,7 +356,7 @@ INSERT INTO `estado` (`id`, `nome`, `uf`, `pais`) VALUES
 (26, 'São Paulo', 'SP', 1),
 (27, 'Tocantins', 'TO', 1);
 
-INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
+INSERT INTO `tblcidade` (`idcidade`, `nome`, `idestado`) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),
 (3, 'Águia Branca', 8),
@@ -2215,7 +2382,7 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (2023, 'Maria da Fé', 11),
 (2024, 'Mariana', 11),
 (2025, 'Marilac', 11),
-(2026, 'Mário Campos', 11);
+(2026, 'Mário Campos', 11),
 (2027, 'Maripá de Minas', 11),
 (2028, 'Marliéria', 11),
 (2029, 'Marmelópolis', 11),
@@ -4082,7 +4249,7 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (3890, 'Barros Cassal', 23),
 (3891, 'Benjamin Constant do Sul', 23),
 (3892, 'Bento Gonçalves', 23),
-(3893, 'Boa Vista das Missões', 23);
+(3893, 'Boa Vista das Missões', 23),
 (3894, 'Boa Vista do Buricá', 23),
 (3895, 'Boa Vista do Cadeado', 23),
 (3896, 'Boa Vista do Incra', 23),
@@ -5754,3 +5921,4 @@ INSERT INTO `cidade` (`id`, `nome`, `estado`) VALUES
 (5562, 'Tupiratins', 27),
 (5563, 'Wanderlândia', 27),
 (5564, 'Xambioá', 27);
+
