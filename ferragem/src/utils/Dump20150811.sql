@@ -82,7 +82,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblcontato`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblcontato` (
-  `idcontato` INT(11) NOT NULL ,
+  `idcontato` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL ,
   `telefone` VARCHAR(45) NULL DEFAULT NULL ,
   `celular` VARCHAR(45) NULL DEFAULT NULL ,
@@ -105,7 +105,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tbltipoendereco`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tbltipoendereco` (
-  `idtipoendereco` INT(11) NOT NULL ,
+  `idtipoendereco` INT(11) NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(20) NOT NULL ,
   PRIMARY KEY (`idtipoendereco`) )
 ENGINE = InnoDB
@@ -116,7 +116,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblendereco`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblendereco` (
-  `idendentrega` INT(11) NOT NULL AUTO_INCREMENT ,
+  `idendentrega` INT(11) NOT NULL AUTO_INCREMENT,
   `endereco` VARCHAR(45) NOT NULL ,
   `idtipoendereco` INT(11) NOT NULL ,
   `idcliente` INT(11) NOT NULL ,
@@ -180,7 +180,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblpedido`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblpedido` (
-  `idpedido` INT(11) NOT NULL ,
+  `idpedido` INT(11) NOT NULL AUTO_INCREMENT,
   `data` DATETIME NOT NULL ,
   `dataentrega` DATETIME NOT NULL ,
   `idcliente` INT(11) NOT NULL ,
@@ -206,7 +206,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblferragem`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblferragem` (
-  `idferragem` INT(11) NOT NULL ,
+  `idferragem` INT(11) NOT NULL AUTO_INCREMENT,
   `qtde` INT(11) NOT NULL ,
   `estriboaltura` DOUBLE NULL DEFAULT NULL ,
   `estribolargura` DOUBLE NULL DEFAULT NULL ,
@@ -241,7 +241,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblitemferragem`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblitemferragem` (
-  `iditemferragem` INT(11) NOT NULL ,
+  `iditemferragem` INT(11) NOT NULL AUTO_INCREMENT,
   `diametro` VARCHAR(10) NOT NULL ,
   `qtdeferro` DOUBLE NOT NULL ,
   `qtdepecas` DOUBLE NOT NULL ,
@@ -269,7 +269,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tbllog`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tbllog` (
-  `idlog` INT(11) NOT NULL ,
+  `idlog` INT(11) NOT NULL AUTO_INCREMENT,
   `data` DATETIME NOT NULL ,
   `hora` DATETIME NOT NULL ,
   `idusuario` INT(11) NOT NULL ,

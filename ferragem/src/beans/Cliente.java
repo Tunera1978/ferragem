@@ -7,7 +7,7 @@ package beans;
 public class Cliente
 {
 
-  private int idtblentidade;
+  private int identidade;
   private String nome;
   private boolean fisicoJuridico;
   private String cnpj;
@@ -16,14 +16,14 @@ public class Cliente
   private String rg;
   
 
-  public int getIdtblentidade()
+  public int getIdentidade()
   {
-    return idtblentidade;
+    return identidade;
   }
 
-  public void setIdtblentidade(int idtblentidade)
+  public void setIdentidade(int identidade)
   {
-    this.idtblentidade = idtblentidade;
+    this.identidade = identidade;
   }
 
   public String getNome()

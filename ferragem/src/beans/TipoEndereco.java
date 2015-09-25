@@ -10,17 +10,17 @@ package beans;
  * @author Tune
  */
 public class TipoEndereco {
-    private int idtbltipoendereco;
+    private int idtipoendereco;
     private String descricao;
 
-  public int getIdtbltipoendereco()
+  public int getIdtipoendereco()
   {
-    return idtbltipoendereco;
+    return idtipoendereco;
   }
 
-  public void setIdtbltipoendereco(int idtbltipoendereco)
+  public void setIdtipoendereco(int idtipoendereco)
   {
-    this.idtbltipoendereco = idtbltipoendereco;
+    this.idtipoendereco = idtipoendereco;
   }
 
   public String getDescricao()

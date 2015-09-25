@@ -14,14 +14,14 @@ public class EnderecoDAO extends GenericDAO
 
   public boolean inserir(Endereco endereco)
   {
-    String sql = "INSERT INTO tblEndereco( endereco, idcidade, idtipoendereco, idtblcliente ) VALUES(?, ?, ?, ?)";
+    String sql = "INSERT INTO tblEndereco( endereco, idcidade, idtipoendereco, idcliente ) VALUES(?, ?, ?, ?)";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setString(1, endereco.getDescricao());
       this.stmte.setInt(2, endereco.getIdcidade());
       this.stmte.setInt(3, endereco.getIdtipoendereco());
-      this.stmte.setInt(4, endereco.getIdtblcliente());
+      this.stmte.setInt(4, endereco.getIdcliente());
       this.stmte.execute();
       return true;
     }
@@ -34,7 +34,7 @@ public class EnderecoDAO extends GenericDAO
   public Endereco getEnderecoById(int idendereco)
   {
     Endereco u = new Endereco();
-    String sql = "SELECT endereco, idcidade, idtipoendereco, idtblcliente FROM tblendereco WHERE idtblentrega = ?";
+    String sql = "SELECT endereco, idcidade, idtipoendereco, idcliente FROM tblendereco WHERE identrega = ?";
     try
     {
       this.prepareStmte(sql);
@@ -44,7 +44,7 @@ public class EnderecoDAO extends GenericDAO
       u.setDescricao(rs.getString("endereco"));
       u.setIdcidade(rs.getInt("idcidade"));
       u.setIdtipoendereco(rs.getInt("idtipoendereco"));
-      u.setIdtblcliente(rs.getInt("idtblcliente"));
+      u.setIdcliente(rs.getInt("idcliente"));
       return u;
     }
     catch (Exception e)
@@ -55,11 +55,11 @@ public class EnderecoDAO extends GenericDAO
 
   public boolean excluir(Endereco u)
   {
-    String sql = "DELETE FROM tblendereco WHERE idtblentrega = ?";
+    String sql = "DELETE FROM tblendereco WHERE identrega = ?";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, u.getIdtblentrega());//1 significa o 1º que será visto no caso idendereco
+      this.stmte.setInt(1, u.getIdentrega());//1 significa o 1º que será visto no caso idendereco
       this.stmte.execute();
       return true;
     }
@@ -71,14 +71,14 @@ public class EnderecoDAO extends GenericDAO
 
   public boolean editar(Endereco endereco)
   {
-    String sql = "UPDATE tblendereco SET nome = ?, fisicoJuridico = ?, cnpj = ?, inscricao = ?, cpf = ?, rg = ?  WHERE idtblendereco = ?";
+    String sql = "UPDATE tblendereco SET nome = ?, fisicoJuridico = ?, cnpj = ?, inscricao = ?, cpf = ?, rg = ?  WHERE idendereco = ?";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setString(1, endereco.getDescricao());
       this.stmte.setInt(2, endereco.getIdcidade());
       this.stmte.setInt(3, endereco.getIdtipoendereco());
-      this.stmte.setInt(4, endereco.getIdtblentrega());
+      this.stmte.setInt(4, endereco.getIdentrega());
       this.stmte.executeUpdate();
       return true;
     }
@@ -91,7 +91,7 @@ public class EnderecoDAO extends GenericDAO
   public ArrayList<Endereco> getEnderecoByLista(String descricao)
   {
     ArrayList<Endereco> endereco = new ArrayList<Endereco>();
-    String sql = "SELECT endereco, idcidade, idtipoendereco, idtblcliente  FROM tblendereco WHERE endereco LIKE ?";
+    String sql = "SELECT endereco, idcidade, idtipoendereco, idcliente  FROM tblendereco WHERE endereco LIKE ?";
 
     try
     {
@@ -105,7 +105,7 @@ public class EnderecoDAO extends GenericDAO
         u.setDescricao(rs.getString("endereco"));
         u.setIdcidade(rs.getInt("idcidade"));
         u.setIdtipoendereco(rs.getInt("idtipoendereco"));
-        u.setIdtblcliente(rs.getInt("idtblcliente"));
+        u.setIdcliente(rs.getInt("idcliente"));
         endereco.add(u);
       }
       return endereco;

@@ -4,7 +4,7 @@ package beans;
 public class Contato
 {
 
-  private int idtblcontato;
+  private int idcontato;
   private String nome;
   private String telefone;
   private String celular;
@@ -13,14 +13,14 @@ public class Contato
   private String observacao;
   private int idcliente;
 
-  public int getIdtblcontato()
+  public int getIdcontato()
   {
-    return idtblcontato;
+    return idcontato;
   }
 
-  public void setIdtblcontato(int idtblcontato)
+  public void setIdcontato(int idcontato)
   {
-    this.idtblcontato = idtblcontato;
+    this.idcontato = idcontato;
   }
 
   public String getNome()

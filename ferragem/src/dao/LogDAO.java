@@ -12,13 +12,13 @@ public class LogDAO extends GenericDAO {
     }
     
         public boolean inserir(Log log){
-        String sql = "INSERT INTO tbllog (data, time, idusuario, idtblacesso) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO tbllog (data, time, idusuario, idacesso) VALUES(?, ?, ?, ?)";
         try{
             this.prepareStmte(sql);            
             this.stmte.setString(1,log.getData());
             this.stmte.setString(2, log.getHora());
             this.stmte.setInt(3, log.getIdusuario());
-            this.stmte.setInt(4, log.getIdtblacesso());
+            this.stmte.setInt(4, log.getIdacesso());
             this.stmte.execute();
             return true;
         }
@@ -29,7 +29,7 @@ public class LogDAO extends GenericDAO {
     
     public Log getLogById(int idlog){
         Log u = new Log();
-        String sql = "SELECT data, hora, idusuario, idtblacesso FROM tbllog WHERE idlog = ?";
+        String sql = "SELECT data, hora, idusuario, idacesso FROM tbllog WHERE idlog = ?";
         try{
             this.prepareStmte(sql);
             this.stmte.setInt(1, idlog);//parametro
@@ -38,7 +38,7 @@ public class LogDAO extends GenericDAO {
             u.setData(rs.getString("data"));
             u.setHora(rs.getString("hora"));
             u.setIdusuario(rs.getInt("idusuario"));
-            u.setIdtblacesso(rs.getInt("idtblacesso"));
+            u.setIdacesso(rs.getInt("idacesso"));
             
             return u;
         }
@@ -67,7 +67,7 @@ public class LogDAO extends GenericDAO {
             this.stmte.setString(1, log.getData());
             this.stmte.setString(2, log.getHora());
             this.stmte.setInt(3, log.getIdusuario());
-            this.stmte.setInt(4, log.getIdtblacesso());
+            this.stmte.setInt(4, log.getIdacesso());
             this.stmte.executeUpdate();
             return true;
         }
@@ -93,7 +93,7 @@ public class LogDAO extends GenericDAO {
                 u.setData(rs.getString("data"));                
                 u.setHora(rs.getString("hora"));
                 u.setIdusuario(rs.getInt("idusuario"));
-                u.setIdtblacesso(rs.getInt("idtblacesso"));
+                u.setIdacesso(rs.getInt("idacesso"));
                 log.add(u);
             }
             return log;

@@ -21,7 +21,7 @@ public class PedidoDAO extends GenericDAO
       this.prepareStmte(sql);
       this.stmte.setString(1, pedido.getData());
       this.stmte.setString(2, pedido.getDataentrega());
-      this.stmte.setInt(3, pedido.getIdtblcliente());
+      this.stmte.setInt(3, pedido.getIdcliente());
       this.stmte.setInt(4, pedido.getIdusuario());
       this.stmte.execute();
       return true;
@@ -57,7 +57,7 @@ public class PedidoDAO extends GenericDAO
       this.prepareStmte(sql);
       this.stmte.setString(1, pedido.getData());
       this.stmte.setString(2, pedido.getDataentrega());
-      this.stmte.setInt(3, pedido.getIdtblcliente());
+      this.stmte.setInt(3, pedido.getIdcliente());
       this.stmte.setInt(4, pedido.getIdusuario());
       this.stmte.setInt(5, pedido.getIdPedido());
       this.stmte.executeUpdate();
@@ -82,7 +82,7 @@ public class PedidoDAO extends GenericDAO
       u.setIdPedido(rs.getInt("idpedido"));
       u.setData(rs.getString("data"));
       u.setData(rs.getString("dataentrega"));
-      u.setIdtblcliente(rs.getInt("idtblcliente"));
+      u.setIdcliente(rs.getInt("idtblcliente"));
       u.setIdusuario(rs.getInt("idusuario"));
       return u;
     }

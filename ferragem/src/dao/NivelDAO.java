@@ -29,15 +29,15 @@ public class NivelDAO extends GenericDAO {
         
     }
     
-    public Nivel getNivelById(int idtblnivelacesso){
+    public Nivel getNivelById(int idnivelacesso){
         Nivel u = new Nivel();
-        String sql = "SELECT * FROM tblnivel WHERE idtblnivelacesso = ?";
+        String sql = "SELECT * FROM tblnivel WHERE idnivelacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(1, idtblnivelacesso);//parametro
+            this.stmte.setInt(1, idnivelacesso);//parametro
             ResultSet rs = this.stmte.executeQuery();//return um resultset
             rs.first();//ResultSet na primeira posição
-            u.setIdtblnivelacesso(rs.getInt("idtblnivelacesso"));
+            u.setIdnivelacesso(rs.getInt("idnivelacesso"));
             u.setDescricao(rs.getString("descricao"));
             
             return u;
@@ -48,10 +48,10 @@ public class NivelDAO extends GenericDAO {
     }
     
     public boolean excluir(Nivel u){
-        String sql = "DELETE FROM tblnivel WHERE idtblnivelacesso = ?";
+        String sql = "DELETE FROM tblnivel WHERE idnivelacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(1, u.getIdtblnivelacesso());//1 significa o 1º que será visto no caso idtblnivelacesso
+            this.stmte.setInt(1, u.getIdnivelacesso());//1 significa o 1º que será visto no caso idtblnivelacesso
             this.stmte.execute();
             return true;
         }
@@ -61,10 +61,10 @@ public class NivelDAO extends GenericDAO {
     }
     
     public boolean editar(Nivel nivel){
-        String sql = "UPDATE tblnivel SET descricao = ?, senha = ? WHERE idtblnivelacesso = ?";
+        String sql = "UPDATE tblnivel SET descricao = ?, senha = ? WHERE idnivelacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(1, nivel.getIdtblnivelacesso());
+            this.stmte.setInt(1, nivel.getIdnivelacesso());
             this.stmte.setString(2,nivel.getDescricao());
             this.stmte.executeUpdate();
             return true;
@@ -83,7 +83,7 @@ public class NivelDAO extends GenericDAO {
             this.stmte.setString(1, descricao);
             ResultSet rs = this.stmte.executeQuery();
             rs.first();
-            u.setIdtblnivelacesso(rs.getInt("idtblnivelacesso"));
+            u.setIdnivelacesso(rs.getInt("idnivelacesso"));
             u.setDescricao(rs.getString("descricao"));
             
             return u;
@@ -140,7 +140,7 @@ public class NivelDAO extends GenericDAO {
             rs.beforeFirst();
             while (rs.next()) {
                 Nivel i = new Nivel();
-                i.setIdtblnivelacesso(rs.getInt("idtlbnivel"));
+                i.setIdnivelacesso(rs.getInt("idtlbnivel"));
                 i.setDescricao(rs.getString("descricao"));
                 idioma.add(i);
                 //x++;

@@ -10,15 +10,15 @@ package beans;
  * @author Tune
  */
 public class Acesso {
-    private int idtblacesso;
+    private int idacesso;
     private String descricao;
 
-    public int getIdtblacesso() {
-        return idtblacesso;
+    public int getIdacesso() {
+        return idacesso;
     }
 
-    public void setIdtblacesso(int idtblacesso) {
-        this.idtblacesso = idtblacesso;
+    public void setIdacesso(int idacesso) {
+        this.idacesso = idacesso;
     }
 
     public String getDescricao() {

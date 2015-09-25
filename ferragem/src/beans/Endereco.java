@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beans;
 
-/**
- *
- * @author Tune
- */
+
 public class Endereco {
     private int idtblentrega;
     private String descricao;
@@ -16,12 +9,12 @@ public class Endereco {
     private int idtipoendereco;
     private int idtblcliente;
 
-  public int getIdtblentrega()
+  public int getIdentrega()
   {
     return idtblentrega;
   }
 
-  public void setIdtblentrega(int idtblentrega)
+  public void setIdentrega(int idtblentrega)
   {
     this.idtblentrega = idtblentrega;
   }
@@ -56,12 +49,12 @@ public class Endereco {
     this.idtipoendereco = idtipoendereco;
   }
 
-  public int getIdtblcliente()
+  public int getIdcliente()
   {
     return idtblcliente;
   }
 
-  public void setIdtblcliente(int idtblcliente)
+  public void setIdcliente(int idtblcliente)
   {
     this.idtblcliente = idtblcliente;
   }

@@ -31,14 +31,14 @@ public class TipoEndDAO extends GenericDAO
   public TipoEndereco getTipoEnderecoById(int idtipoEndereco)
   {
     TipoEndereco u = new TipoEndereco();
-    String sql = "SELECT * FROM tbltipoEndereco WHERE idtbltipoendereco = ?";
+    String sql = "SELECT * FROM tbltipoEndereco WHERE idtipoendereco = ?";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setInt(1, idtipoEndereco);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
-      u.setIdtbltipoendereco(rs.getInt("idtbltipoendereco"));
+      u.setIdtipoendereco(rs.getInt("idtipoendereco"));
       u.setDescricao(rs.getString("descricao"));
       return u;
     }
@@ -50,11 +50,11 @@ public class TipoEndDAO extends GenericDAO
 
   public boolean excluir(TipoEndereco u)
   {
-    String sql = "DELETE FROM tbltipoEndereco WHERE idtbltipoendereco = ?";
+    String sql = "DELETE FROM tbltipoEndereco WHERE idtipoendereco = ?";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, u.getIdtbltipoendereco());//1 significa o 1º que será visto no caso idtipoEndereco
+      this.stmte.setInt(1, u.getIdtipoendereco());//1 significa o 1º que será visto no caso idtipoEndereco
       this.stmte.execute();
       return true;
     }
@@ -70,7 +70,7 @@ public class TipoEndDAO extends GenericDAO
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(2, tipoEndereco.getIdtbltipoendereco());
+      this.stmte.setInt(2, tipoEndereco.getIdtipoendereco());
       this.stmte.setString(1, tipoEndereco.getDescricao());
       this.stmte.executeUpdate();
       return true;
@@ -95,7 +95,7 @@ public class TipoEndDAO extends GenericDAO
       while (rs.next())
       {
         TipoEndereco u = new TipoEndereco();
-        u.setIdtbltipoendereco(rs.getInt("idtbltipoendereco"));
+        u.setIdtipoendereco(rs.getInt("idtipoendereco"));
         u.setDescricao(rs.getString("descricao"));
         tipoEndereco.add(u);
       }

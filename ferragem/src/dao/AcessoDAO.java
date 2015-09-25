@@ -25,15 +25,15 @@ public class AcessoDAO extends GenericDAO {
         }
     }
     
-    public Acesso getAcessoById(int idtblacesso){
+    public Acesso getAcessoById(int idacesso){
         Acesso u = new Acesso();
-        String sql = "SELECT * FROM tblacesso WHERE idtblacesso = ?";
+        String sql = "SELECT * FROM tblacesso WHERE idacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(1, idtblacesso);//parametro
+            this.stmte.setInt(1, idacesso);//parametro
             ResultSet rs = this.stmte.executeQuery();//return um resultset
             rs.first();//ResultSet na primeira posição
-            u.setIdtblacesso(rs.getInt("idtblacesso"));
+            u.setIdacesso(rs.getInt("idacesso"));
             u.setDescricao(rs.getString("descricao"));
             return u;
         }
@@ -43,10 +43,10 @@ public class AcessoDAO extends GenericDAO {
     }
     
     public boolean excluir(Acesso u){
-        String sql = "DELETE FROM tblacesso WHERE idtblacesso = ?";
+        String sql = "DELETE FROM tblacesso WHERE idacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(1, u.getIdtblacesso());//1 significa o 1º que será visto no caso idtblacesso
+            this.stmte.setInt(1, u.getIdacesso());//1 significa o 1º que será visto no caso idtblacesso
             this.stmte.execute();
             return true;
         }
@@ -56,10 +56,10 @@ public class AcessoDAO extends GenericDAO {
     }
     
     public boolean editar(Acesso acesso){
-        String sql = "UPDATE tblacesso SET descricao = ? WHERE idtblacesso = ?";
+        String sql = "UPDATE tblacesso SET descricao = ? WHERE idacesso = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(2, acesso.getIdtblacesso());
+            this.stmte.setInt(2, acesso.getIdacesso());
             this.stmte.setString(1, acesso.getDescricao());
             this.stmte.executeUpdate();
             return true;
@@ -82,7 +82,7 @@ public class AcessoDAO extends GenericDAO {
             while(rs.next())
             {
                 Acesso u = new Acesso();
-                u.setIdtblacesso(rs.getInt("idtblacesso"));
+                u.setIdacesso(rs.getInt("idacesso"));
                 u.setDescricao(rs.getString("descricao"));                
                 acesso.add(u);
             }

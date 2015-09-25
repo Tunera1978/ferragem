@@ -7,7 +7,7 @@ public class PedidoFerragem {
     private int idPedido;    
     private String Data;
     private String dataEntrega;
-    private int idTblCliente;
+    private int idCliente;
     private int idUsuario;
 
    
@@ -87,14 +87,14 @@ public class PedidoFerragem {
     this.dataEntrega = dataEntrega;
   }
 
-  public int getIdTblCliente()
+  public int getIdCliente()
   {
-    return idTblCliente;
+    return idCliente;
   }
 
-  public void setIdTblCliente(int idTblCliente)
+  public void setIdCliente(int idCliente)
   {
-    this.idTblCliente = idTblCliente;
+    this.idCliente = idCliente;
   }
 
   public int getIdUsuario()

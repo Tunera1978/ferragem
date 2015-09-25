@@ -10,15 +10,15 @@ package beans;
  * @author Tune
  */
 public class Nivel {
-    private int idtblnivelacesso;
+    private int idnivelacesso;
     private String descricao;
 
-    public int getIdtblnivelacesso() {
-        return idtblnivelacesso;
+    public int getIdnivelacesso() {
+        return idnivelacesso;
     }
 
-    public void setIdtblnivelacesso(int idtblnivelacesso) {
-        this.idtblnivelacesso = idtblnivelacesso;
+    public void setIdnivelacesso(int idnivelacesso) {
+        this.idnivelacesso = idnivelacesso;
     }
 
     public String getDescricao() {

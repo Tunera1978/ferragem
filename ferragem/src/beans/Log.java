@@ -7,21 +7,21 @@ public class Log
   private String data;
   private String hora;
   private int idusuario;
-  private int idtblacesso;
+  private int idacesso;
 
   public int getIdlog()
   {
     return idlog;
   }
 
-  public int getIdtblacesso()
+  public int getIdacesso()
   {
-    return idtblacesso;
+    return idacesso;
   }
 
-  public void setIdtblacesso(int idtblacesso)
+  public void setIdacesso(int idacesso)
   {
-    this.idtblacesso = idtblacesso;
+    this.idacesso = idacesso;
   }
 
   public void setIdlog(int idlog)

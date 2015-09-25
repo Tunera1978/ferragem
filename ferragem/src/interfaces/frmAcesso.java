@@ -1,19 +1,19 @@
 
 package interfaces;
 
-import beans.Produto;
-import dao.ProdutoDAO;
+import beans.Acesso;
+import dao.AcessoDAO;
 import javax.swing.JOptionPane;
 
 
 public class frmAcesso extends javax.swing.JInternalFrame {
 
     private boolean status;
-    private ProdutoDAO produtoDAO;
+    private AcessoDAO acessoDAO;
 
     public frmAcesso() {
         initComponents();
-        this.produtoDAO = new ProdutoDAO();
+        this.acessoDAO = new AcessoDAO();
         
         /*
         
@@ -896,11 +896,11 @@ public class frmAcesso extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
-        Produto u = new Produto();
+        Acesso u = new Acesso();
 
         if (status == (true)) {
             u.setDescricao(txtDescricao.getText());
-            if (this.produtoDAO.inserir(u) == true) {
+            if (this.acessoDAO.inserir(u) == true) {
                 
                 txtMensagem.setText("Produto Adicionado com sucesso !");
                 
@@ -909,10 +909,10 @@ public class frmAcesso extends javax.swing.JInternalFrame {
                 txtMensagem.setText("Erro ao Adicionar");
             }
         } else {
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+            u.setIdacesso(Integer.parseInt(txtIdProduto.getText()));
             u.setDescricao(txtDescricao.getText());
 
-            if (this.produtoDAO.editar(u) == true) {
+            if (this.acessoDAO.editar(u) == true) {
                 txtMensagem.setText("Usuario Editado");
                 
             } else {
@@ -954,11 +954,11 @@ public class frmAcesso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         txtMensagem.setText("");       
 
-        Produto u = new Produto();
-        u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+        Acesso u = new Acesso();
+        u.setIdacesso(Integer.parseInt(txtIdProduto.getText()));
         u.setDescricao(txtDescricao.getText());
 
-        if (this.produtoDAO.excluir(u) == true) {
+        if (this.acessoDAO.excluir(u) == true) {
             txtMensagem.setText("Usuario Excluido com sucesso !");
             estadoInicial();
         } else {
@@ -972,15 +972,15 @@ public class frmAcesso extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         txtMensagem.setText("");
-        int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        Produto u = this.produtoDAO.getProdutoById(idproduto);
+        int idacesso = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+        Acesso u = this.acessoDAO.getAcessoById(idacesso);
 
         if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Produto não encontrado !");
 
         } else {
-            txtIdProduto.setText(String.valueOf(u.getIdProduto()));
+            txtIdProduto.setText(String.valueOf(u.getIdacesso()));
             txtDescricao.setText(u.getDescricao());
             
             btnCancelar.setEnabled(true);

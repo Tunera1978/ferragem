@@ -10,27 +10,27 @@ package beans;
  * @author Tune
  */
 public class NivelAcesso {
-    private int idtblacesso;
-    private int idtblnivelacesso;
+    private int idacesso;
+    private int idnivelacesso;
 
-  public int getIdtblacesso()
+  public int getIdacesso()
   {
-    return idtblacesso;
+    return idacesso;
   }
 
-  public void setIdtblacesso(int idtblacesso)
+  public void setIdacesso(int idacesso)
   {
-    this.idtblacesso = idtblacesso;
+    this.idacesso = idacesso;
   }
 
-  public int getIdtblnivelacesso()
+  public int getIdnivelacesso()
   {
-    return idtblnivelacesso;
+    return idnivelacesso;
   }
 
-  public void setIdtblnivelacesso(int idtblnivelacesso)
+  public void setIdnivelacesso(int idnivelacesso)
   {
-    this.idtblnivelacesso = idtblnivelacesso;
+    this.idnivelacesso = idnivelacesso;
   }
 
     

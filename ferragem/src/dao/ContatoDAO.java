@@ -37,7 +37,7 @@ public class ContatoDAO extends GenericDAO
   public Contato getContatoById(int idcontato)
   {
     Contato u = new Contato();
-    String sql = "SELECT nome, celular, telefone, email, observacao FROM tblcontato WHERE idtblcontato = ?";
+    String sql = "SELECT nome, celular, telefone, email, observacao FROM tblcontato WHERE idcontato = ?";
     try
     {
       this.prepareStmte(sql);
@@ -63,7 +63,7 @@ public class ContatoDAO extends GenericDAO
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, u.getIdtblcontato());//1 significa o 1º que será visto no caso idcontato
+      this.stmte.setInt(1, u.getIdcontato());//1 significa o 1º que será visto no caso idcontato
       this.stmte.execute();
       return true;
     }
@@ -75,7 +75,7 @@ public class ContatoDAO extends GenericDAO
 
   public boolean editar(Contato contato)
   {
-    String sql = "UPDATE tblcontato SET nome = ?, telefone = ?, celular = ?, email = ?, setor = ?, observacao = ? WHERE idtblcontato = ?";
+    String sql = "UPDATE tblcontato SET nome = ?, telefone = ?, celular = ?, email = ?, setor = ?, observacao = ? WHERE idcontato = ?";
     try
     {
       this.prepareStmte(sql);

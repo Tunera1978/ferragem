@@ -5,7 +5,7 @@ public class Pedido {
     private int idPedido;
     private String data;
     private String dataentrega;
-    private int idtblcliente;
+    private int idcliente;
     private int idusuario;
 
   public int getIdPedido()
@@ -38,14 +38,14 @@ public class Pedido {
     this.dataentrega = dataentrega;
   }
 
-  public int getIdtblcliente()
+  public int getIdcliente()
   {
-    return idtblcliente;
+    return idcliente;
   }
 
-  public void setIdtblcliente(int idtblcliente)
+  public void setIdcliente(int idcliente)
   {
-    this.idtblcliente = idtblcliente;
+    this.idcliente = idcliente;
   }
 
   public int getIdusuario()
