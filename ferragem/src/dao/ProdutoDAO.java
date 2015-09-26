@@ -4,7 +4,10 @@ package dao;
 
 import beans.Produto;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProdutoDAO extends GenericDAO {
     
@@ -43,6 +46,24 @@ public class ProdutoDAO extends GenericDAO {
             return null;// não tem produto para retornar retorna null
         }
     }
+    
+    public int getProdutoUltimo(){
+        String sql = "SELECT (MAX(idproduto) + 1) as id FROM tblproduto";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+    
+      
     
     public boolean excluir(Produto u){
         String sql = "DELETE FROM tblproduto WHERE idproduto = ?";

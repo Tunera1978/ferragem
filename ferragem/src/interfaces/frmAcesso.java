@@ -910,10 +910,10 @@ public class frmAcesso extends javax.swing.JInternalFrame {
             }
         } else {
             u.setIdacesso(Integer.parseInt(txtIdProduto.getText()));
-            u.setDescricao(txtDescricao.getText());
+            u.setDescricao(txtDescricao.getText());            
 
             if (this.acessoDAO.editar(u) == true) {
-                txtMensagem.setText("Usuario Editado");
+                txtMensagem.setText("Acesso Editado");
                 
             } else {
                 txtMensagem.setText("Erro ao Editar");
@@ -959,7 +959,7 @@ public class frmAcesso extends javax.swing.JInternalFrame {
         u.setDescricao(txtDescricao.getText());
 
         if (this.acessoDAO.excluir(u) == true) {
-            txtMensagem.setText("Usuario Excluido com sucesso !");
+            txtMensagem.setText("Acesso Excluido com sucesso !");
             estadoInicial();
         } else {
             txtMensagem.setText("Erro ao Excluir");
@@ -977,7 +977,7 @@ public class frmAcesso extends javax.swing.JInternalFrame {
 
         if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-            txtMensagem.setText("Produto não encontrado !");
+            txtMensagem.setText("Acesso não encontrado !");
 
         } else {
             txtIdProduto.setText(String.valueOf(u.getIdacesso()));

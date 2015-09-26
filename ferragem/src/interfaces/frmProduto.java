@@ -898,7 +898,9 @@ public class frmProduto extends javax.swing.JInternalFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         estadoInicial();
-        txtIdProduto.setText("");
+        
+        txtIdProduto.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
+        //txtIdProduto.setText("");
         txtDescricao.setText("");
         
         btnSalvar.setEnabled(true);
@@ -992,6 +994,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         txtMensagem.setText("");
         int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
         Produto u = this.produtoDAO.getProdutoById(idproduto);
+        
 
         if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
