@@ -1,6 +1,7 @@
 
 package dao;
 
+import beans.Acesso;
 import beans.Usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -14,12 +15,13 @@ public class UsuarioDAO extends GenericDAO {
     
     public boolean inserir(Usuario usuario){
        
-        String sql = "INSERT INTO tblusuario(nome, senha) VALUES(?, ?)";
+        String sql = "INSERT INTO tblusuario(nome, senha, idnivelacesso) VALUES(?, ?, ?)";
         try{
             this.prepareStmte(sql);
             //this.stmte.setInt(1, usuario.getIdusuario());
             this.stmte.setString(1, usuario.getNome());
             this.stmte.setString(2, usuario.getSenha());
+            this.stmte.setInt(3, usuario.getNivelacesso());
             this.stmte.execute();
             return true;
         }
@@ -31,7 +33,8 @@ public class UsuarioDAO extends GenericDAO {
     
     public Usuario getUsuarioById(int idusuario){
         Usuario u = new Usuario();
-        String sql = "SELECT * FROM tblusuario WHERE idusuario = ?";
+        Acesso a = new Acesso();
+        String sql = "SELECT idusuario, nome, tblnivel.descricao FROM tblusuario WHERE idusuario = ?";
         try{
             this.prepareStmte(sql);
             this.stmte.setInt(1, idusuario);//parametro
@@ -39,6 +42,7 @@ public class UsuarioDAO extends GenericDAO {
             rs.first();//ResultSet na primeira posição
             u.setIdusuario(rs.getInt("idusuario"));
             u.setNome(rs.getString("nome"));
+            a.setDescricao(rs.getString("descricao"));
             return u;
         }
         catch(Exception e){

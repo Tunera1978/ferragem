@@ -33,15 +33,13 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean inserir(Cidade idioma) {
-        String sql = "INSERT INTO tblCidade (idCidade, descricao, codMunicipio, codSiafi, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tblCidade (idCidade, nome,idestado) VALUES (?, ?, ?)";
 
         try {
             this.prepareStmte(sql);
             this.stmte.setInt(1, idioma.getIdcidade());
-            this.stmte.setString(2, idioma.getDescricao());
-            this.stmte.setString(3, idioma.getCodMunicipio());
-            this.stmte.setString(4, idioma.getCodSiafi());
-            this.stmte.setString(5, idioma.getEstado());            
+            this.stmte.setString(2, idioma.getNome());
+            this.stmte.setInt(3, idioma.getIdestado());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
@@ -70,15 +68,14 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean editar(Cidade idioma) {
-        String sql = "UPDATE tblCidade SET descricao = ?, codMunicipio = ?, codSiafi = ?, estado = ? WHERE idCidade = ?";
+        String sql = "UPDATE tblCidade SET nome = ?, idestado = ? WHERE idCidade = ?";
 
         try {
             this.prepareStmte(sql);
             //this.stmte.setInt(1, idioma.getIdcidade());
-            this.stmte.setString(1, idioma.getDescricao());
-            this.stmte.setString(2, idioma.getCodMunicipio());
-            this.stmte.setString(3, idioma.getCodSiafi());
-            this.stmte.setString(4, idioma.getEstado());
+            this.stmte.setInt(1, idioma.getIdcidade());
+            this.stmte.setString(2, idioma.getNome());
+            this.stmte.setInt(3, idioma.getIdestado());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
@@ -89,18 +86,12 @@ public class CidadeDAO extends GenericDAO {
     PARAMENTRO = 1 ORDENA PELO ID
     PARAMENTRO = 2 ORDENA PELO NOME DO IDIOMA
     */
-    public ArrayList<Cidade> getCidades(int parametro) //L I S T A
+    public ArrayList<Cidade> getCidades() //L I S T A
     {
-        ArrayList<Cidade> idioma = new ArrayList<>();
+        ArrayList<Cidade> cidade = new ArrayList<>();
 
-        String sql = "";
-        if(parametro == 1){
-            //ORDENA PELO ID DO IDIOMA
-           sql = "SELECT * FROM tblCidade ORDER BY idCidade ASC";
-        }else if(parametro == 2){
-            //ORDENA PELO NOME DO IDIOMA
-            sql = "SELECT * FROM tblCidade ORDER BY descricao ASC";
-        }
+        String sql = "SELECT * FROM tblCidade order by nome";
+        
                
         try {
             this.prepareStmte(sql);
@@ -108,11 +99,10 @@ public class CidadeDAO extends GenericDAO {
             rs.beforeFirst();
             while (rs.next()) {
                 Cidade i = new Cidade();
-                i.setIdcidade(rs.getInt("idCidade"));
-                i.setDescricao(rs.getString("descricao"));
-                idioma.add(i);                
+                i.setNome(rs.getString("nome"));
+                cidade.add(i);                
             }
-            return idioma;
+            return cidade;
         } catch (Exception e) {
             return null;
         } 
@@ -132,7 +122,7 @@ public class CidadeDAO extends GenericDAO {
             while (rs.next()) {
                 Cidade i = new Cidade();
                 i.setIdcidade(rs.getInt("idCidade"));
-                i.setDescricao(rs.getString("Descricao"));
+                i.setNome(rs.getString("Descricao"));
                 idioma.add(i);
             }
             return idioma;
@@ -166,17 +156,18 @@ public class CidadeDAO extends GenericDAO {
     }
     
     public List<Cidade> listarCidades() {
-
+        
         try {
-                String sql = "SELECT * FROM projeto.tblCidade";
+                String sql = "SELECT * FROM tblCidade";
                 this.prepareStmte(sql);                          
 
             ResultSet rs = this.stmte.executeQuery();
             //monta o array 
-            List<Cidade> listaCidades = new ArrayList<Cidade>();
+            ArrayList<Cidade> listaCidades = new ArrayList<>();
+           // List<Cidade> listaCidades = new ArrayList<Cidade>;
             while (rs.next()) {
                 Cidade iVO = new Cidade();
-                iVO.setDescricao(rs.getString("descricao"));
+                iVO.setNome(rs.getString("nome"));
                 listaCidades.add(iVO);
             }
             rs.close();
