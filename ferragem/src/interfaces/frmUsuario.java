@@ -25,6 +25,7 @@ public class frmUsuario extends javax.swing.JInternalFrame {
         txtNome.setDocument(new LimitarLetras(45));
         // txtSenha.setDocument(new LimitarLetras(10));
         CarregandoCmboxNivel();
+       
 
         estadoInicial();
 
@@ -47,6 +48,7 @@ public class frmUsuario extends javax.swing.JInternalFrame {
         btnNovo.setEnabled(true);
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
+        
 
         status = false;
     }
@@ -446,7 +448,6 @@ public class frmUsuario extends javax.swing.JInternalFrame {
         txtSenha.setEditable(true);
         txtSenha1.setEditable(true);
         status = true;
-
         //SELECT MAX(ID) FROM Tabela 
 
     }//GEN-LAST:event_btnNovoActionPerformed

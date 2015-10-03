@@ -100,7 +100,7 @@ public class CidadeDAO extends GenericDAO {
             while (rs.next()) {
                 Cidade i = new Cidade();
                 i.setNome(rs.getString("nome"));
-                cidade.add(i);                
+                cidade.add(i);                //fazer no o mesmo no DAO Estado
             }
             return cidade;
         } catch (Exception e) {
@@ -179,4 +179,6 @@ public class CidadeDAO extends GenericDAO {
             return null;
         }
     }
+    
+    
 }
