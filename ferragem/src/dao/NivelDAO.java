@@ -121,6 +121,31 @@ public class NivelDAO extends GenericDAO {
         }  
     }
     
+    
+    
+    public ArrayList<Nivel> getNivel() //L I S T A
+    {
+        ArrayList<Nivel> nivel = new ArrayList<>();
+
+        String sql = "SELECT * FROM tblnivel order by descricao";
+        
+               
+        try {
+            this.prepareStmte(sql);
+            ResultSet rs = this.stmte.executeQuery(sql); //sempre usar quando fazer uma consulta(SELECT)
+            rs.beforeFirst();
+            while (rs.next()) {
+                Nivel nv = new Nivel();
+                nv.setDescricao(rs.getString("descricao"));
+                nivel.add(nv);                //fazer no o mesmo no DAO Estado
+            }
+            return nivel;
+        } catch (Exception e) {
+            return null;
+        } 
+    }  
+    
+    
     public ArrayList<Nivel> getNivel(int parametro) //L I S T A
     {
         ArrayList<Nivel> idioma = new ArrayList<>();

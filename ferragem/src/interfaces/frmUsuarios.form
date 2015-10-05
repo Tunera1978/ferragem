@@ -54,7 +54,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="cmNivel" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="cbNivel" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmNivel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbNivel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -299,7 +299,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="passSenha2">
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmNivel">
+    <Component class="javax.swing.JComboBox" name="cbNivel">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
