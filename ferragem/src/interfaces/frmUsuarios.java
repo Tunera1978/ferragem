@@ -1,20 +1,20 @@
-
 package interfaces;
 
 import beans.Nivel;
-
+import beans.Usuario;
+import dao.UsuarioDAO;
 import dao.NivelDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static utils.ControleForms.musuario;
 
-
 public class frmUsuarios extends javax.swing.JInternalFrame
 {
-   
+
+  private boolean status;
+  private UsuarioDAO usuarioDAO;
   private ArrayList<Nivel> list;
-  
-  
+
   public frmUsuarios()
   {
     initComponents();
@@ -22,7 +22,6 @@ public class frmUsuarios extends javax.swing.JInternalFrame
     estadoInicial();
   }
 
-  
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
@@ -284,108 +283,133 @@ public class frmUsuarios extends javax.swing.JInternalFrame
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  
-  public void ComboNacesso() {
+  public void ComboNacesso()
+  {
 
-      NivelDAO dAO = new NivelDAO();
-        list = dAO.getNivel();
-        if (list.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Cadastre pelo menos um :"
-                    + "\nMenu - Cadastrar - Cidades");
-            this.dispose();
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                cbNivel.addItem(list.get(i).getDescricao());
-            }
-        }
+    NivelDAO dAO = new NivelDAO();
+    list = dAO.getNivel();
+    if (list.isEmpty())
+    {
+      JOptionPane.showMessageDialog(null, "Cadastre pelo menos um :"
+              + "\nMenu - Cadastrar - Cidades");
+      this.dispose();
     }
-  
-  private void estadoInicial() {     
-            
-        txtCodigo.setEditable(false);    
-        txtNome.setEditable(false);
-        txtMensagem.setEditable(false);
-        txtMensagem.setEditable(false);
+    else
+    {
+      for (int i = 0; i < list.size(); i++)
+      {
+        cbNivel.addItem(list.get(i).getDescricao());
+      }
+    }
+  }
 
-        btnAlterar.setEnabled(false);
-        btnBuscar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        
-        
-    }
-  
-  
+  private void estadoInicial()
+  {
+
+    txtCodigo.setEditable(false);
+    txtNome.setEditable(false);
+    txtMensagem.setEditable(false);
+    passSenha1.setEditable(false);
+    passSenha2.setEditable(false);
+
+    btnAlterar.setEnabled(false);
+    btnBuscar.setEnabled(true);
+    btnDeletar.setEnabled(false);
+    btnNovo.setEnabled(true);
+    btnSalvar.setEnabled(false);
+    btnCancelar.setEnabled(false);
+
+    limpacampo();
+
+  }
+
+  private void limpacampo()
+  {
+
+    txtCodigo.setText("");
+    txtNome.setText("");
+    txtMensagem.setText("");
+    passSenha1.setText("");
+    passSenha2.setText("");
+
+  }
+
+
   private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeletarActionPerformed
   {//GEN-HEADEREND:event_btnDeletarActionPerformed
-    // TODO add your handling code here:
-    /* txtMensagem.setText("");
 
-    Produto u = new Produto();
-    u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-    u.setDescricao(txtDescricao.getText());
+    txtMensagem.setText("");
 
-    if (this.produtoDAO.excluir(u) == true)
+    Usuario u = new Usuario();
+    u.setIdusuario(Integer.parseInt(txtCodigo.getText()));
+    // u.setNome(txtNome.getText());
+
+    if (this.usuarioDAO.excluir(u) == true)
     {
       txtMensagem.setText("Usuario Excluido com sucesso !");
       estadoInicial();
-    } else
+    }
+    else
     {
       txtMensagem.setText("Erro ao Excluir");
     }
 
-    txtIdProduto.setText("");
-    txtDescricao.setText(""); */
+    limpacampo();
+
   }//GEN-LAST:event_btnDeletarActionPerformed
 
   private void btnNovoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNovoActionPerformed
   {//GEN-HEADEREND:event_btnNovoActionPerformed
     // TODO add your handling code here:
-   // estadoInicial();
-   // txtIdProduto.setText("");
-    //txtDescricao.setText("");
+    estadoInicial();
+    limpacampo();
 
     btnSalvar.setEnabled(true);
     btnBuscar.setEnabled(false);
     btnNovo.setEnabled(false);
     btnCancelar.setEnabled(true);
 
-   // txtDescricao.setEditable(true);
-   // status = true;
+    txtCodigo.setEditable(true);
+    status = true;
   }//GEN-LAST:event_btnNovoActionPerformed
 
   private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
   {//GEN-HEADEREND:event_btnBuscarActionPerformed
-    // TODO add your handling code here:
-   // txtMensagem.setText("");
-  //  int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-  //  Produto u = this.produtoDAO.getProdutoById(idproduto);
+    limpacampo();
+    int idusuario = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do usuario!"));
+    Usuario u = this.usuarioDAO.getUsuarioById(idusuario);
 
-  /*  if (u == null)
+    if (u == null)
     {
       //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-     // txtMensagem.setText("Produto não encontrado !");
+      txtMensagem.setText("Produto não encontrado !");
 
-    } else
+    }
+    else
     {
-    //  txtIdProduto.setText(String.valueOf(u.getIdProduto()));
-    //  txtDescricao.setText(u.getDescricao());
+      txtCodigo.setText(String.valueOf(u.getIdusuario()));
+      txtNome.setText(u.getNome());
+      txtMensagem.setText("");
+      passSenha1.setText(u.getSenha());
+      passSenha2.setText("");
 
       btnCancelar.setEnabled(true);
       btnNovo.setEnabled(false);
       btnAlterar.setEnabled(true);
       btnDeletar.setEnabled(true);
 
-    } */
+    }
   }//GEN-LAST:event_btnBuscarActionPerformed
 
   private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
   {//GEN-HEADEREND:event_btnAlterarActionPerformed
-    // TODO add your handling code here:
+    
+    limpacampo();
 
-    //txtMensagem.setText("");
+    txtCodigo.setEditable(false);
+    txtNome.setEditable(true);
+    passSenha1.setEditable(true);
+    passSenha2.setEditable(true);
 
     btnSalvar.setEnabled(true);
     btnBuscar.setEnabled(false);
@@ -393,52 +417,53 @@ public class frmUsuarios extends javax.swing.JInternalFrame
     btnCancelar.setEnabled(true);
     btnDeletar.setEnabled(false);
     btnAlterar.setEnabled(false);
-    //txtDescricao.setEditable(true);
 
-    //status = false;
+    status = false;
 
   }//GEN-LAST:event_btnAlterarActionPerformed
 
   private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSalvarActionPerformed
   {//GEN-HEADEREND:event_btnSalvarActionPerformed
-    // TODO add your handling code here:
-/*
-    Produto u = new Produto();
+   
+     Usuario u = new Usuario();
 
-    if (status == (true))
-    {
-      u.setDescricao(txtDescricao.getText());
-      if (this.produtoDAO.inserir(u) == true)
-      {
+     if (status == (true))
+     {
+     u.setNome(txtNome.getText());
+     
+     u.setSenha(passSenha1.getText());
+     
+     if (this.usuarioDAO.inserir(u) == true)
+     {
 
-        txtMensagem.setText("Produto Adicionado com sucesso !");
+     txtMensagem.setText("Usuario Adicionado com sucesso !");
 
-      } else
-      {
-        //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-        txtMensagem.setText("Erro ao Adicionar");
-      }
-    } else
-    {
-      u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-      u.setDescricao(txtDescricao.getText());
+     } else
+     {
+     //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+     txtMensagem.setText("Erro ao Adicionar");
+     }
+     } else
+     {
+     u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+     u.setDescricao(txtDescricao.getText());
 
-      if (this.produtoDAO.editar(u) == true)
-      {
-        txtMensagem.setText("Usuario Editado");
+     if (this.produtoDAO.editar(u) == true)
+     {
+     txtMensagem.setText("Usuario Editado");
 
-      } else
-      {
-        txtMensagem.setText("Erro ao Editar");
-      }
-    }
-    estadoInicial(); */
+     } else
+     {
+     txtMensagem.setText("Erro ao Editar");
+     }
+     }
+     estadoInicial(); */
   }//GEN-LAST:event_btnSalvarActionPerformed
 
   private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
   {//GEN-HEADEREND:event_btnCancelarActionPerformed
     // TODO add your handling code here:
-   // estadoInicial();
+    // estadoInicial();
     //txtMensagem.setText("");
     //txtMensagem.setText("Produto não sofreu alteração !");
 
