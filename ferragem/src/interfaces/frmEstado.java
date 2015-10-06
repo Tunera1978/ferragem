@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 import static utils.ControleForms.mcidade;
 
 
-public class frmCidade extends javax.swing.JInternalFrame {
+public class frmEstado extends javax.swing.JInternalFrame {
 
   
     private boolean status;
     private CidadeDAO cidadeDAO;
     private ArrayList<Estado> list;  
 
-    public frmCidade() {
+    public frmEstado() {
         initComponents();
         this.cidadeDAO = new CidadeDAO();
         

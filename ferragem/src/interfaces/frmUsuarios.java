@@ -429,8 +429,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame
 
      if (status == (true))
      {
-     u.setNome(txtNome.getText());
-     
+     u.setNome(txtNome.getText());     
      u.setSenha(passSenha1.getText());
      
      if (this.usuarioDAO.inserir(u) == true)
@@ -445,10 +444,14 @@ public class frmUsuarios extends javax.swing.JInternalFrame
      }
      } else
      {
-     u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-     u.setDescricao(txtDescricao.getText());
+     //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
+     u.setNome(txtNome.getText());
+     //u.setNivelacesso(cbNivel);
+     u.setSenha(passSenha1.getText());
+     
+     
 
-     if (this.produtoDAO.editar(u) == true)
+     if (this.usuarioDAO.editar(u) == true)
      {
      txtMensagem.setText("Usuario Editado");
 
@@ -457,7 +460,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame
      txtMensagem.setText("Erro ao Editar");
      }
      }
-     estadoInicial(); */
+     estadoInicial();
   }//GEN-LAST:event_btnSalvarActionPerformed
 
   private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
