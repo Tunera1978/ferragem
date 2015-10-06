@@ -126,4 +126,26 @@ public class EstadoDAO extends GenericDAO {
         }  
     }
     
+    public ArrayList<Estado> getEstados(){ //L I S T A
+        
+        ArrayList<Estado> estado = new ArrayList<>();
+
+        String sql = "SELECT * FROM tblestado order by nome";
+        
+               
+        try {
+            this.prepareStmte(sql);
+            ResultSet rs = this.stmte.executeQuery(sql); //sempre usar quando fazer uma consulta(SELECT)
+            rs.beforeFirst();
+            while (rs.next()) {
+                Estado es = new Estado();
+                es.setNome(rs.getString("nome"));
+                estado.add(es);                //fazer no o mesmo no DAO Estado
+            }
+            return estado;
+        } catch (Exception e) {
+            return null;
+        } 
+    }
+    
 }

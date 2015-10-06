@@ -1,8 +1,10 @@
 
 package interfaces;
-
+import beans.Estado;
 import beans.Cidade;
+import dao.EstadoDAO;
 import dao.CidadeDAO;
+import java.util.ArrayList;
 //import java.util.Locale;
 import javax.swing.JOptionPane;
 //import utils.ControleForms;
@@ -14,7 +16,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
   
     private boolean status;
     private CidadeDAO cidadeDAO;
-      
+    private ArrayList<Estado> list;  
 
     public frmCidade() {
         initComponents();
@@ -30,6 +32,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
         */
         
         estadoInicial();
+        ComboEstado();
     }
 
     
@@ -915,7 +918,22 @@ public class frmCidade extends javax.swing.JInternalFrame {
         
         
     }
+    
+    public void ComboEstado() {
 
+        EstadoDAO dAO = new EstadoDAO();
+        list = dAO.getEstados();
+        if (list.isEmpty()) {
+            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+                    + "\nMenu - Cadastrar - Cidades");*/
+            this.dispose();
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                cbEstado.addItem(list.get(i).getNome());
+            }
+        }
+    } 
+    
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         estadoInicial();
