@@ -4,6 +4,7 @@ package interfaces;
 import beans.Acesso;
 import dao.AcessoDAO;
 import javax.swing.JOptionPane;
+import static utils.ControleForms.macesso;
 
 
 public class frmAcesso extends javax.swing.JInternalFrame {
@@ -109,6 +110,7 @@ public class frmAcesso extends javax.swing.JInternalFrame {
       }
       public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
       {
+        formInternalFrameClosing(evt);
       }
       public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
       {
@@ -1066,8 +1068,13 @@ public class frmAcesso extends javax.swing.JInternalFrame {
   private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosed
   {//GEN-HEADEREND:event_formInternalFrameClosed
     // TODO add your handling code here:
-     
   }//GEN-LAST:event_formInternalFrameClosed
+
+  private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
+  {//GEN-HEADEREND:event_formInternalFrameClosing
+    // TODO add your handling code here:
+    macesso = 0;
+  }//GEN-LAST:event_formInternalFrameClosing
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
