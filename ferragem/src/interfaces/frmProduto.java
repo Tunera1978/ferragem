@@ -902,6 +902,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         txtIdProduto.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
         //txtIdProduto.setText("");
         txtDescricao.setText("");
+        txtPeso.setText("");
         
         btnSalvar.setEnabled(true);
         btnBuscar.setEnabled(false);
@@ -909,6 +910,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         btnCancelar.setEnabled(true);
 
         txtDescricao.setEditable(true);
+        txtPeso.setEditable(true);
         status = true;
 
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -918,8 +920,10 @@ public class frmProduto extends javax.swing.JInternalFrame {
         
         Produto u = new Produto();
 
-        if (status == (true)) {
+        if (status == (true)) {//Fabio: Verificar se será feito no Segundo Else ou nesse if
+            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));//Fabio: Pega o text id para salvar
             u.setDescricao(txtDescricao.getText());
+            u.setPeso(Float.parseFloat(txtPeso.getText()));//Fabio: Pega o text peso para salvar
             if (this.produtoDAO.inserir(u) == true) {
                 
                 txtMensagem.setText("Produto Adicionado com sucesso !");
