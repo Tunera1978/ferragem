@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 //import javax.swing.JDesktopPane;
 //import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import static utils.ControleForms.macesso;
 import static utils.ControleForms.mcliente;
 import static utils.ControleForms.mnivel;
 import static utils.ControleForms.mpedidoferragem;
@@ -67,6 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame
     menuCliente = new javax.swing.JMenuItem();
     menuNivel = new javax.swing.JMenuItem();
     menuCidade = new javax.swing.JMenuItem();
+    MenuAcesso = new javax.swing.JMenuItem();
     menuCalculo = new javax.swing.JMenu();
     menuPedFerragem = new javax.swing.JMenuItem();
     menuPedSapata = new javax.swing.JMenuItem();
@@ -260,6 +262,16 @@ public class TelaPrincipal extends javax.swing.JFrame
       }
     });
     menuCadastro.add(menuCidade);
+
+    MenuAcesso.setText("Acesso");
+    MenuAcesso.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        MenuAcessoActionPerformed(evt);
+      }
+    });
+    menuCadastro.add(MenuAcesso);
 
     jMenuBar1.add(menuCadastro);
 
@@ -662,6 +674,20 @@ public class TelaPrincipal extends javax.swing.JFrame
     }
   }//GEN-LAST:event_menuNivelActionPerformed
 
+  private void MenuAcessoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_MenuAcessoActionPerformed
+  {//GEN-HEADEREND:event_MenuAcessoActionPerformed
+    // TODO add your handling code here:
+    if(macesso == 0){
+    macesso = 1;
+    JInternalFrame frmAcesso = new frmAcesso();
+    this.DesktopPane.add(frmAcesso);
+    frmAcesso.setLocation(DesktopPane.getWidth() / 2 - frmAcesso.getWidth() / 2, DesktopPane.getHeight() / 4 - frmAcesso.getHeight() / 4);
+    frmAcesso.setVisible(true);
+    }
+    else{
+    JOptionPane.showMessageDialog(null, "Tela Acesso já esta aberta !!!");
+    }
+  }//GEN-LAST:event_MenuAcessoActionPerformed
   /**
    * @param args the command line arguments
    */
@@ -722,6 +748,7 @@ public class TelaPrincipal extends javax.swing.JFrame
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JDesktopPane DesktopPane;
+  private javax.swing.JMenuItem MenuAcesso;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton5;

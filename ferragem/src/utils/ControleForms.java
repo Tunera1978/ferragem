@@ -26,5 +26,5 @@ public class ControleForms
   public static int mrelcidade;
   public static int mrellogs;
   public static int mrelferragem;
-  
+  public static int macesso;
 }
