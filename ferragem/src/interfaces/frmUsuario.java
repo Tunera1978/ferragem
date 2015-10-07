@@ -329,54 +329,59 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
+    Usuario u = new Usuario();
+    Nivel n = new Nivel();
+    char[] pass1 = txtSenha.getPassword();
+    char[] pass2 = txtSenha1.getPassword();
+    String senha = String.valueOf(pass1);
+    
+    if (status == (true))
+    {      
+      if (pass1 == pass2)
+      {
+        txtMensagem.setText("Salvando Usuario !");       
+      }
+      else
+      {
+        txtMensagem.setText("Usuario com erro !");
+        txtSenha.setText("");
+        txtSenha1.setText("");
+        //passSenha1.setFocusable(true);
+        txtSenha.grabFocus();
+      }
+      //char[] pass = txtSenha.getPassword();
+      if (this.usuarioDAO.inserir(u) == true)
+      {         
+        u.setNome(txtNome.getText());        
+        u.setSenha(senha);
+       // Int varIdNivel = (Integer.parseInt(.get(cbNivel.getSelectedItem())));
+       //  u.setNivelacesso(n.getNivelInt( Integer.parseInt(comboNivel.getSelectedItem())));        
+       //  u.setNivelacesso(Integer.parseInt(n.getNivelInt(comboNivel.getSelectedItem())));        
+        txtMensagem.setText("Usuario Adicionado com sucesso !");
+      }
+      else
+      {
+        //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+        txtMensagem.setText("Erro ao Adicionar");
+      }
+    }
+    else
+    {
+      //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
+      if (this.usuarioDAO.editar(u) == true)
+      {
+        txtMensagem.setText("Usuario Editado");
 
-        Usuario u = new Usuario();
-        Nivel n = new Nivel();
-
-        if (txtSenha.getText().equals(txtSenha1.getText())) {
-
-            if (status == (true)) {
-
-                u.setNome(txtNome.getText());
-                char[] pass = txtSenha.getPassword();
-                u.setSenha(String.valueOf(pass));
-                
-
-                if (this.usuarioDAO.inserir(u) == true) {
-
-                    txtMensagem.setText("Usuario Adicionado");
-                    estadoInicial();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-                    txtMensagem.setText("Erro ao Adicionar");
-                }
-            } else {
-
-                u.setIdusuario(Integer.parseInt(txtIdUsuario.getText()));
-                u.setNome(txtNome.getText());
-                char[] pass = txtSenha.getPassword();
-                u.setSenha(String.valueOf(pass));
-                
-                //String DescricaoNivel = comboNivel.getText();
-                //n.
-                
-               // u.setNivelacesso(WIDTH);
-
-                if (this.usuarioDAO.editar(u) == true) {
-                    txtMensagem.setText("Usuario Editado");
-                    txtIdUsuario.setText("");
-                    txtNome.setText("");
-                } else {
-                    txtMensagem.setText("Erro ao Editar");
-                }
-
-            }
-            estadoInicial();
-        } else {
-
-            txtMensagem.setText("Senha esta diferente !!!");
-            txtSenha.grabFocus();
-        }
+      }
+      else
+      {
+        txtMensagem.setText("Erro ao Editar");
+      }
+    }
+    estadoInicial();
+        
+            
+        
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -461,7 +466,7 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
     private void CarregandoCmboxNivel() {
         NivelDAO dAO = new NivelDAO();
-        listarNivel = dAO.getNivel(1);
+        listarNivel = dAO.getNivelInt(1);
         if (listarNivel.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
                     + "\nMenu - Cadastrar - Nivels");

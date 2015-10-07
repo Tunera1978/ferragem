@@ -146,7 +146,7 @@ public class NivelDAO extends GenericDAO {
     }  
     
     
-    public ArrayList<Nivel> getNivel(int parametro) //L I S T A
+    public ArrayList<Nivel> getNivelInt(int parametro) //L I S T A
     {
         ArrayList<Nivel> idioma = new ArrayList<>();
 
@@ -198,6 +198,23 @@ public class NivelDAO extends GenericDAO {
             //JOptionPane.showMessageDialog(null, "Ocorreu um erro no metodo listaEditora, classe Editora" + ex);
             return null;
         }
+    }
+    
+    public Nivel getNivelInt(String descricao){
+        Nivel u = new Nivel();
+        String sql = "SELECT idnivel FROM tblnivel WHERE descricao = ?";
+        
+        try{
+            this.prepareStmte(sql);
+            this.stmte.setString(1, descricao);
+            ResultSet rs = this.stmte.executeQuery();
+            rs.first();
+            u.setIdnivelacesso(rs.getInt("idnivelacesso")); 
+            return u;
+            
+        }catch(Exception e){
+            return null;
+        }  
     }
     
     

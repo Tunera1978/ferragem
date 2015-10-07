@@ -403,7 +403,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame
 
   private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAlterarActionPerformed
   {//GEN-HEADEREND:event_btnAlterarActionPerformed
-    
+
     limpacampo();
 
     txtCodigo.setEditable(false);
@@ -424,43 +424,61 @@ public class frmUsuarios extends javax.swing.JInternalFrame
 
   private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSalvarActionPerformed
   {//GEN-HEADEREND:event_btnSalvarActionPerformed
-   
-     Usuario u = new Usuario();
 
-     if (status == (true))
-     {
-     u.setNome(txtNome.getText());     
-     u.setSenha(passSenha1.getText());
-     
-     if (this.usuarioDAO.inserir(u) == true)
-     {
+    Usuario u = new Usuario();
+    Nivel n = new Nivel();
+    char[] pass1 = passSenha1.getPassword();
+    char[] pass2 = passSenha2.getPassword();
+    String senha = String.valueOf(pass1);
+    
+    if (status == (true))
+    {
+      
+      if (pass1 == pass2)
+      {
+        
+        u.setNome(txtNome.getText());
+        u.setSenha(senha);
+      }
+      else
+      {
+        txtMensagem.setText("Usuario com erro !");
+        passSenha1.setText("");
+        passSenha2.setText("");
+        passSenha1.setFocusable(true);
+      }
 
-     txtMensagem.setText("Usuario Adicionado com sucesso !");
+      //char[] pass = txtSenha.getPassword();
+      if (this.usuarioDAO.inserir(u) == true)
+      {         
+        u.setNome(txtNome.getText());        
+        u.setSenha(senha);
+       // Int varIdNivel = (Integer.parseInt(.get(cbNivel.getSelectedItem())));
+       // u.setNivelacesso(Integer.parseInt(n.getNivelInt(cbNivel.getSelectedItem())));
+        
+        txtMensagem.setText("Usuario Adicionado com sucesso !");
+      }
+      else
+      {
+        //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+        txtMensagem.setText("Erro ao Adicionar");
+      }
+    }
+    else
+    {
+      //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
 
-     } else
-     {
-     //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-     txtMensagem.setText("Erro ao Adicionar");
-     }
-     } else
-     {
-     //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
-     u.setNome(txtNome.getText());
-     //u.setNivelacesso(cbNivel);
-     u.setSenha(passSenha1.getText());
-     
-     
+      if (this.usuarioDAO.editar(u) == true)
+      {
+        txtMensagem.setText("Usuario Editado");
 
-     if (this.usuarioDAO.editar(u) == true)
-     {
-     txtMensagem.setText("Usuario Editado");
-
-     } else
-     {
-     txtMensagem.setText("Erro ao Editar");
-     }
-     }
-     estadoInicial();
+      }
+      else
+      {
+        txtMensagem.setText("Erro ao Editar");
+      }
+    }
+    estadoInicial();
   }//GEN-LAST:event_btnSalvarActionPerformed
 
   private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed

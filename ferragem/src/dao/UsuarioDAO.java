@@ -27,8 +27,7 @@ public class UsuarioDAO extends GenericDAO {
         }
         catch(Exception e){
             return false;
-        }      
-        
+        }     
     }
     
     public Usuario getUsuarioById(int idusuario){
@@ -119,7 +118,7 @@ public class UsuarioDAO extends GenericDAO {
            
     public ArrayList<Usuario> getUsuarioByLista(String nome){
        ArrayList<Usuario> usuario = new ArrayList<Usuario>();
-        String sql = "SELECT * FROM tblusuario WHERE nome LIKE ?";
+       String sql = "SELECT * FROM tblusuario WHERE nome LIKE ?";
         
         try
         {
