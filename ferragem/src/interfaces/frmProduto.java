@@ -922,10 +922,10 @@ public class frmProduto extends javax.swing.JInternalFrame {
         
         Produto u = new Produto();
 
-        if (status == (true)) {//Fabio: Verificar se será feito no Segundo Else ou nesse if
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));//Fabio: Pega o text id para salvar
+        if (status == (true)) {
+            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
             u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: Pega o text peso para salvar
+            u.setPeso(Double.parseDouble(txtPeso.getText()));
             if (this.produtoDAO.inserir(u) == true) {
                 
                 txtMensagem.setText("Produto Adicionado com sucesso !");
@@ -1001,14 +1001,16 @@ public class frmProduto extends javax.swing.JInternalFrame {
         int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
         Produto u = this.produtoDAO.getProdutoById(idproduto);
         
-
+             
         if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Produto não encontrado !");
 
-        } else {
+        } else{
+            
             txtIdProduto.setText(String.valueOf(u.getIdProduto()));
             txtDescricao.setText(u.getDescricao());
+            txtPeso.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
             
             btnCancelar.setEnabled(true);
             btnNovo.setEnabled(false);

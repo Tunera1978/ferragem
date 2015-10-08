@@ -37,9 +37,10 @@ public class ProdutoDAO extends GenericDAO {
             this.prepareStmte(sql);
             this.stmte.setInt(1, idproduto);//parametro
             ResultSet rs = this.stmte.executeQuery();//return um resultset
-            rs.first();//ResultSet na primeira posição
+            rs.first();//ResultSet na primeira posição                
             u.setIdProduto(rs.getInt("idProduto"));
             u.setDescricao(rs.getString("descricao"));
+            u.setPeso(rs.getDouble("pesoBarra"));//Fabio: sistema não retornava o peso(corrigido)
             return u;
         }
         catch(Exception e){
