@@ -25,8 +25,8 @@ public class NivelDAO extends GenericDAO {
         }
         catch(Exception e){
             return false;
-        }      
-        
+        }    
+       
     }
     
     public Nivel getNivelById(int idnivelacesso){
@@ -200,7 +200,7 @@ public class NivelDAO extends GenericDAO {
         }
     }
     
-    public Nivel getNivelInt(String descricao){
+    public Nivel getNivelCombo(String descricao){
         Nivel u = new Nivel();
         String sql = "SELECT idnivel FROM tblnivel WHERE descricao = ?";
         

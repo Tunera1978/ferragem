@@ -9,28 +9,48 @@ package beans;
  *
  * @author Tune
  */
-public class Nivel {
-    private int idnivelacesso;
-    private String descricao;
+public class Nivel
+{
 
-    public int getIdnivelacesso() {
-        return idnivelacesso;
+  private int idnivelacesso;
+  private String descricao;
+
+  public int getIdnivelacesso()
+  {
+    return idnivelacesso;
+  }
+
+  public void setIdnivelacesso(int idnivelacesso)
+  {
+    this.idnivelacesso = idnivelacesso;
+  }
+
+  public String getDescricao()
+  {
+    return descricao;
+  }
+
+  public void setDescricao(String descricao)
+  {
+    this.descricao = descricao;
+  }
+
+  public String toString()
+  {
+    return this.descricao;
+  }
+
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Nivel)
+    {
+      Nivel nv = (Nivel) obj;
+      return nv.getDescricao().equals(this.getDescricao());
     }
-
-    public void setIdnivelacesso(int idnivelacesso) {
-        this.idnivelacesso = idnivelacesso;
+    else
+    {
+      return false;
     }
+  }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    
-     
-
-    
-    
 }

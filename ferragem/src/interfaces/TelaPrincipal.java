@@ -213,7 +213,7 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     menuCadastro.setText("Cadastros");
 
-    menuUsuario.setText(" Usuarios");
+    menuUsuario.setText("Usuarios");
     menuUsuario.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -645,10 +645,10 @@ public class TelaPrincipal extends javax.swing.JFrame
       if (musuario == 0)
       {
         musuario = 1;
-        JInternalFrame frmUsuarios = new frmUsuarios();
-        this.DesktopPane.add(frmUsuarios);
-        frmUsuarios.setLocation(DesktopPane.getWidth() / 2 - frmUsuarios.getWidth() / 2, DesktopPane.getHeight() / 4 - frmUsuarios.getHeight() / 4);
-        frmUsuarios.setVisible(true);
+        JInternalFrame frmUsuario = new frmUsuario();
+        this.DesktopPane.add(frmUsuario);
+        frmUsuario.setLocation(DesktopPane.getWidth() / 2 - frmUsuario.getWidth() / 2, DesktopPane.getHeight() / 4 - frmUsuario.getHeight() / 4);
+        frmUsuario.setVisible(true);
       }
       else
       {

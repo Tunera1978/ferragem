@@ -7,8 +7,7 @@ public class Usuario {
     private String nome;
     private String senha;
     private int nivelacesso;
-    
-    
+        
     public int getNivelacesso() {
         return nivelacesso;
     }
@@ -41,4 +40,21 @@ public class Usuario {
         this.nome = nome;
     }
     
+    public String toString()
+  {
+    return this.nome;
+  }
+
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Usuario)
+    {
+      Usuario us = (Usuario) obj;
+      return us.getNome().equals(this.getNome());
+    }
+    else
+    {
+      return false;
+    }
+  }
 }

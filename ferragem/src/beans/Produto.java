@@ -12,15 +12,15 @@ package beans;
 public class Produto {
     private int idProduto;
     private String descricao;
-    private float peso;
+    private double peso;
      
 
     
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
    

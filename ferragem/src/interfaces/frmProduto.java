@@ -5,8 +5,10 @@ import beans.Produto;
 import dao.ProdutoDAO;
 //import java.util.Locale;
 import javax.swing.JOptionPane;
+import utilitarios.AceitaNumerosPonto;
 //import utils.ControleForms;
 import static utils.ControleForms.mproduto;
+import utils.LimitarNumeros;
 
 
 public class frmProduto extends javax.swing.JInternalFrame {
@@ -21,13 +23,13 @@ public class frmProduto extends javax.swing.JInternalFrame {
         this.produtoDAO = new ProdutoDAO();
         
         /*
-        
-        txtIdProduto.setDocument(new AceitaNumeros());
+         txtIdProduto.setDocument(new AceitaNumeros());
         txtIdProduto.setDocument(new LimitarNumeros(6));
         txtDescricao.setDocument(new AceitaStrings()); 
         txtDescricao.setDocument();
-        
         */
+        
+        txtPeso.setDocument(new AceitaNumerosPonto());
         
         estadoInicial();
     }
@@ -923,7 +925,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         if (status == (true)) {//Fabio: Verificar se será feito no Segundo Else ou nesse if
             u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));//Fabio: Pega o text id para salvar
             u.setDescricao(txtDescricao.getText());
-            u.setPeso(Float.parseFloat(txtPeso.getText()));//Fabio: Pega o text peso para salvar
+            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: Pega o text peso para salvar
             if (this.produtoDAO.inserir(u) == true) {
                 
                 txtMensagem.setText("Produto Adicionado com sucesso !");

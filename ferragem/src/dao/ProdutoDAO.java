@@ -21,7 +21,7 @@ public class ProdutoDAO extends GenericDAO {
             this.prepareStmte(sql);
             //this.stmte.setInt(1, produto.getIdProduto());
             this.stmte.setString(1, produto.getDescricao());
-            this.stmte.setFloat(2, produto.getPeso() );
+            this.stmte.setDouble(2, produto.getPeso());
             this.stmte.execute();
             return true;
         }

@@ -6,54 +6,53 @@ import dao.UsuarioDAO;
 import dao.NivelDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static utils.ControleForms.musuario ;
+import static utils.ControleForms.musuario;
 import utils.AceitaNumeros;
 import utils.AceitaStrings;
 import utils.LimitarLetras;
 import utils.LimitarNumeros;
 
-public class frmUsuario extends javax.swing.JInternalFrame {
+public class frmUsuario extends javax.swing.JInternalFrame
+{
 
-    private boolean status;
-    private UsuarioDAO usuarioDAO;
-    private ArrayList<Nivel> listarNivel;
+  private boolean status;
+  private UsuarioDAO usuarioDAO;
+  private ArrayList<Nivel> listarNivel;
 
-    public frmUsuario() {
-        initComponents();
-        this.usuarioDAO = new UsuarioDAO();
+  public frmUsuario()
+  {
+    initComponents();
+    this.usuarioDAO = new UsuarioDAO();
 
-        txtNome.setDocument(new LimitarLetras(45));
-        // txtSenha.setDocument(new LimitarLetras(10));
-        CarregandoCmboxNivel();
-       
+    txtNome.setDocument(new LimitarLetras(45));    
+    CarregandoCmboxNivel();
+    estadoInicial();
+  }
 
-        estadoInicial();
+  private void estadoInicial()
+  {
+    txtIdUsuario.setText("");
+    txtNome.setText("");
+    txtSenha.setText("");
+    txtSenha1.setText("");
 
-    }
+    txtIdUsuario.setEditable(false);
+    txtNome.setEditable(false);
+    txtSenha.setEditable(false);
+    txtSenha1.setEditable(false);
+    comboNivel.setEditable(false);
 
-    private void estadoInicial() {
-        txtIdUsuario.setText("");
-        txtNome.setText("");
-        txtSenha.setText("");
-        txtSenha1.setText("");
+    btnAlterar.setEnabled(false);
+    btnBuscar.setEnabled(true);
+    btnDeletar.setEnabled(false);
+    btnNovo.setEnabled(true);
+    btnSalvar.setEnabled(false);
+    btnCancelar.setEnabled(false);
 
-        txtNome.setEditable(false);
-        txtSenha.setEditable(false);
-        txtSenha1.setEditable(false);
-        comboNivel.setEditable(false);
+    status = false;
+  }
 
-        btnAlterar.setEnabled(false);
-        btnBuscar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        
-
-        status = false;
-    }
-
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
@@ -328,159 +327,175 @@ public class frmUsuario extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-    Usuario u = new Usuario();
-    Nivel n = new Nivel();
-    char[] pass1 = txtSenha.getPassword();
-    char[] pass2 = txtSenha1.getPassword();
-    String senha = String.valueOf(pass1);
-    
-    if (status == (true))
-    {      
-      if (pass1 == pass2)
-      {
-        txtMensagem.setText("Salvando Usuario !");       
-      }
-      else
-      {
-        txtMensagem.setText("Usuario com erro !");
-        txtSenha.setText("");
-        txtSenha1.setText("");
-        //passSenha1.setFocusable(true);
-        txtSenha.grabFocus();
-      }
-      //char[] pass = txtSenha.getPassword();
-      if (this.usuarioDAO.inserir(u) == true)
-      {         
-        u.setNome(txtNome.getText());        
-        u.setSenha(senha);
-       // Int varIdNivel = (Integer.parseInt(.get(cbNivel.getSelectedItem())));
-       //  u.setNivelacesso(n.getNivelInt( Integer.parseInt(comboNivel.getSelectedItem())));        
-       //  u.setNivelacesso(Integer.parseInt(n.getNivelInt(comboNivel.getSelectedItem())));        
-        txtMensagem.setText("Usuario Adicionado com sucesso !");
-      }
-      else
-      {
-        //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-        txtMensagem.setText("Erro ao Adicionar");
-      }
-    }
-    else
-    {
-      //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
-      if (this.usuarioDAO.editar(u) == true)
-      {
-        txtMensagem.setText("Usuario Editado");
+      // TODO add your handling code here:
+      Usuario u = new Usuario();
+      Nivel n = new Nivel();
+      char[] pass1 = txtSenha.getPassword();
+      char[] pass2 = txtSenha1.getPassword();
+      String senha1 = String.valueOf(pass1);
+      String senha2 = String.valueOf(pass2);
 
+      if (senha1.equals(senha2))
+        {
+          txtMensagem.setText("Salvando Usuario !");
+        }
+        else
+        {
+          txtMensagem.setText("Usuario com erro !");
+          txtSenha.setText("");
+          txtSenha1.setText("");          
+          txtSenha.grabFocus();
+        }
+      
+      
+      if (status == (true))
+      {        
+        
+        if (this.usuarioDAO.inserir(u) == true)
+        {
+          u.setNome(txtNome.getText());
+          u.setSenha(senha1);
+          Nivel nv = (Nivel) comboNivel.getSelectedItem();
+
+          txtMensagem.setText("Usuario Adicionado com sucesso !");
+        }
+        else
+        {
+          //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+          txtMensagem.setText("Erro ao Adicionar");
+        }
       }
       else
       {
-        txtMensagem.setText("Erro ao Editar");
+        //u.setIdusuario(Integer.parseInt(txtIdProduto.getText()));
+        if (this.usuarioDAO.editar(u) == true)
+        {
+          txtMensagem.setText("Usuario Editado");
+
+        }
+        else
+        {
+          txtMensagem.setText("Erro ao Editar");
+        }
       }
-    }
-    estadoInicial();
-        
-            
-        
+      estadoInicial();
+
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");
-        Usuario u = new Usuario();
-        u.setIdusuario(Integer.parseInt(txtIdUsuario.getText()));
+      // TODO add your handling code here:
+      txtMensagem.setText("");
+      Usuario u = new Usuario();
+      u.setIdusuario(Integer.parseInt(txtIdUsuario.getText()));
 
-        if (this.usuarioDAO.excluir(u) == true) {
-            txtMensagem.setText("Usuario Excluido com sucesso !");
-            estadoInicial();
-        } else {
-            txtMensagem.setText("Erro ao Excluir");
-        }
+      if (this.usuarioDAO.excluir(u) == true)
+      {
+        txtMensagem.setText("Usuario Excluido com sucesso !");
+        estadoInicial();
+      }
+      else
+      {
+        txtMensagem.setText("Erro ao Excluir");
+      }
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
 
-        txtMensagem.setText("");
-        status = false;
-        txtNome.setEditable(true);
-        txtSenha.setEditable(true);
-        txtSenha1.setEditable(false);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnDeletar.setEnabled(false);
-        btnSalvar.setEnabled(true);
-        btnCancelar.setEnabled(true);
-        btnAlterar.setEnabled(false);
+      txtMensagem.setText("");
+      status = false;
+      txtIdUsuario.setEditable(false);
+      txtNome.setEditable(false);
+      txtSenha.setEditable(false);
+      txtSenha1.setEditable(false);
+      comboNivel.setEnabled(false);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnDeletar.setEnabled(false);
+      btnSalvar.setEnabled(true);
+      btnCancelar.setEnabled(false);
+      btnAlterar.setEnabled(false);
+
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");
+      // TODO add your handling code here:
+      txtMensagem.setText("");
 
-        int idusuario = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        Usuario u = this.usuarioDAO.getUsuarioById(idusuario);
+      int idusuario = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+      Usuario u = this.usuarioDAO.getUsuarioById(idusuario);
 
-        if (u == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-            txtMensagem.setText("Usuario não encontrado !");
+      if (u == null)
+      {
+        //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+        txtMensagem.setText("Usuario não encontrado !");
 
-        } else {
-            txtIdUsuario.setText(String.valueOf(u.getIdusuario()));
-            txtNome.setText(u.getNome());
-            txtSenha.setEditable(false);
-            txtSenha1.setEditable(false);
-            btnCancelar.setEnabled(true);
-            btnNovo.setEnabled(false);
-            btnAlterar.setEnabled(true);
-            btnDeletar.setEnabled(true);
-
-        }
+      }
+      else
+      {
+        txtIdUsuario.setText(String.valueOf(u.getIdusuario()));
+        txtNome.setText(u.getNome());
+        txtSenha.setEditable(false);
+        txtSenha1.setEditable(false);
+        btnCancelar.setEnabled(true);
+        btnNovo.setEnabled(false);
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+      }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");
-        estadoInicial();
-        btnSalvar.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnCancelar.setEnabled(true);
-        txtNome.setEditable(true);
-        txtSenha.setEditable(true);
-        txtSenha1.setEditable(true);
-        status = true;
-        //SELECT MAX(ID) FROM Tabela 
+
+      txtMensagem.setText("");
+
+      txtIdUsuario.setEditable(false);
+      txtNome.setEditable(true);
+      txtSenha.setEditable(true);
+      txtSenha1.setEditable(true);
+      comboNivel.setEnabled(true);
+
+      btnSalvar.setEnabled(true);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnCancelar.setEnabled(true);
+
+      status = true;
+
 
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        estadoInicial();
-        txtMensagem.setText("");
+      // TODO add your handling code here:
+      estadoInicial();
+      txtMensagem.setText("");
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void CarregandoCmboxNivel() {
-        NivelDAO dAO = new NivelDAO();
-        listarNivel = dAO.getNivelInt(1);
-        if (listarNivel.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-                    + "\nMenu - Cadastrar - Nivels");
-            this.dispose();
-        } else {
-            for (int i = 0; i < listarNivel.size(); i++) {
-                comboNivel.addItem(listarNivel.get(i).getDescricao());
-            }
-        }
+  private void CarregandoCmboxNivel()
+  {
+    NivelDAO dAO = new NivelDAO();
+    listarNivel = dAO.getNivel();
+    if (listarNivel.isEmpty())
+    {
+      JOptionPane.showMessageDialog(null, "Cadastre pelo menos um :"
+              + "\nMenu - Cadastrar - Cidades");
+      this.dispose();
     }
-    
-    
+    else
+    {
+      for (int i = 0; i < listarNivel.size(); i++)
+      {
+        comboNivel.addItem(listarNivel.get(i).getDescricao());
+      }
+    }
+  }
+
+
     private void txtMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensagemActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_txtMensagemActionPerformed
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
@@ -489,7 +504,6 @@ public class frmUsuario extends javax.swing.JInternalFrame {
     musuario = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
-    
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnAlterar;
