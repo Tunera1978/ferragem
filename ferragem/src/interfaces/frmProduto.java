@@ -885,6 +885,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
             
         txtIdProduto.setEditable(false);
         txtDescricao.setEditable(false);
+        txtPeso.setEditable(false);
         txtMensagem.setEditable(false);
 
         btnAlterar.setEnabled(false);
@@ -894,7 +895,9 @@ public class frmProduto extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
         
-        
+        txtIdProduto.setText("");
+        txtDescricao.setText("");
+        txtPeso.setText("");
     }
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -939,7 +942,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
             u.setDescricao(txtDescricao.getText());
 
             if (this.produtoDAO.editar(u) == true) {
-                txtMensagem.setText("Usuario Editado");
+                txtMensagem.setText("Produto Editado");
                 
             } else {
                 txtMensagem.setText("Erro ao Editar");
@@ -983,9 +986,10 @@ public class frmProduto extends javax.swing.JInternalFrame {
         Produto u = new Produto();
         u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
         u.setDescricao(txtDescricao.getText());
+        u.setPeso(Double.parseDouble(txtPeso.getText()));
 
         if (this.produtoDAO.excluir(u) == true) {
-            txtMensagem.setText("Usuario Excluido com sucesso !");
+            txtMensagem.setText("Produto Excluido com sucesso !");
             estadoInicial();
         } else {
             txtMensagem.setText("Erro ao Excluir");
