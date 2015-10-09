@@ -3,7 +3,10 @@ package dao;
 
 import beans.Acesso;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AcessoDAO extends GenericDAO {
   
@@ -24,6 +27,23 @@ public class AcessoDAO extends GenericDAO {
             return false;
         }
     }
+    
+    public int getAcessoUltimo(){
+        String sql = "SELECT (MAX(idacesso) + 1) as id FROM tblacesso";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }    
+        
     
     public Acesso getAcessoById(int idacesso){
         Acesso u = new Acesso();
