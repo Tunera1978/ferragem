@@ -940,7 +940,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         } else {
             u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
             u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: para altera peso na edição
+            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: adicionado para alterar peso na edição
             if (this.produtoDAO.editar(u) == true) {
                 txtMensagem.setText("Produto Editado");
                 
