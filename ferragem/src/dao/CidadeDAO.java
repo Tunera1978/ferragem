@@ -16,7 +16,7 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public int AutoIncID() {
-        String sql = "SELECT (MAX(idCidade) + 1) as id FROM tblCidade";
+        String sql = "SELECT (MAX(idcidade) + 1) as id FROM tblcidade";//Fabio: mudei cidade minuscula.
         this.prepareStmte(sql);
         ResultSet rs;
         int retorno = 0;
@@ -33,7 +33,7 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean inserir(Cidade idioma) {
-        String sql = "INSERT INTO tblCidade (idCidade, nome,idestado) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO tblcidade (idcidade, nome,idestado) VALUES (?, ?, ?)";//Fabio: mudei cidade minuscula
 
         try {
             this.prepareStmte(sql);
@@ -48,7 +48,7 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean excluir(Cidade idioma) {
-        String sql = "DELETE FROM tblCidade WHERE idCidade = ?";
+        String sql = "DELETE FROM tblcidade WHERE idcidade = ?";//Fabio: mudei cidade minuscula
 
         try {
             this.prepareStmte(sql);
@@ -68,14 +68,14 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean editar(Cidade idioma) {
-        String sql = "UPDATE tblCidade SET nome = ?, idestado = ? WHERE idCidade = ?";
+        String sql = "UPDATE tblcidade SET nome = ?, idestado = ? WHERE idcidade = ?";//Fabio: mudei sequencia dos parametros
 
         try {
             this.prepareStmte(sql);
             //this.stmte.setInt(1, idioma.getIdcidade());
-            this.stmte.setInt(1, idioma.getIdcidade());
-            this.stmte.setString(2, idioma.getNome());
-            this.stmte.setInt(3, idioma.getIdestado());
+            this.stmte.setString(1, idioma.getNome());
+            this.stmte.setInt(2, idioma.getIdestado());
+            this.stmte.setInt(3, idioma.getIdcidade());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class CidadeDAO extends GenericDAO {
     {
         ArrayList<Cidade> cidade = new ArrayList<>();
 
-        String sql = "SELECT * FROM tblCidade order by nome";
+        String sql = "SELECT * FROM tblcidade order by nome";//Fabio: mudei cidade minuscula
         
                
         try {
@@ -108,12 +108,12 @@ public class CidadeDAO extends GenericDAO {
         } 
     }        
 
-    public ArrayList getCidadesByID(int idCidade) 
+    public ArrayList getCidadesByID(int idCidade) //Fabio: precisa mudar não possui tblrelacionamento mais
     {
         ArrayList idioma = new ArrayList<>();
-        String sql = "SELECT * FROM tblrelacionamento inner join tblCidade "
-                + " on (tblrelacionamento.ididioma = tblidioma.idCidade) "
-                + " where prontuario = ? group by tblCidade.idCidade;";
+        String sql = "SELECT * FROM tblrelacionamento inner join tblcidade "
+                + " on (tblrelacionamento.ididioma = tblidioma.idcidade) "//Fabio: mudei cidade minuscula
+                + " where prontuario = ? group by tblcidade.idcidade;";//Fabio: mudei cidade minuscula
         try {
             this.prepareStmte(sql);
             this.stmte.setInt(1, idCidade);
@@ -121,8 +121,8 @@ public class CidadeDAO extends GenericDAO {
             rs.beforeFirst();
             while (rs.next()) {
                 Cidade i = new Cidade();
-                i.setIdcidade(rs.getInt("idCidade"));
-                i.setNome(rs.getString("Descricao"));
+                i.setIdcidade(rs.getInt("idcidade"));
+                i.setNome(rs.getString("nome"));
                 idioma.add(i);
             }
             return idioma;
@@ -134,7 +134,7 @@ public class CidadeDAO extends GenericDAO {
     public Cidade getCidade(String nome) {
 
         Cidade iVO = new Cidade();
-        String sql = "SELECT * FROM tblCidade WHERE descricao = ?";
+        String sql = "SELECT * FROM tblcidade WHERE nome = ?";//Fabio: mudei descricao para nome
         try {
             
             this.prepareStmte(sql);
@@ -142,7 +142,7 @@ public class CidadeDAO extends GenericDAO {
             ResultSet rs = this.stmte.executeQuery();
 
             rs.first();
-            iVO.setIdcidade(rs.getInt("idCidade"));
+            iVO.setIdcidade(rs.getInt("idcidade"));
 
             stmte.close();
             this.closeAll();
@@ -158,7 +158,7 @@ public class CidadeDAO extends GenericDAO {
     public List<Cidade> listarCidades() {
         
         try {
-                String sql = "SELECT * FROM tblCidade";
+                String sql = "SELECT * FROM tblcidade";//Fabio: mudei cidade minuscula
                 this.prepareStmte(sql);                          
 
             ResultSet rs = this.stmte.executeQuery();

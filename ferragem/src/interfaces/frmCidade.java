@@ -949,7 +949,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
             u.setNome(txtDescricao.getText());
 
             if (this.cidadeDAO.editar(u) == true) {
-                txtMensagem.setText("Usuario Editado");
+                txtMensagem.setText("Cidade Editado");
                 
             } else {
                 txtMensagem.setText("Erro ao Editar");
@@ -995,7 +995,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
         u.setNome(txtDescricao.getText());
 
         if (this.cidadeDAO.excluir(u) == true) {
-            txtMensagem.setText("Usuario Excluido com sucesso !");
+            txtMensagem.setText("Cidade Excluido com sucesso !");
             estadoInicial();
         } else {
             txtMensagem.setText("Erro ao Excluir");
