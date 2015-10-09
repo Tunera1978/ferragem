@@ -230,7 +230,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblproduto` (
   `idproduto` INT(11) NOT NULL AUTO_INCREMENT ,
   `descricao` VARCHAR(45) NOT NULL ,
-  `pesoBarra` FLOAT NOT NULL ,
+  `pesoBarra` DOUBLE NOT NULL ,
   PRIMARY KEY (`idproduto`) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 17

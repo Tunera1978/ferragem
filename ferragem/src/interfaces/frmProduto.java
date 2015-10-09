@@ -940,7 +940,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         } else {
             u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
             u.setDescricao(txtDescricao.getText());
-
+            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: para altera peso na edição
             if (this.produtoDAO.editar(u) == true) {
                 txtMensagem.setText("Produto Editado");
                 
@@ -973,10 +973,10 @@ public class frmProduto extends javax.swing.JInternalFrame {
         btnDeletar.setEnabled(false);
         btnAlterar.setEnabled(false);
         txtDescricao.setEditable(true);
+        txtPeso.setEditable(true);//Fabio: adicionei para poder editar o campo peso
         
         status = false;
-
-
+  
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -997,6 +997,7 @@ public class frmProduto extends javax.swing.JInternalFrame {
         
         txtIdProduto.setText("");
         txtDescricao.setText("");
+        txtPeso.setText("");//Fabio: adicionei
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

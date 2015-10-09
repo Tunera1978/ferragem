@@ -80,11 +80,12 @@ public class ProdutoDAO extends GenericDAO {
     }
     
     public boolean editar(Produto produto){
-        String sql = "UPDATE tblproduto SET descricao = ? WHERE idproduto = ?";
+        String sql = "UPDATE tblproduto SET descricao = ?, pesoBarra = ? WHERE idproduto = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setInt(2, produto.getIdProduto());
             this.stmte.setString(1, produto.getDescricao());
+            this.stmte.setDouble(2, produto.getPeso());//Fabio: Quando buscava não permitia atualizar peso.()
+            this.stmte.setInt(3, produto.getIdProduto());   
             this.stmte.executeUpdate();
             return true;
         }
