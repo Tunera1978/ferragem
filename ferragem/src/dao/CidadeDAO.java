@@ -33,13 +33,13 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean inserir(Cidade idioma) {
-        String sql = "INSERT INTO tblcidade (idcidade, nome,idestado) VALUES (?, ?, ?)";//Fabio: mudei cidade minuscula
+        String sql = "INSERT INTO tblcidade (nome,idestado) VALUES (?, ?)";//Fabio: mudei cidade minuscula
 
         try {
             this.prepareStmte(sql);
-            this.stmte.setInt(1, idioma.getIdcidade());
-            this.stmte.setString(2, idioma.getNome());
-            this.stmte.setInt(3, idioma.getIdestado());
+            //this.stmte.setInt(1, idioma.getIdcidade()); //Fabio: auto_incremento
+            this.stmte.setString(1, idioma.getNome());
+            this.stmte.setInt(2, idioma.getIdestado());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
