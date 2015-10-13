@@ -143,7 +143,6 @@ public class CidadeDAO extends GenericDAO {
 
             rs.first();
             iVO.setIdcidade(rs.getInt("idcidade"));
-
             stmte.close();
             this.closeAll();
             rs.close();
