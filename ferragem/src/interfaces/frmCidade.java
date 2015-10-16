@@ -126,7 +126,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Cidade");
+        jLabel1.setText("Cadastro de Cidades");
 
         jLabel2.setText("Codigo :");
 
@@ -879,6 +879,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
 
         if (status == (true)) {
             u.setNome(txtDescricao.getText());
+            //u.setIdestado(cbEstado.);Fabio: precisa pegar o id do estado selecionado no combobox
             
             if (this.cidadeDAO.inserir(u) == true) {
                 
