@@ -32,7 +32,7 @@ public class EstadoDAO extends GenericDAO {
         }
     }
     
-    public Estado getProdutoById(int idestado){
+    public Estado getEstadoById(int idestado){
         Estado es = new Estado();
         String sql = "SELECT * FROM tblestado WHERE idestado = ?";
         try{

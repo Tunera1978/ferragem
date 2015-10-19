@@ -1,40 +1,34 @@
-
 package interfaces;
-import beans.Estado;
-import beans.Cidade;
-import dao.EstadoDAO;
-import dao.CidadeDAO;
-import java.util.ArrayList;
-//import java.util.Locale;
-import javax.swing.JOptionPane;
-//import utils.ControleForms;
-import static utils.ControleForms.mcidade;
 
+import beans.Estado;
+import beans.Pais;
+import dao.PaisDAO;
+import dao.EstadoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import utils.AceitaNumeros;
+import utils.AceitaStrings;
+import static utils.ControleForms.mestado;
+import utils.LimitarNumeros;
 
 public class frmEstado extends javax.swing.JInternalFrame {
-
-  
+    
     private boolean status;
-    private CidadeDAO cidadeDAO;
-    private ArrayList<Estado> list;  
-
+    private EstadoDAO estadoDAO;
+    private ArrayList<Pais> list;    
+    
     public frmEstado() {
         initComponents();
-        this.cidadeDAO = new CidadeDAO();
-        
-        /*
-        
-        txtIdCidade.setDocument(new AceitaNumeros());
-        txtIdCidade.setDocument(new LimitarNumeros(6));
-        txtDescricao.setDocument(new AceitaStrings()); 
-        txtDescricao.setDocument();
-        
-        */
-        
+        this.estadoDAO = new EstadoDAO();
+               
+         txtId.setDocument(new AceitaNumeros());
+         txtId.setDocument(new LimitarNumeros(11));
+         txtDescricao.setDocument(new AceitaStrings()); 
+         //txtDescricao.setDocument(new );        
+         
         estadoInicial();
-        ComboEstado();
+        ComboPais();
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,7 +38,7 @@ public class frmEstado extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtIdProduto = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -104,9 +98,9 @@ public class frmEstado extends javax.swing.JInternalFrame {
         btnCancelar3 = new javax.swing.JButton();
         txtMensagem3 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        cbEstado = new javax.swing.JComboBox();
+        cbPais = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
-        txtIdProduto4 = new javax.swing.JTextField();
+        txtUf = new javax.swing.JTextField();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -762,7 +756,7 @@ public class frmEstado extends javax.swing.JInternalFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
@@ -770,9 +764,9 @@ public class frmEstado extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel15))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtIdProduto4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                                    .addComponent(cbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cbPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(12, 12, 12)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -802,7 +796,7 @@ public class frmEstado extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -810,10 +804,10 @@ public class frmEstado extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(txtIdProduto4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -834,12 +828,12 @@ public class frmEstado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void estadoInicial() {     
-            
-        txtIdProduto.setEditable(false);
+    private void estadoInicial() {        
+        
+        txtId.setEditable(false);
         txtDescricao.setEditable(false);
         txtMensagem.setEditable(false);
-
+        
         btnAlterar.setEnabled(false);
         btnBuscar.setEnabled(true);
         btnDeletar.setEnabled(false);
@@ -847,35 +841,34 @@ public class frmEstado extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
         
-        
     }
     
-    public void ComboEstado() {
-
-        EstadoDAO dAO = new EstadoDAO();
-        list = dAO.getEstados();
+    public void ComboPais() {
+        
+        PaisDAO dAO = new PaisDAO();
+        list = dAO.getPais();
         if (list.isEmpty()) {
             /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-                    + "\nMenu - Cadastrar - Cidades");*/
+             + "\nMenu - Cadastrar - Cidades");*/
             this.dispose();
         } else {
             for (int i = 0; i < list.size(); i++) {
-                cbEstado.addItem(list.get(i).getNome());
+                cbPais.addItem(list.get(i).getNome());
             }
         }
-    } 
+    }    
     
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         estadoInicial();
-        txtIdProduto.setText("");
+        txtId.setText("");
         txtDescricao.setText("");
         
         btnSalvar.setEnabled(true);
         btnBuscar.setEnabled(false);
         btnNovo.setEnabled(false);
         btnCancelar.setEnabled(true);
-
+        
         txtDescricao.setEditable(true);
         status = true;
 
@@ -884,25 +877,26 @@ public class frmEstado extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
-        Cidade u = new Cidade();
-
+        Estado es = new Estado();
+        
         if (status == (true)) {
-            u.setNome(txtDescricao.getText());
-            
-            if (this.cidadeDAO.inserir(u) == true) {
+            es.setNome(txtDescricao.getText());
+            es.setUf(txtUf.getText());
+            es.setIdpais(1);
+            if (this.estadoDAO.inserir(es) == true) {
                 
-                txtMensagem.setText("Cidade Adicionado com sucesso !");
+                txtMensagem.setText("Estado Adicionado com sucesso !");
                 
             } else {
                 //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
                 txtMensagem.setText("Erro ao Adicionar");
             }
         } else {
-           // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
-            u.setNome(txtDescricao.getText());
-
-            if (this.cidadeDAO.editar(u) == true) {
-                txtMensagem.setText("Cidade Editado");
+            // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
+            es.setNome(txtDescricao.getText());
+            
+            if (this.estadoDAO.editar(es) == true) {
+                txtMensagem.setText("Estado Editado");
                 
             } else {
                 txtMensagem.setText("Erro ao Editar");
@@ -917,7 +911,7 @@ public class frmEstado extends javax.swing.JInternalFrame {
         estadoInicial();
         txtMensagem.setText("");
         txtMensagem.setText("Cidade não sofreu alteração !");
-
+        
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -935,49 +929,50 @@ public class frmEstado extends javax.swing.JInternalFrame {
         txtDescricao.setEditable(true);
         
         status = false;
-
+        
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
-        txtMensagem.setText("");       
-
-        Cidade u = new Cidade();
-      //  u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
-        u.setNome(txtDescricao.getText());
-
-        if (this.cidadeDAO.excluir(u) == true) {
+        txtMensagem.setText("");        
+        
+        Estado es = new Estado();
+        //  u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
+        es.setNome(txtDescricao.getText());
+        
+        if (this.estadoDAO.excluir(es) == true) {
             txtMensagem.setText("Cidade Excluido com sucesso !");
             estadoInicial();
         } else {
             txtMensagem.setText("Erro ao Excluir");
         }
-        
-      //  txtIdCidade.setText("");
+
+        //  txtIdCidade.setText("");
         txtDescricao.setText("");
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         txtMensagem.setText("");
-        int idcidade = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-       // Cidade u = this.cidadeDAO.getCidadeById(idcidade);
-
-    //    if (u == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-      //      txtMensagem.setText("Cidade não encontrado !");
-
-     //   } else {
-      //      txtIdCidade.setText(String.valueOf(u.getIdCidade()));
-        //    txtDescricao.setText(u.getDescricao());
+        int idestado = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+        Estado es = this.estadoDAO.getEstadoById(idestado);
+        
+        if (es == null) {
+            JOptionPane.showMessageDialog(null, "Codigo não encontrado");
+            txtMensagem.setText("Estado não encontrado !");
             
-       //     btnCancelar.setEnabled(true);
-      //      btnNovo.setEnabled(false);
-       //     btnAlterar.setEnabled(true);
-       //     btnDeletar.setEnabled(true);
-//
-      //  }
+        } else {
+            txtId.setText(String.valueOf(es.getIdestado()));
+            txtDescricao.setText(es.getNome());
+            txtUf.setText(es.getUf());
+            
+            btnCancelar.setEnabled(true);
+            btnNovo.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnDeletar.setEnabled(true);
+            
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
@@ -1054,8 +1049,8 @@ public class frmEstado extends javax.swing.JInternalFrame {
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
-    // TODO add your handling code here:
-      mcidade = 0;
+      // TODO add your handling code here:
+      mestado = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
 
@@ -1084,7 +1079,7 @@ public class frmEstado extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalvar1;
     private javax.swing.JButton btnSalvar2;
     private javax.swing.JButton btnSalvar3;
-    private javax.swing.JComboBox cbEstado;
+    private javax.swing.JComboBox cbPais;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
@@ -1118,14 +1113,14 @@ public class frmEstado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDescricao1;
     private javax.swing.JTextField txtDescricao2;
     private javax.swing.JTextField txtDescricao3;
-    private javax.swing.JTextField txtIdProduto;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdProduto1;
     private javax.swing.JTextField txtIdProduto2;
     private javax.swing.JTextField txtIdProduto3;
-    private javax.swing.JTextField txtIdProduto4;
     private javax.swing.JTextField txtMensagem;
     private javax.swing.JTextField txtMensagem1;
     private javax.swing.JTextField txtMensagem2;
     private javax.swing.JTextField txtMensagem3;
+    private javax.swing.JTextField txtUf;
     // End of variables declaration//GEN-END:variables
 }

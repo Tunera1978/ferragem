@@ -7,6 +7,10 @@ public class ControleForms
   public static int musuario;
   public static int mnivel;
   public static int mcidade;
+  public static int mestado;
+  public static int mpais;
+  public static int mtipoendereco;
+  public static int mendereco;  
   
   public static int mpedidoferragem;
   public static int mpedidosapata; 

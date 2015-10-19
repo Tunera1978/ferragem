@@ -3,11 +3,9 @@ package interfaces;
 
 import beans.Produto;
 import dao.ProdutoDAO;
-//import java.util.Locale;
 import javax.swing.JOptionPane;
 import utilitarios.AceitaNumerosPonto;
-//import utils.ControleForms;
-import static utils.ControleForms.mproduto;
+import static utils.ControleForms.mpais;
 import utils.LimitarNumeros;
 
 
@@ -29,7 +27,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         txtDescricao.setDocument();
         */
         
-        txtPeso.setDocument(new AceitaNumerosPonto());
+        //txtSigla.setDocument(new AceitaNumerosPonto());
         
         estadoInicial();
     }
@@ -43,7 +41,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtIdProduto = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -103,7 +101,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         btnCancelar3 = new javax.swing.JButton();
         txtMensagem3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtPeso = new javax.swing.JTextField();
+        txtSigla = new javax.swing.JTextField();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -125,7 +123,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Produto");
+        jLabel1.setText("Cadastro de Pais");
 
         jLabel2.setText("Codigo :");
 
@@ -737,7 +735,7 @@ public class frmPais extends javax.swing.JInternalFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jLabel13.setText("Peso:");
+        jLabel13.setText("Sigla :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -759,14 +757,14 @@ public class frmPais extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -796,7 +794,7 @@ public class frmPais extends javax.swing.JInternalFrame {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -804,7 +802,7 @@ public class frmPais extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -826,9 +824,9 @@ public class frmPais extends javax.swing.JInternalFrame {
 
     private void estadoInicial() {     
             
-        txtIdProduto.setEditable(false);
+        txtId.setEditable(false);
         txtDescricao.setEditable(false);
-        txtPeso.setEditable(false);
+        txtSigla.setEditable(false);
         txtMensagem.setEditable(false);
 
         btnAlterar.setEnabled(false);
@@ -838,19 +836,19 @@ public class frmPais extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
         
-        txtIdProduto.setText("");
+        txtId.setText("");
         txtDescricao.setText("");
-        txtPeso.setText("");
+        txtSigla.setText("");
     }
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         estadoInicial();
         
-        txtIdProduto.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
+        txtId.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
         //txtIdProduto.setText("");
         txtDescricao.setText("");
-        txtPeso.setText("");
+        txtSigla.setText("");
         
         btnSalvar.setEnabled(true);
         btnBuscar.setEnabled(false);
@@ -858,7 +856,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         btnCancelar.setEnabled(true);
 
         txtDescricao.setEditable(true);
-        txtPeso.setEditable(true);
+        txtSigla.setEditable(true);
         status = true;
 
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -869,9 +867,9 @@ public class frmPais extends javax.swing.JInternalFrame {
         Produto u = new Produto();
 
         if (status == (true)) {
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+            u.setIdProduto(Integer.parseInt(txtId.getText()));
             u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtPeso.getText()));
+            u.setPeso(Double.parseDouble(txtSigla.getText()));
             if (this.produtoDAO.inserir(u) == true) {
                 
                 txtMensagem.setText("Produto Adicionado com sucesso !");
@@ -881,9 +879,9 @@ public class frmPais extends javax.swing.JInternalFrame {
                 txtMensagem.setText("Erro ao Adicionar");
             }
         } else {
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+            u.setIdProduto(Integer.parseInt(txtId.getText()));
             u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtPeso.getText()));//Fabio: adicionado para alterar peso na edição
+            u.setPeso(Double.parseDouble(txtSigla.getText()));//Fabio: adicionado para alterar peso na edição
             if (this.produtoDAO.editar(u) == true) {
                 txtMensagem.setText("Produto Editado");
                 
@@ -916,7 +914,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         btnDeletar.setEnabled(false);
         btnAlterar.setEnabled(false);
         txtDescricao.setEditable(true);
-        txtPeso.setEditable(true);//Fabio: adicionei para poder editar o campo peso
+        txtSigla.setEditable(true);//Fabio: adicionei para poder editar o campo peso
         
         status = false;
   
@@ -927,9 +925,9 @@ public class frmPais extends javax.swing.JInternalFrame {
         txtMensagem.setText("");       
 
         Produto u = new Produto();
-        u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
+        u.setIdProduto(Integer.parseInt(txtId.getText()));
         u.setDescricao(txtDescricao.getText());
-        u.setPeso(Double.parseDouble(txtPeso.getText()));
+        u.setPeso(Double.parseDouble(txtSigla.getText()));
 
         if (this.produtoDAO.excluir(u) == true) {
             txtMensagem.setText("Produto Excluido com sucesso !");
@@ -938,9 +936,9 @@ public class frmPais extends javax.swing.JInternalFrame {
             txtMensagem.setText("Erro ao Excluir");
         }
         
-        txtIdProduto.setText("");
+        txtId.setText("");
         txtDescricao.setText("");
-        txtPeso.setText("");//Fabio: adicionei
+        txtSigla.setText("");//Fabio: adicionei
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -956,9 +954,9 @@ public class frmPais extends javax.swing.JInternalFrame {
 
         } else{
             
-            txtIdProduto.setText(String.valueOf(u.getIdProduto()));
+            txtId.setText(String.valueOf(u.getIdProduto()));
             txtDescricao.setText(u.getDescricao());
-            txtPeso.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
+            txtSigla.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
             
             btnCancelar.setEnabled(true);
             btnNovo.setEnabled(false);
@@ -1043,7 +1041,7 @@ public class frmPais extends javax.swing.JInternalFrame {
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
     // TODO add your handling code here:
-      mproduto = 0;
+      mpais = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
 
@@ -1104,7 +1102,7 @@ public class frmPais extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDescricao1;
     private javax.swing.JTextField txtDescricao2;
     private javax.swing.JTextField txtDescricao3;
-    private javax.swing.JTextField txtIdProduto;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdProduto1;
     private javax.swing.JTextField txtIdProduto2;
     private javax.swing.JTextField txtIdProduto3;
@@ -1112,6 +1110,6 @@ public class frmPais extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtMensagem1;
     private javax.swing.JTextField txtMensagem2;
     private javax.swing.JTextField txtMensagem3;
-    private javax.swing.JTextField txtPeso;
+    private javax.swing.JTextField txtSigla;
     // End of variables declaration//GEN-END:variables
 }
