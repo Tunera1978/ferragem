@@ -15,12 +15,12 @@ public class PaisDAO extends GenericDAO {
     }
     
         public boolean inserir(Pais pais){
-        String sql = "INSERT INTO tblpais(nome, sigla) VALUES(?, ?)";
+        String sql = "INSERT INTO tblpais(idpais, nome, sigla) VALUES(?, ?, ?)";
         try{
             this.prepareStmte(sql);
-            //this.stmte.setInt(1, produto.getIdProduto());
-            this.stmte.setString(1, pais.getNome());
-            this.stmte.setString(2, pais.getSigla());            
+            this.stmte.setInt(1, pais.getIdPais());
+            this.stmte.setString(2, pais.getNome());
+            this.stmte.setString(3, pais.getSigla());            
             this.stmte.execute();
             return true;
         }
@@ -48,7 +48,7 @@ public class PaisDAO extends GenericDAO {
     }
     
     public int getPaisUltimo(){
-        String sql = "SELECT (MAX(idpais) + 1) as id FROM tblpais";
+        String sql ="SELECT (MAX(idpais) + 1 ) as id FROM tblpais";
         this.prepareStmte(sql);
         ResultSet rs;
         int retorno = 0;
@@ -79,12 +79,12 @@ public class PaisDAO extends GenericDAO {
     }
     
     public boolean editar(Pais pais){
-        String sql = "UPDATE tblestado SET nome = ?, sigla = ? WHERE idpais = ?";
+        String sql = "UPDATE tblpais SET nome = ?, sigla = ? WHERE idpais = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setString(2, pais.getNome());
-            this.stmte.setString(3, pais.getSigla());
-            this.stmte.setInt(1, pais.getIdPais());
+            this.stmte.setString(1, pais.getNome());
+            this.stmte.setString(2, pais.getSigla());
+            this.stmte.setInt(3, pais.getIdPais());
             this.stmte.executeUpdate();
             return true;
         }

@@ -14,14 +14,15 @@ public class EnderecoDAO extends GenericDAO
 
   public boolean inserir(Endereco endereco)
   {
-    String sql = "INSERT INTO tblEndereco( endereco, idcidade, idtipoendereco, idcliente ) VALUES(?, ?, ?, ?)";
+    String sql = "INSERT INTO tblEndereco( identrega, endereco, idcidade, idtipoendereco, idcliente ) VALUES(?, ?, ?, ?, ?)";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setString(1, endereco.getDescricao());
-      this.stmte.setInt(2, endereco.getIdcidade());
-      this.stmte.setInt(3, endereco.getIdtipoendereco());
-      this.stmte.setInt(4, endereco.getIdcliente());
+      this.stmte.setInt(1, endereco.getIdentrega());
+      this.stmte.setString(2, endereco.getDescricao());
+      this.stmte.setInt(3, endereco.getIdcidade());
+      this.stmte.setInt(4, endereco.getIdtipoendereco());
+      this.stmte.setInt(5, endereco.getIdcliente());
       this.stmte.execute();
       return true;
     }
@@ -34,17 +35,18 @@ public class EnderecoDAO extends GenericDAO
   public Endereco getEnderecoById(int idendereco)
   {
     Endereco u = new Endereco();
-    String sql = "SELECT endereco, idcidade, idtipoendereco, idcliente FROM tblendereco WHERE identrega = ?";
+    String sql = "SELECT idendentrega, endereco, idcidade, idtipoendereco, idcliente FROM tblendereco WHERE idendentrega = ?";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setInt(1, idendereco);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
+      u.setIdentrega(rs.getInt("idendentrega"));
       u.setDescricao(rs.getString("endereco"));
       u.setIdcidade(rs.getInt("idcidade"));
       u.setIdtipoendereco(rs.getInt("idtipoendereco"));
-      u.setIdcliente(rs.getInt("idcliente"));
+      u.setIdcliente(rs.getInt("idcliente"));      
       return u;
     }
     catch (Exception e)

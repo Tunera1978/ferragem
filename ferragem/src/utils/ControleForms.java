@@ -10,7 +10,8 @@ public class ControleForms
   public static int mestado;
   public static int mpais;
   public static int mtipoendereco;
-  public static int mendereco;  
+  public static int mendereco; 
+  public static int mcontato;
   
   public static int mpedidoferragem;
   public static int mpedidosapata; 

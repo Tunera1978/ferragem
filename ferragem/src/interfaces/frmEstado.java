@@ -11,26 +11,28 @@ import utils.AceitaStrings;
 import static utils.ControleForms.mestado;
 import utils.LimitarNumeros;
 
-public class frmEstado extends javax.swing.JInternalFrame {
-    
-    private boolean status;
-    private EstadoDAO estadoDAO;
-    private ArrayList<Pais> list;    
-    
-    public frmEstado() {
-        initComponents();
-        this.estadoDAO = new EstadoDAO();
-               
-         txtId.setDocument(new AceitaNumeros());
-         txtId.setDocument(new LimitarNumeros(11));
-         txtDescricao.setDocument(new AceitaStrings()); 
+public class frmEstado extends javax.swing.JInternalFrame
+{
+
+  private boolean status;
+  private EstadoDAO estadoDAO;
+  private ArrayList<Pais> list;
+
+  public frmEstado()
+  {
+    initComponents();
+    this.estadoDAO = new EstadoDAO();
+
+    txtId.setDocument(new AceitaNumeros());
+    txtId.setDocument(new LimitarNumeros(11));
+    txtDescricao.setDocument(new AceitaStrings());
          //txtDescricao.setDocument(new );        
-         
-        estadoInicial();
-        ComboPais();
-    }
-    
-    @SuppressWarnings("unchecked")
+
+    estadoInicial();
+    ComboPais();
+  }
+
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -828,229 +830,269 @@ public class frmEstado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void estadoInicial() {        
-        
-        txtId.setEditable(false);
-        txtDescricao.setEditable(false);
-        txtMensagem.setEditable(false);
-        
-        btnAlterar.setEnabled(false);
-        btnBuscar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        
+  private void estadoInicial()
+  {
+
+    txtId.setText("");
+    txtDescricao.setText("");
+    txtUf.setText("");
+
+    txtId.setEditable(false);
+    txtDescricao.setEditable(false);
+    txtUf.setEditable(false);
+    cbPais.setEditable(false);
+    txtMensagem.setEditable(false);
+
+    btnAlterar.setEnabled(false);
+    btnBuscar.setEnabled(true);
+    btnDeletar.setEnabled(false);
+    btnNovo.setEnabled(true);
+    btnSalvar.setEnabled(false);
+    btnCancelar.setEnabled(false);
+
+  }
+
+  public void ComboPais()
+  {
+
+    PaisDAO dAO = new PaisDAO();
+    list = dAO.getPais();
+    if (list.isEmpty())
+    {
+      /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+       + "\nMenu - Cadastrar - Cidades");*/
+      this.dispose();
     }
-    
-    public void ComboPais() {
-        
-        PaisDAO dAO = new PaisDAO();
-        list = dAO.getPais();
-        if (list.isEmpty()) {
-            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-             + "\nMenu - Cadastrar - Cidades");*/
-            this.dispose();
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                cbPais.addItem(list.get(i).getNome());
-            }
-        }
-    }    
-    
+    else
+    {
+      for (int i = 0; i < list.size(); i++)
+      {
+        cbPais.addItem(list.get(i).getNome());
+      }
+    }
+  }
+
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
-        estadoInicial();
-        txtId.setText("");
-        txtDescricao.setText("");
-        
-        btnSalvar.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnCancelar.setEnabled(true);
-        
-        txtDescricao.setEditable(true);
-        status = true;
+      // TODO add your handling code here:
+      estadoInicial();
+
+      //txtId.setText("");
+      txtId.setText(String.valueOf(estadoDAO.getEstadoUltimo()));
+      txtDescricao.setText("");
+      txtUf.setText("");
+
+      btnSalvar.setEnabled(true);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnCancelar.setEnabled(true);
+
+      txtDescricao.setEditable(true);
+      txtUf.setEditable(true);
+      cbPais.setEditable(true);
+      
+      status = true;
 
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        
-        Estado es = new Estado();
-        
-        if (status == (true)) {
-            es.setNome(txtDescricao.getText());
-            es.setUf(txtUf.getText());
-            es.setIdpais(1);
-            if (this.estadoDAO.inserir(es) == true) {
-                
-                txtMensagem.setText("Estado Adicionado com sucesso !");
-                
-            } else {
-                //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-                txtMensagem.setText("Erro ao Adicionar");
-            }
-        } else {
-            // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
-            es.setNome(txtDescricao.getText());
-            
-            if (this.estadoDAO.editar(es) == true) {
-                txtMensagem.setText("Estado Editado");
-                
-            } else {
-                txtMensagem.setText("Erro ao Editar");
-            }
+
+      Estado es = new Estado();
+
+      if (status == (true))
+      {
+        es.setIdestado(Integer.parseInt(txtId.getText()));
+        es.setNome(txtDescricao.getText());
+        es.setUf(txtUf.getText());
+        es.setIdpais(1);
+        if (this.estadoDAO.inserir(es) == true)
+        {
+
+          txtMensagem.setText("Estado Adicionado com sucesso !");
+
         }
-        estadoInicial();
+        else
+        {
+          //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+          txtMensagem.setText("Erro ao Adicionar");
+        }
+      }
+      else
+      {
+        // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
+        es.setIdestado(Integer.parseInt(txtId.getText()));
+        es.setNome(txtDescricao.getText());
+        es.setUf(txtUf.getText());
+        es.setIdpais(1);
+
+        if (this.estadoDAO.editar(es) == true)
+        {
+          txtMensagem.setText("Estado Editado");
+
+        }
+        else
+        {
+          txtMensagem.setText("Erro ao Editar");
+        }
+      }
+      estadoInicial();
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        estadoInicial();
-        txtMensagem.setText("");
-        txtMensagem.setText("Cidade não sofreu alteração !");
-        
+      // TODO add your handling code here:
+      estadoInicial();
+      txtMensagem.setText("");
+      txtMensagem.setText("Cidade não sofreu alteração !");
+
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        
-        txtMensagem.setText("");
-        
-        btnSalvar.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnCancelar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        txtDescricao.setEditable(true);
-        
-        status = false;
-        
+
+      txtMensagem.setText("");
+
+      btnSalvar.setEnabled(true);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnCancelar.setEnabled(true);
+      btnDeletar.setEnabled(false);
+      btnAlterar.setEnabled(false);
+      
+      txtDescricao.setEditable(true);
+      txtUf.setEditable(true);
+      cbPais.setEditable(true);
+      
+      status = false;
+
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");        
-        
-        Estado es = new Estado();
-        //  u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
-        es.setNome(txtDescricao.getText());
-        
-        if (this.estadoDAO.excluir(es) == true) {
-            txtMensagem.setText("Cidade Excluido com sucesso !");
-            estadoInicial();
-        } else {
-            txtMensagem.setText("Erro ao Excluir");
-        }
+      // TODO add your handling code here:
+      txtMensagem.setText("");
 
-        //  txtIdCidade.setText("");
-        txtDescricao.setText("");
+      Estado es = new Estado();
+      es.setIdestado(Integer.parseInt(txtId.getText()));
+      //es.setNome(txtDescricao.getText());
+
+      if (this.estadoDAO.excluir(es) == true)
+      {
+        txtMensagem.setText("Cidade Excluido com sucesso !");
+        estadoInicial();
+      }
+      else
+      {
+        txtMensagem.setText("Erro ao Excluir");
+      }
+
+      //  txtIdCidade.setText("");
+      txtDescricao.setText("");
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");
-        int idestado = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        Estado es = this.estadoDAO.getEstadoById(idestado);
-        
-        if (es == null) {
-            JOptionPane.showMessageDialog(null, "Codigo não encontrado");
-            txtMensagem.setText("Estado não encontrado !");
-            
-        } else {
-            txtId.setText(String.valueOf(es.getIdestado()));
-            txtDescricao.setText(es.getNome());
-            txtUf.setText(es.getUf());
-            
-            btnCancelar.setEnabled(true);
-            btnNovo.setEnabled(false);
-            btnAlterar.setEnabled(true);
-            btnDeletar.setEnabled(true);
-            
-        }
+      // TODO add your handling code here:
+      txtMensagem.setText("");
+      int idestado = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+      Estado es = this.estadoDAO.getEstadoById(idestado);
+
+      if (es == null)
+      {
+        JOptionPane.showMessageDialog(null, "Codigo não encontrado");
+        txtMensagem.setText("Estado não encontrado !");
+
+      }
+      else
+      {
+        txtId.setText(String.valueOf(es.getIdestado()));
+        txtDescricao.setText(es.getNome());
+        txtUf.setText(es.getUf());
+
+        btnCancelar.setEnabled(true);
+        btnNovo.setEnabled(false);
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+
+      }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar1ActionPerformed
 
     private void btnNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo1ActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnDeletar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar2ActionPerformed
 
     private void btnNovo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo2ActionPerformed
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void btnAlterar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar2ActionPerformed
 
     private void btnSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar2ActionPerformed
 
     private void btnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar2ActionPerformed
 
     private void btnDeletar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar3ActionPerformed
 
     private void btnNovo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo3ActionPerformed
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
     private void btnAlterar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar3ActionPerformed
 
     private void btnSalvar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar3ActionPerformed
 
     private void btnCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar3ActionPerformed
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
-      // TODO add your handling code here:
-      mestado = 0;
+    // TODO add your handling code here:
+    mestado = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
 

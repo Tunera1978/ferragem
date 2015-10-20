@@ -1,8 +1,8 @@
 
 package interfaces;
 
-import beans.Produto;
-import dao.ProdutoDAO;
+import beans.Pais;
+import dao.PaisDAO;
 import javax.swing.JOptionPane;
 import utilitarios.AceitaNumerosPonto;
 import static utils.ControleForms.mpais;
@@ -13,12 +13,12 @@ public class frmPais extends javax.swing.JInternalFrame {
 
   
     private boolean status;
-    private ProdutoDAO produtoDAO;
+    private PaisDAO paisDAO;
       
 
     public frmPais() {
         initComponents();
-        this.produtoDAO = new ProdutoDAO();
+        this.paisDAO = new PaisDAO();
         
         /*
          txtIdProduto.setDocument(new AceitaNumeros());
@@ -845,7 +845,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         estadoInicial();
         
-        txtId.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
+        txtId.setText(String.valueOf(paisDAO.getPaisUltimo()));        
         //txtIdProduto.setText("");
         txtDescricao.setText("");
         txtSigla.setText("");
@@ -864,26 +864,26 @@ public class frmPais extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
-        Produto u = new Produto();
+        Pais pa = new Pais();
 
         if (status == (true)) {
-            u.setIdProduto(Integer.parseInt(txtId.getText()));
-            u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtSigla.getText()));
-            if (this.produtoDAO.inserir(u) == true) {
+            pa.setIdPais(Integer.parseInt(txtId.getText()));
+            pa.setNome(txtDescricao.getText());
+            pa.setSigla(txtSigla.getText());
+            if (this.paisDAO.inserir(pa) == true) {
                 
-                txtMensagem.setText("Produto Adicionado com sucesso !");
+                txtMensagem.setText("Pais Adicionado com sucesso !");
                 
             } else {
                 //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
                 txtMensagem.setText("Erro ao Adicionar");
             }
         } else {
-            u.setIdProduto(Integer.parseInt(txtId.getText()));
-            u.setDescricao(txtDescricao.getText());
-            u.setPeso(Double.parseDouble(txtSigla.getText()));//Fabio: adicionado para alterar peso na edição
-            if (this.produtoDAO.editar(u) == true) {
-                txtMensagem.setText("Produto Editado");
+            pa.setIdPais(Integer.parseInt(txtId.getText()));
+            pa.setNome(txtDescricao.getText());
+            pa.setSigla(txtSigla.getText());
+            if (this.paisDAO.editar(pa) == true) {
+                txtMensagem.setText("Pais Editado");
                 
             } else {
                 txtMensagem.setText("Erro ao Editar");
@@ -924,13 +924,13 @@ public class frmPais extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         txtMensagem.setText("");       
 
-        Produto u = new Produto();
-        u.setIdProduto(Integer.parseInt(txtId.getText()));
-        u.setDescricao(txtDescricao.getText());
-        u.setPeso(Double.parseDouble(txtSigla.getText()));
+        Pais pa = new Pais();
+        pa.setIdPais(Integer.parseInt(txtId.getText()));
+        pa.setNome(txtDescricao.getText());
+        pa.setSigla(txtSigla.getText());
 
-        if (this.produtoDAO.excluir(u) == true) {
-            txtMensagem.setText("Produto Excluido com sucesso !");
+        if (this.paisDAO.excluir(pa) == true) {
+            txtMensagem.setText("Pais Excluido com sucesso !");
             estadoInicial();
         } else {
             txtMensagem.setText("Erro ao Excluir");
@@ -938,25 +938,25 @@ public class frmPais extends javax.swing.JInternalFrame {
         
         txtId.setText("");
         txtDescricao.setText("");
-        txtSigla.setText("");//Fabio: adicionei
+        txtSigla.setText("");
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         txtMensagem.setText("");
-        int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        Produto u = this.produtoDAO.getProdutoById(idproduto);
+        int idpais = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+        Pais pa = this.paisDAO.getProdutoById(idpais);
         
              
-        if (u == null) {
+        if (pa == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-            txtMensagem.setText("Produto não encontrado !");
+            txtMensagem.setText("Pais não encontrado !");
 
         } else{
             
-            txtId.setText(String.valueOf(u.getIdProduto()));
-            txtDescricao.setText(u.getDescricao());
-            txtSigla.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
+            txtId.setText(String.valueOf(pa.getIdPais()));
+            txtDescricao.setText(pa.getNome());
+            txtSigla.setText(pa.getSigla());//Fabio: exibe o peso como string
             
             btnCancelar.setEnabled(true);
             btnNovo.setEnabled(false);

@@ -17,13 +17,13 @@ public class EstadoDAO extends GenericDAO {
     }
     
         public boolean inserir(Estado estado){
-        String sql = "INSERT INTO tblestado(nome, uf, idpais) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO tblestado(idestado, nome, uf, idpais) VALUES(?, ?, ?, ?)";
         try{
             this.prepareStmte(sql);
-            //this.stmte.setInt(1, produto.getIdProduto());
-            this.stmte.setString(1, estado.getNome());
-            this.stmte.setString(2, estado.getUf());
-            this.stmte.setInt(3, estado.getIdpais());
+            this.stmte.setInt(1, estado.getIdestado());
+            this.stmte.setString(2, estado.getNome());
+            this.stmte.setString(3, estado.getUf());
+            this.stmte.setInt(4, estado.getIdpais());
             this.stmte.execute();
             return true;
         }
@@ -86,10 +86,10 @@ public class EstadoDAO extends GenericDAO {
         String sql = "UPDATE tblestado SET nome = ?, uf = ?, idpais = ? WHERE idestado = ?";
         try{
             this.prepareStmte(sql);
-            this.stmte.setString(2, estado.getNome());
-            this.stmte.setString(3, estado.getUf());
-            this.stmte.setInt(4, estado.getIdpais());
-            this.stmte.setInt(1, estado.getIdestado());
+            this.stmte.setString(1, estado.getNome());
+            this.stmte.setString(2, estado.getUf());
+            this.stmte.setInt(3, estado.getIdpais());
+            this.stmte.setInt(4, estado.getIdestado());
             this.stmte.executeUpdate();
             return true;
         }
