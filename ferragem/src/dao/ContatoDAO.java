@@ -123,5 +123,43 @@ public class ContatoDAO extends GenericDAO
       return null;
     }
   }
+  
+  
+  //-------------------------------------------------------------
+  //         Jtable da tela de clientes - contatos
+  //-------------------------------------------------------------
+  
+  public ArrayList<Contato> getClientesContatos(int idcliente) //L I S T A
+    {
+        ArrayList<Contato> contato = new ArrayList<Contato>();
+
+        String sql = " SELECT tblcontato.nome, tblcontato.telefone, tblcontato.celular, tblcontato.email FROM tblcontato "
+                + " LEFT JOIN tblentidade ON tblentidade.idcliente =  ? "
+                + "order by tblcontato.nome";
+
+        try {
+            this.prepareStmte(sql);
+            this.stmte.setInt(1, idcliente);//+'%');
+            ResultSet rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+
+            while (rs.next()) {
+                Contato co = new Contato();
+                co.setNome(rs.getString("nome"));
+                co.setTelefone(rs.getString("telefone"));
+                co.setCelular(rs.getString("celular"));
+                contato.add(co);
+            }
+            return contato;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+ 
+     
+  
+   //-------------------------------------------------------------
+  //         Jtable da tela de clientes - Endereços
+  //-------------------------------------------------------------
+  
 
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import beans.Cliente;
+import beans.Contato;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -124,5 +125,8 @@ public class ClienteDAO extends GenericDAO
       return null;
     }
   }
+  
+  
+  
 
 }
