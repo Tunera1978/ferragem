@@ -103,7 +103,7 @@ public class ContatoDAO extends GenericDAO
     {
       this.prepareStmte(sql);
       this.stmte.setString(1, "%" + descricao + "%");
-      ResultSet rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+      ResultSet rs = this.stmte.executeQuery(); 
 
       while (rs.next())
       {
@@ -128,7 +128,7 @@ public class ContatoDAO extends GenericDAO
   //-------------------------------------------------------------
   //         Jtable da tela de clientes - contatos
   //-------------------------------------------------------------
-  
+  /*
   public ArrayList<Contato> getClientesContatos(int idcliente) //L I S T A
     {
         ArrayList<Contato> contato = new ArrayList<Contato>();
@@ -139,8 +139,8 @@ public class ContatoDAO extends GenericDAO
 
         try {
             this.prepareStmte(sql);
-            this.stmte.setInt(1, idcliente);//+'%');
-            ResultSet rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            this.stmte.setInt(1, idcliente);
+            ResultSet rs = this.stmte.executeQuery(); 
 
             while (rs.next()) {
                 Contato co = new Contato();
@@ -155,7 +155,38 @@ public class ContatoDAO extends GenericDAO
         }
     }
  
-     
+    */
+  
+  
+  public ArrayList<Contato> getClientesContatos(int id){
+       ArrayList<Contato> contato = new ArrayList<Contato>();
+        String sql = " SELECT tblcontato.nome, tblcontato.telefone, tblcontato.celular, tblcontato.email FROM tblcontato "
+                + " LEFT JOIN tblentidade ON tblentidade.idcliente =  ? "
+                + "order by tblcontato.nome";
+        try
+    {
+      this.prepareStmte(sql);
+      this.stmte.setInt(1, id);
+      ResultSet rs = this.stmte.executeQuery(); 
+
+      while (rs.next())
+      {
+        Contato co = new Contato();
+        co.setNome(rs.getString("nome"));
+        co.setCelular(rs.getString("celular"));
+        co.setTelefone(rs.getString("telefone"));
+        co.setEmail(rs.getString("email"));
+        //co.setObservacao(rs.getString("observacao"));
+        contato.add(co);
+      }
+      return contato;
+
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
+    }
   
    //-------------------------------------------------------------
   //         Jtable da tela de clientes - Endereços
