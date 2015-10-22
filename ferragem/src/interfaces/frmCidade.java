@@ -5,9 +5,7 @@ import beans.Cidade;
 import dao.EstadoDAO;
 import dao.CidadeDAO;
 import java.util.ArrayList;
-//import java.util.Locale;
 import javax.swing.JOptionPane;
-//import utils.ControleForms;
 import static utils.ControleForms.mcidade;
 
 public class frmCidade extends javax.swing.JInternalFrame
@@ -22,14 +20,14 @@ public class frmCidade extends javax.swing.JInternalFrame
         initComponents();
         this.cidadeDAO = new CidadeDAO();
 
-        /*
         
+        /*        
          txtIdCidade.setDocument(new AceitaNumeros());
          txtIdCidade.setDocument(new LimitarNumeros(6));
          txtDescricao.setDocument(new AceitaStrings()); 
-         txtDescricao.setDocument();
-        
+         txtDescricao.setDocument();        
          */
+        
         estadoInicial();
         //ComboEstado();
     }
@@ -988,13 +986,15 @@ public class frmCidade extends javax.swing.JInternalFrame
              
         if (u == null) {
             
-            txtMensagem.setText("Produto não encontrado !");
+            txtMensagem.setText("Cidade não encontrada !");
 
         } else{
             
             txtIdCidade.setText(String.valueOf(u.getIdcidade()));
-            txtDescricao.setText(u.getNome());
+            txtDescricao.setText(u.getNome());            
             
+            //Estado e = (Estado) cbEstado.getSelectedItem();            
+            //cbEstado.setSelectedIndex(e.getNome());
             //txtPeso.setText(String.valueOf(u.getPeso()));
             
             btnCancelar.setEnabled(true);

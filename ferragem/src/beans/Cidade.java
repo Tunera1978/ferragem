@@ -1,6 +1,8 @@
 
 package beans;
 
+import java.util.Objects;
+
 
 public class Cidade {
     private int idcidade;
@@ -32,8 +34,20 @@ public class Cidade {
     }
 
   
-    
+    @Override
+    public String toString()
+    {
+        return nome; //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
+  
+
+  
+
+  
      
+    
 
     
     

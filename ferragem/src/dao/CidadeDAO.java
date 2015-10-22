@@ -16,12 +16,12 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public int AutoIncID() {
-        String sql = "SELECT (MAX(idcidade) + 1) as id FROM tblcidade";//Fabio: mudei cidade minuscula.
+        String sql = "SELECT (MAX(idcidade) + 1) as id FROM tblcidade";
         this.prepareStmte(sql);
         ResultSet rs;
         int retorno = 0;
         try {
-            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs = this.stmte.executeQuery(); 
             rs.first();
             retorno = rs.getInt("id");
         } catch (SQLException ex) {
@@ -33,13 +33,13 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean inserir(Cidade idioma) {
-        String sql = "INSERT INTO tblcidade (nome,idestado) VALUES (?, ?)";//Fabio: mudei cidade minuscula
+        String sql = "INSERT INTO tblcidade (idcidade, nome,idestado) VALUES (?, ?, ?)";
 
         try {
             this.prepareStmte(sql);
-            //this.stmte.setInt(1, idioma.getIdcidade()); //Fabio: auto_incremento
-            this.stmte.setString(1, idioma.getNome());
-            this.stmte.setInt(2, idioma.getIdestado());
+            this.stmte.setInt(1, idioma.getIdcidade());
+            this.stmte.setString(2, idioma.getNome());
+            this.stmte.setInt(3, idioma.getIdestado());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean excluir(Cidade idioma) {
-        String sql = "DELETE FROM tblcidade WHERE idcidade = ?";//Fabio: mudei cidade minuscula
+        String sql = "DELETE FROM tblcidade WHERE idcidade = ?";
 
         try {
             this.prepareStmte(sql);
@@ -68,11 +68,10 @@ public class CidadeDAO extends GenericDAO {
     }
 
     public boolean editar(Cidade idioma) {
-        String sql = "UPDATE tblcidade SET nome = ?, idestado = ? WHERE idcidade = ?";//Fabio: mudei sequencia dos parametros
+        String sql = "UPDATE tblcidade SET nome = ?, idestado = ? WHERE idcidade = ?";
 
         try {
-            this.prepareStmte(sql);
-            //this.stmte.setInt(1, idioma.getIdcidade());
+            this.prepareStmte(sql);            
             this.stmte.setString(1, idioma.getNome());
             this.stmte.setInt(2, idioma.getIdestado());
             this.stmte.setInt(3, idioma.getIdcidade());
@@ -92,14 +91,19 @@ public class CidadeDAO extends GenericDAO {
             ResultSet rs = this.stmte.executeQuery();//return um resultset
             rs.first();//ResultSet na primeira posição                
             u.setIdcidade(rs.getInt("idcidade"));
-            u.setNome(rs.getString("nome"));
+            u.setNome(rs.getString("nome"));            
             
+            //***********************************            
+            //***********************************
             u.setIdestado(rs.getInt("idestado"));// criar equal na classe beans para retornar nome do estado
+            //***********************************
+            //***********************************
+            
             
             return u;
         }
         catch(Exception e){
-            return null;// não tem produto para retornar retorna null
+            return null;
         }
     }
     
