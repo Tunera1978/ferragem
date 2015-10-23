@@ -1,7 +1,6 @@
 package beans;
 
 /**
- *
  * @author Tune
  */
 public class Estado
@@ -58,5 +57,18 @@ public class Estado
     return nome; //To change body of generated methods, choose Tools | Templates.
   }
 
+  @Override
+   public boolean equals(Object obj)
+  {
+    if (obj instanceof Estado)
+    {
+      Estado a = (Estado) obj;
+      return a.getNome().equals(this.getNome());
+    }
+    else
+    {
+      return false;
+    }
+  }
   
 }
