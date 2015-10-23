@@ -850,7 +850,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
             this.dispose();
         } else {
             for (int i = 0; i < list.size(); i++) {
-                cbEstado.addItem(list.get(i).getNome());
+                cbEstado.addItem(list.get(i));
             }
         }
     } 
@@ -878,8 +878,9 @@ public class frmCidade extends javax.swing.JInternalFrame {
         Cidade u = new Cidade();
 
         if (status == (true)) {
-            u.setNome(txtDescricao.getText());
-            //u.setIdestado(cbEstado.);Fabio: precisa pegar o id do estado selecionado no combobox
+            u.setNome(txtDescricao.getText());            
+            Estado e = (Estado) cbEstado.getSelectedItem();
+            JOptionPane.showMessageDialog(null, "Id do estado selecionado " + e.getIdestado() );
             
             if (this.cidadeDAO.inserir(u) == true) {
                 

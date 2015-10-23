@@ -139,6 +139,7 @@ public class EstadoDAO extends GenericDAO {
             rs.beforeFirst();
             while (rs.next()) {
                 Estado es = new Estado();
+                es.setIdestado(rs.getInt("idestado"));
                 es.setNome(rs.getString("nome"));
                 estado.add(es);                //fazer no o mesmo no DAO Estado
             }

@@ -54,10 +54,13 @@ public class Estado {
   {
     this.idpais = idpais;
   }
-     
 
+    @Override
+    public String toString()
+    {
+        return nome; //To change body of generated methods, choose Tools | Templates.
+    }
     
     
-
     
 }
