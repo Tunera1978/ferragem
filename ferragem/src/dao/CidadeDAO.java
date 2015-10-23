@@ -82,6 +82,28 @@ public class CidadeDAO extends GenericDAO {
             return false;
         }
     }
+    
+     public Cidade getCidadeId(int idproduto){
+        Cidade u = new Cidade();
+        String sql = "SELECT * FROM tblcidade WHERE idcidade = ?";
+        try{
+            this.prepareStmte(sql);
+            this.stmte.setInt(1, idproduto);//parametro
+            ResultSet rs = this.stmte.executeQuery();//return um resultset
+            rs.first();//ResultSet na primeira posição                
+            u.setIdcidade(rs.getInt("idcidade"));
+            u.setNome(rs.getString("nome"));
+            
+            u.setIdestado(rs.getInt("idestado"));// criar equal na classe beans para retornar nome do estado
+            
+            return u;
+        }
+        catch(Exception e){
+            return null;// não tem produto para retornar retorna null
+        }
+    }
+    
+    
     /*
     PARAMENTRO = 1 ORDENA PELO ID
     PARAMENTRO = 2 ORDENA PELO NOME DO IDIOMA

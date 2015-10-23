@@ -1,5 +1,5 @@
-
 package interfaces;
+
 import beans.Estado;
 import beans.Cidade;
 import dao.EstadoDAO;
@@ -10,32 +10,30 @@ import javax.swing.JOptionPane;
 //import utils.ControleForms;
 import static utils.ControleForms.mcidade;
 
+public class frmCidade extends javax.swing.JInternalFrame
+{
 
-public class frmCidade extends javax.swing.JInternalFrame {
-
-  
     private boolean status;
     private CidadeDAO cidadeDAO;
-    private ArrayList<Estado> list;  
+    private ArrayList<Estado> list;
 
-    public frmCidade() {
+    public frmCidade()
+    {
         initComponents();
         this.cidadeDAO = new CidadeDAO();
-        
+
         /*
         
-        txtIdCidade.setDocument(new AceitaNumeros());
-        txtIdCidade.setDocument(new LimitarNumeros(6));
-        txtDescricao.setDocument(new AceitaStrings()); 
-        txtDescricao.setDocument();
+         txtIdCidade.setDocument(new AceitaNumeros());
+         txtIdCidade.setDocument(new LimitarNumeros(6));
+         txtDescricao.setDocument(new AceitaStrings()); 
+         txtDescricao.setDocument();
         
-        */
-        
+         */
         estadoInicial();
-        ComboEstado();
+        //ComboEstado();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -824,10 +822,15 @@ public class frmCidade extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void estadoInicial() {     
-            
+    private void estadoInicial()
+    {
+
+        txtIdCidade.setText("");
+        txtDescricao.setText("");
+
         txtIdCidade.setEditable(false);
         txtDescricao.setEditable(false);
+        cbEstado.setEditable(false);
         txtMensagem.setEditable(false);
 
         btnAlterar.setEnabled(false);
@@ -836,68 +839,88 @@ public class frmCidade extends javax.swing.JInternalFrame {
         btnNovo.setEnabled(true);
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
-        
-        
+
     }
-    
-    public void ComboEstado() {
+
+    public void ComboEstado()
+    {
 
         EstadoDAO dAO = new EstadoDAO();
         list = dAO.getEstados();
-        if (list.isEmpty()) {
+        if (list.isEmpty())
+        {
             /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-                    + "\nMenu - Cadastrar - Cidades");*/
+             + "\nMenu - Cadastrar - Cidades");*/
             this.dispose();
-        } else {
-            for (int i = 0; i < list.size(); i++) {
+        }
+        else
+        {
+            for (int i = 0; i < list.size(); i++)
+            {
                 cbEstado.addItem(list.get(i));
             }
         }
-    } 
-    
+    }
+
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         estadoInicial();
+        ComboEstado();
+
         txtIdCidade.setText("");
         txtDescricao.setText("");
         txtIdCidade.setText(String.valueOf(cidadeDAO.AutoIncID()));
-        
+
         btnSalvar.setEnabled(true);
         btnBuscar.setEnabled(false);
         btnNovo.setEnabled(false);
         btnCancelar.setEnabled(true);
 
         txtDescricao.setEditable(true);
+        cbEstado.setEditable(true);
         status = true;
 
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        
+
         Cidade u = new Cidade();
 
-        if (status == (true)) {
-            u.setNome(txtDescricao.getText());            
+        if (status == (true))
+        {
+            u.setIdcidade(Integer.parseInt(txtIdCidade.getText()));
+            u.setNome(txtDescricao.getText());
             Estado e = (Estado) cbEstado.getSelectedItem();
-            JOptionPane.showMessageDialog(null, "Id do estado selecionado " + e.getIdestado() );
-            
-            if (this.cidadeDAO.inserir(u) == true) {
-                
+            u.setIdestado(e.getIdestado());
+
+            //JOptionPane.showMessageDialog(null, "Id do estado selecionado " + e.getIdestado() );
+            if (this.cidadeDAO.inserir(u) == true)
+            {
+
                 txtMensagem.setText("Cidade Adicionado com sucesso !");
-                
-            } else {
+
+            }
+            else
+            {
                 //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
                 txtMensagem.setText("Erro ao Adicionar");
             }
-        } else {
-           // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
+        }
+        else
+        {
+            // u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
             u.setNome(txtDescricao.getText());
+            Estado e = (Estado) cbEstado.getSelectedItem();
+            u.setIdestado(e.getIdestado());
 
-            if (this.cidadeDAO.editar(u) == true) {
-                txtMensagem.setText("Cidade Editado");
-                
-            } else {
+            if (this.cidadeDAO.editar(u) == true)
+            {
+                txtMensagem.setText("Cidade Editada com sucesso");
+
+            }
+            else
+            {
                 txtMensagem.setText("Erro ao Editar");
             }
         }
@@ -916,9 +939,9 @@ public class frmCidade extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        
+
         txtMensagem.setText("");
-        
+
         btnSalvar.setEnabled(true);
         btnBuscar.setEnabled(false);
         btnNovo.setEnabled(false);
@@ -926,51 +949,60 @@ public class frmCidade extends javax.swing.JInternalFrame {
         btnDeletar.setEnabled(false);
         btnAlterar.setEnabled(false);
         txtDescricao.setEditable(true);
-        
+
         status = false;
+
+        ComboEstado();
 
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
-        txtMensagem.setText("");       
+        txtMensagem.setText("");
 
         Cidade u = new Cidade();
-      //  u.setIdCidade(Integer.parseInt(txtIdCidade.getText()));
-        u.setNome(txtDescricao.getText());
+        u.setIdcidade(Integer.parseInt(txtIdCidade.getText()));
+        
 
-        if (this.cidadeDAO.excluir(u) == true) {
+        if (this.cidadeDAO.excluir(u) == true)
+        {
             txtMensagem.setText("Cidade Excluido com sucesso !");
             estadoInicial();
-        } else {
+        }
+        else
+        {
             txtMensagem.setText("Erro ao Excluir");
         }
-        
-      //  txtIdCidade.setText("");
-        txtDescricao.setText("");
+
+        //  txtIdCidade.setText("");
+        //txtDescricao.setText("");
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         txtMensagem.setText("");
-        int idcidade = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-       // Cidade u = this.cidadeDAO.getCidadeById(idcidade);
-
-    //    if (u == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-      //      txtMensagem.setText("Cidade não encontrado !");
-
-     //   } else {
-      //      txtIdCidade.setText(String.valueOf(u.getIdCidade()));
-        //    txtDescricao.setText(u.getDescricao());
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+        Cidade u = this.cidadeDAO.getCidadeId(id);
+        
+             
+        if (u == null) {
             
-       //     btnCancelar.setEnabled(true);
-      //      btnNovo.setEnabled(false);
-       //     btnAlterar.setEnabled(true);
-       //     btnDeletar.setEnabled(true);
-//
-      //  }
+            txtMensagem.setText("Produto não encontrado !");
+
+        } else{
+            
+            txtIdCidade.setText(String.valueOf(u.getIdcidade()));
+            txtDescricao.setText(u.getNome());
+            
+            //txtPeso.setText(String.valueOf(u.getPeso()));
+            
+            btnCancelar.setEnabled(true);
+            btnNovo.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnDeletar.setEnabled(true);
+
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
@@ -1047,7 +1079,7 @@ public class frmCidade extends javax.swing.JInternalFrame {
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
-    // TODO add your handling code here:
+      // TODO add your handling code here:
       mcidade = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
