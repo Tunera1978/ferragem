@@ -37,13 +37,14 @@ public class ClienteDAO extends GenericDAO
   public Cliente getClienteById(int idcliente)
   {
     Cliente u = new Cliente();
-    String sql = "SELECT nome, fisicoJuridico, cnpj, inscricao, cpf, rg FROM tblcliente WHERE idcliente = ?";
+    String sql = "SELECT idcliente, nome, fisicoJuridico, cnpj, inscricao, cpf, rg FROM tblcliente WHERE idcliente = ?";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setInt(1, idcliente);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
+      u.setIdentidade(rs.getInt("idcliente"));
       u.setNome(rs.getString("nome"));
       u.setFisicoJuridico(rs.getBoolean("fisicoJuridico"));
       u.setCnpj(rs.getString("cnpj"));

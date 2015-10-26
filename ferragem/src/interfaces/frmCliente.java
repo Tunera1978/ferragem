@@ -1635,15 +1635,17 @@ public class frmCliente extends javax.swing.JInternalFrame {
         txtMensagem.setText("");
         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
         Cliente u = this.clienteDAO.getClienteById(id);
-        u = this.clienteDAO.getClienteById(id);
-        preencheTabelaContato(1);
+        txtNome.setText(u.getNome());
+        
+        preencheTabelaContato(u.getIdentidade());
 
         if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Cliente não encontrado !");
-            preencheTabelaContato(id);
+            //preencheTabelaContato(id);
         } else {
-            preencheTabelaContato(id);
+             
+            //preencheTabelaContato(id);
         //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
             //     txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
             //        txtComprimentoColuna.setText(String.valueOf(u.getComprimento()));
