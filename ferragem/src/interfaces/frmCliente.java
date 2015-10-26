@@ -11,17 +11,19 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static utils.ControleForms.mcliente;
 
-public class frmCliente extends javax.swing.JInternalFrame {
+public class frmCliente extends javax.swing.JInternalFrame
+{
 
     DefaultTableModel tCidade;
     private ArrayList<Cidade> list;
     private ClienteDAO clienteDAO;
 
-    public frmCliente() {
+    public frmCliente()
+    {
 
         initComponents();
         //ComboCidade(); 
-       //preencheTabelaContato(1);
+        //preencheTabelaContato(1);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,8 +42,8 @@ public class frmCliente extends javax.swing.JInternalFrame {
      }
      }
      }*/
-    
-    private void preencheTabelaContato(int VarId) {
+    private void preencheTabelaContato(int VarId)
+    {
         DefaultTableModel tabelaContato = (DefaultTableModel) tbContato.getModel();
         tabelaContato.setNumRows(0);
         ContatoDAO r = new ContatoDAO();
@@ -49,8 +51,12 @@ public class frmCliente extends javax.swing.JInternalFrame {
         //contato = r.getClientesContatos(Integer.parseInt(txtId.getText()));
         contato = r.getClientesContatos(VarId);
 
-        for (Contato contato1 : contato) {
-            Object[] obj = new Object[]{contato1.getNome(), contato1.getTelefone(), contato1.getCelular(), contato1.getEmail()};
+        for (Contato contato1 : contato)
+        {
+            Object[] obj = new Object[]
+            {
+                contato1.getNome(), contato1.getTelefone(), contato1.getCelular(), contato1.getEmail()
+            };
             tabelaContato.addRow(obj);
         }
     }
@@ -1629,24 +1635,26 @@ public class frmCliente extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
     {//GEN-HEADEREND:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        
-        
 
         txtMensagem.setText("");
         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+        preencheTabelaContato(id);
         Cliente u = this.clienteDAO.getClienteById(id);
-        txtNome.setText(u.getNome());
-        
-        preencheTabelaContato(u.getIdentidade());
+       
+        //txtNome.setText(u.getNome());
 
-        if (u == null) {
+        //preencheTabelaContato(id);
+        if (u == null)
+        {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Cliente não encontrado !");
             //preencheTabelaContato(id);
-        } else {
-             
+        }
+        else
+        {
+
             //preencheTabelaContato(id);
-        //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
+            //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
             //     txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
             //        txtComprimentoColuna.setText(String.valueOf(u.getComprimento()));
             //          txtDiametroEstribo.setText(u.getDiametro());   // já esta em string

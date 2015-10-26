@@ -37,14 +37,14 @@ public class ClienteDAO extends GenericDAO
   public Cliente getClienteById(int idcliente)
   {
     Cliente u = new Cliente();
-    String sql = "SELECT idcliente, nome, fisicoJuridico, cnpj, inscricao, cpf, rg FROM tblcliente WHERE idcliente = ?";
+    String sql = "SELECT * FROM tblentidade WHERE idcliente = ?";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setInt(1, idcliente);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
-      u.setIdentidade(rs.getInt("idcliente"));
+      //u.setIdentidade(rs.getInt("idcliente"));
       u.setNome(rs.getString("nome"));
       u.setFisicoJuridico(rs.getBoolean("fisicoJuridico"));
       u.setCnpj(rs.getString("cnpj"));
@@ -61,7 +61,7 @@ public class ClienteDAO extends GenericDAO
 
   public boolean excluir(Cliente u)
   {
-    String sql = "DELETE FROM tblcliente WHERE idcliente = ?";
+    String sql = "DELETE FROM tblentidade WHERE idcliente = ?";
     try
     {
       this.prepareStmte(sql);
@@ -77,7 +77,7 @@ public class ClienteDAO extends GenericDAO
 
   public boolean editar(Cliente cliente)
   {
-    String sql = "UPDATE tblcliente SET nome = ?, fisicoJuridico = ?, cnpj = ?, inscricao = ?, cpf = ?, rg = ?  WHERE idcliente = ?";
+    String sql = "UPDATE tblentidade SET nome = ?, fisicoJuridico = ?, cnpj = ?, inscricao = ?, cpf = ?, rg = ?  WHERE idcliente = ?";
     try
     {
       this.prepareStmte(sql);
@@ -99,7 +99,7 @@ public class ClienteDAO extends GenericDAO
   public ArrayList<Cliente> getClienteByLista(String descricao)
   {
     ArrayList<Cliente> cliente = new ArrayList<Cliente>();
-    String sql = "SELECT nome, celular, telefone, email, observacao FROM tblcliente WHERE descricao LIKE ?";
+    String sql = "SELECT nome, celular, telefone, email, observacao FROM tblentidade WHERE descricao LIKE ?";
 
     try
     {

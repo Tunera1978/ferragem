@@ -1,9 +1,9 @@
 package beans;
 
-/**
- *
+/*
  * @author Tune
  */
+
 public class Cliente
 {
 
