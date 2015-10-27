@@ -91,8 +91,7 @@ public class CidadeDAO extends GenericDAO {
             ResultSet rs = this.stmte.executeQuery();//return um resultset
             rs.first();//ResultSet na primeira posição                
             u.setIdcidade(rs.getInt("idcidade"));
-            u.setNome(rs.getString("nome"));            
-            
+            u.setNome(rs.getString("nome"));       
             //***********************************            
             //***********************************
             u.setIdestado(rs.getInt("idestado"));// criar equal na classe beans para retornar nome do estado

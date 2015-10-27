@@ -70,7 +70,7 @@ CREATE  TABLE IF NOT EXISTS `ferragem`.`tblentidade` (
   `nome` VARCHAR(45) NOT NULL ,
   `fisicoJuridico` TINYINT(1) NOT NULL ,
   `cnpj` VARCHAR(19) NULL DEFAULT NULL ,
-  `incricao` VARCHAR(12) NULL DEFAULT NULL ,
+  `inscricao` VARCHAR(12) NULL DEFAULT NULL ,
   `cpf` VARCHAR(12) NULL DEFAULT NULL ,
   `rg` VARCHAR(10) NULL DEFAULT NULL ,
   PRIMARY KEY (`idcliente`) )
@@ -324,6 +324,10 @@ INSERT INTO `tblnivel` VALUES (1,'Administrador');
 INSERT INTO `tblusuario` VALUES (1,'admin','admin',1);
 
 INSERT INTO `tblproduto` VALUES (1,'verg /38',17),(16,'teste',0);
+
+INSERT INTO `tblentidade` VALUES (1, 'Ewerton', 0, '123', '123', '123', '123');
+
+INSERT INTO `tblcontato` VALUES (1, 'tune', '123', '123', 'abc', '01', 'teste', 1);
 
 INSERT INTO `tblpais` (`idpais`, `nome`, `sigla`) VALUES (1, 'Brasil', 'BR');
 

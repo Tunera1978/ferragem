@@ -6,7 +6,7 @@ import beans.Contato;
 import dao.ClienteDAO;
 import dao.ContatoDAO;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static utils.ControleForms.mcliente;
@@ -1640,21 +1640,26 @@ public class frmCliente extends javax.swing.JInternalFrame
         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
         preencheTabelaContato(id);
         Cliente u = this.clienteDAO.getClienteById(id);
+        
        
-        //txtNome.setText(u.getNome());
-
-        //preencheTabelaContato(id);
+        
         if (u == null)
         {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Cliente não encontrado !");
-            //preencheTabelaContato(id);
+            
         }
         else
         {
-
-            //preencheTabelaContato(id);
-            //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
+            txtNome.setText(u.getNome());
+            // tipo radio buttom
+            txtInscricao.setText(u.getInscricao());
+            txtCnpj.setText(u.getCnpj());
+            txtRG.setText(u.getRg());
+            txtCPF.setText(u.getCpf());
+            
+            
+//        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
             //     txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
             //        txtComprimentoColuna.setText(String.valueOf(u.getComprimento()));
             //          txtDiametroEstribo.setText(u.getDiametro());   // já esta em string

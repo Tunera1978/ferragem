@@ -34,17 +34,17 @@ public class ClienteDAO extends GenericDAO
     }
   }
 
-  public Cliente getClienteById(int idcliente)
+  public Cliente getClienteById(int var_id)
   {
     Cliente u = new Cliente();
-    String sql = "SELECT * FROM tblentidade WHERE idcliente = ?";
+    String sql = "SELECT idcliente, nome, fisicoJuridico, cnpj, inscricao, cpf, rg FROM tblentidade WHERE idcliente = ?";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setInt(1, idcliente);//parametro
+      this.stmte.setInt(1, var_id);//parametro
       ResultSet rs = this.stmte.executeQuery();//return um resultset
       rs.first();//ResultSet na primeira posição
-      //u.setIdentidade(rs.getInt("idcliente"));
+      u.setIdentidade(rs.getInt("idcliente"));
       u.setNome(rs.getString("nome"));
       u.setFisicoJuridico(rs.getBoolean("fisicoJuridico"));
       u.setCnpj(rs.getString("cnpj"));
