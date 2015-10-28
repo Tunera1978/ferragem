@@ -7,24 +7,24 @@ package beans;
 public class Cliente
 {
 
-  private int identidade;
+  private int idcliente;
   private String nome;
   private boolean fisicoJuridico;
   private String cnpj;
   private String inscricao;
   private String cpf;
   private String rg;
+
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
   
 
-  public int getIdentidade()
-  {
-    return identidade;
-  }
-
-  public void setIdentidade(int identidade)
-  {
-    this.identidade = identidade;
-  }
+  
 
   public String getNome()
   {

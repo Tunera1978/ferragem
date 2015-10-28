@@ -118,5 +118,34 @@ public class EnderecoDAO extends GenericDAO
       return null;
     }
   }
+  
+  
+  public ArrayList<Endereco> getClienteEndereco(int id){
+       ArrayList<Endereco> endereco = new ArrayList<Endereco>();
+        String sql = " SELECT * FROM tblendereco LEFT JOIN tblendereco ON tblendereco.idcliente =  ? ";
+        try
+    {
+      this.prepareStmte(sql);
+      this.stmte.setInt(1, id);
+      ResultSet rs = this.stmte.executeQuery(); 
+
+      while (rs.next())
+      {
+        Endereco e = new Endereco();
+        e.setIdtipoendereco(rs.getInt("idendentrega"));
+        e.setDescricao(rs.getString("endereco"));
+        e.setIdtipoendereco(rs.getInt("idtipoendereco"));
+        e.setIdcliente(rs.getInt("idcliente"));
+        e.setIdcidade(rs.getInt("idcidade"));
+        endereco.add(e);
+      }
+      return endereco;
+
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
+    }
 
 }

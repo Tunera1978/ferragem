@@ -3,8 +3,10 @@ package interfaces;
 import beans.Cidade;
 import beans.Cliente;
 import beans.Contato;
+import beans.Endereco;
 import dao.ClienteDAO;
 import dao.ContatoDAO;
+import dao.EnderecoDAO;
 import java.util.ArrayList;
 //import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -60,6 +62,27 @@ public class frmCliente extends javax.swing.JInternalFrame
             tabelaContato.addRow(obj);
         }
     }
+    private void preencheTabelaEndereco(int VarId)
+    {
+        DefaultTableModel tabelaEndereco = (DefaultTableModel) tbEndereco.getModel();
+        tabelaEndereco.setNumRows(0);
+        EnderecoDAO r = new EnderecoDAO();
+        ArrayList<Endereco> endereco = new ArrayList<Endereco>();
+        //contato = r.getClientesContatos(Integer.parseInt(txtId.getText()));
+        endereco = r.getClienteEndereco(VarId);
+
+        for (Endereco endereco1 : endereco)
+        {
+            Object[] obj = new Object[]
+            {
+                endereco1.getIdtipoendereco(), endereco1.getDescricao(), endereco1.getIdcliente(), endereco1.getIdcidade(), endereco1.getIdentrega()
+                
+            };
+            tabelaEndereco.addRow(obj);
+        }
+    }
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -1637,9 +1660,10 @@ public class frmCliente extends javax.swing.JInternalFrame
         // TODO add your handling code here:
 
         txtMensagem.setText("");
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        preencheTabelaContato(id);
-        Cliente u = this.clienteDAO.getClienteById(id);
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));           
+        //preencheTabelaContato(id);
+        Cliente u = this.clienteDAO.getClienteId(id);
+        preencheTabelaContato(u.getIdcliente());
         
        
         

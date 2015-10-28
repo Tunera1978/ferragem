@@ -998,11 +998,7 @@ public class frmCidade extends javax.swing.JInternalFrame
             cbEstado.addItem(aVO);
             txtIdCidade.setText(String.valueOf(u.getIdcidade()));
             txtDescricao.setText(u.getNome());
-
-        //cbEstado.setSelectedItem(aVO.getNome());
-        //Estado e = (Estado) cbEstado.getSelectedItem();            
-            //cbEstado.setSelectedIndex(e.getNome());
-            //txtPeso.setText(String.valueOf(u.getPeso()));
+            
             btnCancelar.setEnabled(true);
             btnNovo.setEnabled(false);
             btnAlterar.setEnabled(true);
