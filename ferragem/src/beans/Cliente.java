@@ -22,68 +22,60 @@ public class Cliente
     public void setIdcliente(int idcliente) {
         this.idcliente = idcliente;
     }
-  
 
-  
+    public String getNome() {
+        return nome;
+    }
 
-  public String getNome()
-  {
-    return nome;
-  }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-  public void setNome(String nome)
-  {
-    this.nome = nome;
-  }
+   
+    public boolean isFisicoJuridico() {
+        return fisicoJuridico;
+    }
 
-  public boolean isFisicoJuridico()
-  {
-    return fisicoJuridico;
-  }
+    public void setFisicoJuridico(boolean fisicoJuridico) {
+        this.fisicoJuridico = fisicoJuridico;
+    }
 
-  public void setFisicoJuridico(boolean fisicoJuridico)
-  {
-    this.fisicoJuridico = fisicoJuridico;
-  }
+    public String getCnpj() {
+        return cnpj;
+    }
 
-  public String getCnpj()
-  {
-    return cnpj;
-  }
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-  public void setCnpj(String cnpj)
-  {
-    this.cnpj = cnpj;
-  }
+    public String getInscricao() {
+        return inscricao;
+    }
 
-  public String getInscricao()
-  {
-    return inscricao;
-  }
+    public void setInscricao(String inscricao) {
+        this.inscricao = inscricao;
+    }
 
-  public void setInscricao(String inscricao)
-  {
-    this.inscricao = inscricao;
-  }
+    public String getCpf() {
+        return cpf;
+    }
 
-  public String getCpf()
-  {
-    return cpf;
-  }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-  public void setCpf(String cpf)
-  {
-    this.cpf = cpf;
-  }
+    public String getRg() {
+        return rg;
+    }
 
-  public String getRg()
-  {
-    return rg;
-  }
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
-  public void setRg(String rg)
-  {
-    this.rg = rg;
-  }
+     @Override
+    public String toString() {
+        return "Cliente{" + "idcliente=" + idcliente + ", nome=" + nome + ", fisicoJuridico=" + fisicoJuridico + ", cnpj=" + cnpj + ", inscricao=" + inscricao + ", cpf=" + cpf + ", rg=" + rg + '}';
+    }
+
 
 }

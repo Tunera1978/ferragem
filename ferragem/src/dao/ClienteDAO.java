@@ -29,21 +29,21 @@ public class ClienteDAO extends GenericDAO {
     }
 
     public Cliente getClienteId(int id) {
-        Cliente u = new Cliente();
+        Cliente cli = new Cliente();
         String sql = "SELECT * FROM tblentidade WHERE idcliente = ?";
         try {
             this.prepareStmte(sql);
             this.stmte.setInt(1, id);//parametro
             ResultSet rs = this.stmte.executeQuery();//return um resultset
             rs.first();//ResultSet na primeira posição                
-            u.setIdcliente(rs.getInt("idcliente"));
-            u.setNome(rs.getString("nome"));
+            cli.setIdcliente(rs.getInt("idcliente"));
+            cli.setNome(rs.getString("nome"));
             //u.setFisicoJuridico(rs.getBoolean("fisicoJuridico"));
-            u.setCnpj(rs.getString("cnpj"));
-            u.setInscricao(rs.getString("inscricao"));
-            u.setCpf(rs.getString("cpf"));
-            u.setRg(rs.getString("rg"));
-            return u;
+            cli.setCnpj(rs.getString("cnpj"));
+            cli.setInscricao(rs.getString("inscricao"));
+            cli.setCpf(rs.getString("cpf"));
+            cli.setRg(rs.getString("rg"));
+            return cli;
         } catch (Exception e) {
             return null;
         }

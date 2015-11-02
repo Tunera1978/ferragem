@@ -16,7 +16,7 @@ import static utils.ControleForms.mcliente;
 public class frmCliente extends javax.swing.JInternalFrame
 {
 
-    DefaultTableModel tCidade;
+   // DefaultTableModel tCidade;
     private ArrayList<Cidade> list;
     private ClienteDAO clienteDAO;
 
@@ -1662,10 +1662,9 @@ public class frmCliente extends javax.swing.JInternalFrame
         txtMensagem.setText("");
         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));           
         //preencheTabelaContato(id);
-        Cliente u = this.clienteDAO.getClienteId(id);
-        preencheTabelaContato(u.getIdcliente());
-        
-       
+        ClienteDAO x = new ClienteDAO();
+        Cliente u = x.getClienteId(id);
+      
         
         if (u == null)
         {
@@ -1675,6 +1674,7 @@ public class frmCliente extends javax.swing.JInternalFrame
         }
         else
         {
+            preencheTabelaContato(u.getIdcliente());
             txtNome.setText(u.getNome());
             // tipo radio buttom
             txtInscricao.setText(u.getInscricao());
