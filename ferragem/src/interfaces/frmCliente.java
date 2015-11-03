@@ -75,7 +75,7 @@ public class frmCliente extends javax.swing.JInternalFrame
         {
             Object[] obj = new Object[]
             {
-                endereco1.getIdtipoendereco(), endereco1.getDescricao(), endereco1.getIdcliente(), endereco1.getIdcidade(), endereco1.getIdentrega()
+                endereco1.getIdtipoendereco(), endereco1.getDescricao(), endereco1.getIdcidade()
                 
             };
             tabelaEndereco.addRow(obj);
@@ -1674,13 +1674,17 @@ public class frmCliente extends javax.swing.JInternalFrame
         }
         else
         {
-            preencheTabelaContato(u.getIdcliente());
+            
             txtNome.setText(u.getNome());
             // tipo radio buttom
             txtInscricao.setText(u.getInscricao());
             txtCnpj.setText(u.getCnpj());
             txtRG.setText(u.getRg());
             txtCPF.setText(u.getCpf());
+            preencheTabelaContato(id);
+            preencheTabelaEndereco(id);
+            
+            
             
             
 //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
