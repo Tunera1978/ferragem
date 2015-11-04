@@ -2,6 +2,7 @@ package interfaces;
 
 import beans.Cidade;
 import beans.Cliente;
+import beans.ClienteEndereco;
 import beans.Contato;
 import beans.Endereco;
 import dao.ClienteDAO;
@@ -67,15 +68,15 @@ public class frmCliente extends javax.swing.JInternalFrame
         DefaultTableModel tabelaEndereco = (DefaultTableModel) tbEndereco.getModel();
         tabelaEndereco.setNumRows(0);
         EnderecoDAO r = new EnderecoDAO();
-        ArrayList<Endereco> endereco = new ArrayList<Endereco>();
+        ArrayList<ClienteEndereco> clienteendereco = new ArrayList<ClienteEndereco>();
         //contato = r.getClientesContatos(Integer.parseInt(txtId.getText()));
-        endereco = r.getClienteEndereco(VarId);
+        clienteendereco = r.getClienteEndereco(VarId);
 
-        for (Endereco endereco1 : endereco)
+        for (ClienteEndereco endereco1 : clienteendereco)
         {
             Object[] obj = new Object[]
             {
-                endereco1.getIdtipoendereco(), endereco1.getDescricao(), endereco1.getIdcidade()
+                endereco1.getTipoendereco(), endereco1.getDescricaoEndereco(), endereco1.getDescricaocidade()
                 
             };
             tabelaEndereco.addRow(obj);
@@ -1259,17 +1260,14 @@ public class frmCliente extends javax.swing.JInternalFrame
 
         tbEndereco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Tipo", "Endereço", "Cidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1277,6 +1275,11 @@ public class frmCliente extends javax.swing.JInternalFrame
             }
         });
         jScrollPane1.setViewportView(tbEndereco);
+        if (tbEndereco.getColumnModel().getColumnCount() > 0) {
+            tbEndereco.getColumnModel().getColumn(0).setResizable(false);
+            tbEndereco.getColumnModel().getColumn(1).setResizable(false);
+            tbEndereco.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1299,16 +1302,26 @@ public class frmCliente extends javax.swing.JInternalFrame
 
         tbContato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nome", "Telefone", "Celular", "Email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane9.setViewportView(tbContato);
+        if (tbContato.getColumnModel().getColumnCount() > 0) {
+            tbContato.getColumnModel().getColumn(0).setResizable(false);
+            tbContato.getColumnModel().getColumn(1).setResizable(false);
+            tbContato.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel45.setText("Observação :");
 
@@ -1515,7 +1528,7 @@ public class frmCliente extends javax.swing.JInternalFrame
                         .addComponent(btnDeletar)))
                 .addGap(18, 18, 18)
                 .addComponent(txtMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 246, Short.MAX_VALUE)
