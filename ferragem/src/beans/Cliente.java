@@ -9,11 +9,20 @@ public class Cliente
 
   private int idcliente;
   private String nome;
-  private boolean fisicoJuridico;
+  private byte fisicoJuridico;
   private String cnpj;
   private String inscricao;
   private String cpf;
   private String rg;
+
+    public byte getFisicoJuridico() {
+        return fisicoJuridico;
+    }
+
+    public void setFisicoJuridico(byte fisicoJuridico) {
+        this.fisicoJuridico = fisicoJuridico;
+    }
+  
 
     public int getIdcliente() {
         return idcliente;
@@ -32,14 +41,6 @@ public class Cliente
     }
 
    
-    public boolean isFisicoJuridico() {
-        return fisicoJuridico;
-    }
-
-    public void setFisicoJuridico(boolean fisicoJuridico) {
-        this.fisicoJuridico = fisicoJuridico;
-    }
-
     public String getCnpj() {
         return cnpj;
     }

@@ -16,7 +16,7 @@ public class ClienteDAO extends GenericDAO {
         try {
             this.prepareStmte(sql);
             this.stmte.setString(1, cliente.getNome());
-            this.stmte.setBoolean(2, cliente.isFisicoJuridico());
+            this.stmte.setByte(2, cliente.getFisicoJuridico());
             this.stmte.setString(3, cliente.getCnpj());
             this.stmte.setString(4, cliente.getInscricao());
             this.stmte.setString(5, cliente.getCpf());
@@ -66,7 +66,7 @@ public class ClienteDAO extends GenericDAO {
         try {
             this.prepareStmte(sql);
             this.stmte.setString(1, cliente.getNome());
-            this.stmte.setBoolean(2, cliente.isFisicoJuridico());
+            this.stmte.setByte(2, cliente.getFisicoJuridico());
             this.stmte.setString(3, cliente.getCnpj());
             this.stmte.setString(4, cliente.getInscricao());
             this.stmte.setString(5, cliente.getCpf());
@@ -90,7 +90,7 @@ public class ClienteDAO extends GenericDAO {
             while (rs.next()) {
                 Cliente u = new Cliente();
                 u.setNome(rs.getString("nome"));
-                u.setFisicoJuridico(rs.getBoolean("fisicoJuridico"));
+                u.setFisicoJuridico(rs.getByte("fisicoJuridico"));
                 u.setCnpj(rs.getString("cnpj"));
                 u.setInscricao(rs.getString("inscricao"));
                 u.setCpf(rs.getString("cpf"));

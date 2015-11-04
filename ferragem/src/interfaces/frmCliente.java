@@ -4,7 +4,6 @@ import beans.Cidade;
 import beans.Cliente;
 import beans.ClienteEndereco;
 import beans.Contato;
-import beans.Endereco;
 import dao.ClienteDAO;
 import dao.ContatoDAO;
 import dao.EnderecoDAO;
@@ -14,76 +13,51 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static utils.ControleForms.mcliente;
 
-public class frmCliente extends javax.swing.JInternalFrame
-{
+public class frmCliente extends javax.swing.JInternalFrame {
 
-   // DefaultTableModel tCidade;
     private ArrayList<Cidade> list;
     private ClienteDAO clienteDAO;
 
-    public frmCliente()
-    {
+    public frmCliente() {
 
         initComponents();
-        //ComboCidade(); 
-        //preencheTabelaContato(1);
+         buttonGroup1.add(rbFisico);
+         buttonGroup1.add(rbJuridico);
+         //rbJuridico.setSelected(true);
     }
 
     @SuppressWarnings("unchecked")
 
-    /*public void ComboCidade() {
-
-     CidadeDAO dAO = new CidadeDAO();
-     list = dAO.getCidades();
-     if (list.isEmpty()) {
-     JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-     + "\nMenu - Cadastrar - Cidades");
-     this.dispose();
-     } else {
-     for (int i = 0; i < list.size(); i++) {
-     cbCidade.addItem(list.get(i).getNome());
-     }
-     }
-     }*/
-    private void preencheTabelaContato(int VarId)
-    {
+    private void preencheTabelaContato(int VarId) {
         DefaultTableModel tabelaContato = (DefaultTableModel) tbContato.getModel();
         tabelaContato.setNumRows(0);
         ContatoDAO r = new ContatoDAO();
         ArrayList<Contato> contato = new ArrayList<Contato>();
-        //contato = r.getClientesContatos(Integer.parseInt(txtId.getText()));
         contato = r.getClientesContatos(VarId);
-
-        for (Contato contato1 : contato)
-        {
-            Object[] obj = new Object[]
-            {
+        for (Contato contato1 : contato) {
+            Object[] obj = new Object[]{
                 contato1.getNome(), contato1.getTelefone(), contato1.getCelular(), contato1.getEmail()
             };
             tabelaContato.addRow(obj);
         }
     }
-    private void preencheTabelaEndereco(int VarId)
-    {
+
+    private void preencheTabelaEndereco(int VarId) {
         DefaultTableModel tabelaEndereco = (DefaultTableModel) tbEndereco.getModel();
         tabelaEndereco.setNumRows(0);
         EnderecoDAO r = new EnderecoDAO();
         ArrayList<ClienteEndereco> clienteendereco = new ArrayList<ClienteEndereco>();
-        //contato = r.getClientesContatos(Integer.parseInt(txtId.getText()));
         clienteendereco = r.getClienteEndereco(VarId);
-
-        for (ClienteEndereco endereco1 : clienteendereco)
-        {
-            Object[] obj = new Object[]
-            {
+        for (ClienteEndereco endereco1 : clienteendereco) {
+            Object[] obj = new Object[]{
                 endereco1.getTipoendereco(), endereco1.getDescricaoEndereco(), endereco1.getDescricaocidade()
-                
+
             };
             tabelaEndereco.addRow(obj);
         }
     }
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -96,6 +70,8 @@ public class frmCliente extends javax.swing.JInternalFrame
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -241,8 +217,8 @@ public class frmCliente extends javax.swing.JInternalFrame
         jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        rdbFisico = new javax.swing.JRadioButton();
-        rdbJuridico = new javax.swing.JRadioButton();
+        rbFisico = new javax.swing.JRadioButton();
+        rbJuridico = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -1364,9 +1340,19 @@ public class frmCliente extends javax.swing.JInternalFrame
 
         jLabel41.setText("Selecione o tipo :");
 
-        rdbFisico.setText("Fisico");
+        rbFisico.setText("Fisico");
+        rbFisico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbFisicoActionPerformed(evt);
+            }
+        });
 
-        rdbJuridico.setText("Juridico");
+        rbJuridico.setText("Juridico");
+        rbJuridico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbJuridicoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1376,9 +1362,9 @@ public class frmCliente extends javax.swing.JInternalFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel41)
                 .addGap(36, 36, 36)
-                .addComponent(rdbFisico)
+                .addComponent(rbFisico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rdbJuridico)
+                .addComponent(rbJuridico)
                 .addGap(58, 58, 58))
         );
         jPanel5Layout.setVerticalGroup(
@@ -1387,8 +1373,8 @@ public class frmCliente extends javax.swing.JInternalFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel41)
-                    .addComponent(rdbFisico)
-                    .addComponent(rdbJuridico))
+                    .addComponent(rbFisico)
+                    .addComponent(rbJuridico))
                 .addContainerGap())
         );
 
@@ -1558,16 +1544,18 @@ public class frmCliente extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_btnNovoActionPerformed
         // TODO add your handling code here:
         txtMensagem.setText("");
+       // txtNome.setText(frmSenha.UsuarioLogado);
 
-        txtNome.setText(frmSenha.UsuarioLogado);
-
-        txtCnpj.setEditable(true);
-        txtInscricao.setEditable(true);
+        rbFisico.setEnabled(true);
+        rbJuridico.setEnabled(true);
 
         btnNovo.setEnabled(false);
         // btnCalcular.setEnabled(true);
         btnBuscar.setEnabled(false);
         btnCancelar.setEnabled(true);
+        
+
+       
 
      //   status = true;
         //   txtIdFerragem.setText(String.valueOf(this.ferragemDAO.getFerragemByMaxId()));
@@ -1673,33 +1661,41 @@ public class frmCliente extends javax.swing.JInternalFrame
         // TODO add your handling code here:
 
         txtMensagem.setText("");
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));           
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
         //preencheTabelaContato(id);
         ClienteDAO x = new ClienteDAO();
         Cliente u = x.getClienteId(id);
-      
-        
-        if (u == null)
-        {
+
+        if (u == null) {
             //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
             txtMensagem.setText("Cliente não encontrado !");
-            
-        }
-        else
-        {
-            
+
+        } else {
+
             txtNome.setText(u.getNome());
+            
             // tipo radio buttom
+            byte tipo = u.getFisicoJuridico();
+            
+            if (tipo == 0){
+                rbFisico.setSelected(true);
+                rbJuridico.setSelected(false);
+            }else if ( tipo == 1){
+                rbJuridico.setSelected(true);
+                rbFisico.setSelected(false);
+            }else if ( tipo > 1){
+                rbJuridico.setSelected(false);
+                rbFisico.setSelected(false);
+            }
+            
+ 
             txtInscricao.setText(u.getInscricao());
             txtCnpj.setText(u.getCnpj());
             txtRG.setText(u.getRg());
             txtCPF.setText(u.getCpf());
             preencheTabelaContato(id);
             preencheTabelaEndereco(id);
-            
-            
-            
-            
+
 //        txtIdFerragem.setText(String.valueOf(u.getIdFerragem()));
             //     txtQtdeColunas.setText(String.valueOf(u.getQtdeFerragem()));
             //        txtComprimentoColuna.setText(String.valueOf(u.getComprimento()));
@@ -1735,34 +1731,7 @@ public class frmCliente extends javax.swing.JInternalFrame
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /*
-     private void preencherTblContato(int id) {
-    
-     DefaultTableModel jtblContato = (DefaultTableModel) tblContato.getModel();
-     jtblContato.setNumRows(0);
-    
-    
-     ContatoDAO dDao = new ContatoDAO();
-     ArrayList<RelatorioDisciplina> relatorio = new ArrayList<RelatorioDisciplina>();
-     relatorio = dDao.getDisciplinaRelatorio(id);
-    
-     if (relatorio.size()== 0){
-     JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
-     return;
-     }
 
-     for (int i = 0; i < relatorio.size(); i++)
-     {
-     Object[] obj = new Object[]
-     {
-     relatorio.get(i).getProntuaio(),
-     relatorio.get(i).getNome(),
-     relatorio.get(i).getNomeDisciplina()        
-     };
-     jtblRelatorio.addRow(obj);
-     }
-     }
-     */
     private void txtMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensagemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMensagemActionPerformed
@@ -1909,6 +1878,22 @@ public class frmCliente extends javax.swing.JInternalFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void rbFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFisicoActionPerformed
+        // TODO add your handling code here:
+        txtRG.setEditable(true);
+        txtCPF.setEditable(true);
+        txtCnpj.setEditable(false);
+        txtInscricao.setEditable(false);
+    }//GEN-LAST:event_rbFisicoActionPerformed
+
+    private void rbJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbJuridicoActionPerformed
+        // TODO add your handling code here:
+        txtCnpj.setEditable(true);
+        txtInscricao.setEditable(true);
+        txtRG.setEditable(false);
+        txtCPF.setEditable(false);
+    }//GEN-LAST:event_rbJuridicoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
@@ -1945,6 +1930,8 @@ public class frmCliente extends javax.swing.JInternalFrame
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
@@ -2010,14 +1997,14 @@ public class frmCliente extends javax.swing.JInternalFrame
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTabbedPane pnEndereco;
+    private javax.swing.JRadioButton rbFisico;
+    private javax.swing.JRadioButton rbJuridico;
     private javax.swing.JRadioButton rdbArame1;
     private javax.swing.JRadioButton rdbArame2;
     private javax.swing.JRadioButton rdbArame3;
     private javax.swing.JRadioButton rdbEstribo1;
     private javax.swing.JRadioButton rdbEstribo2;
     private javax.swing.JRadioButton rdbEstribo3;
-    private javax.swing.JRadioButton rdbFisico;
-    private javax.swing.JRadioButton rdbJuridico;
     private javax.swing.JRadioButton rdbVergalhao1;
     private javax.swing.JRadioButton rdbVergalhao2;
     private javax.swing.JRadioButton rdbVergalhao3;

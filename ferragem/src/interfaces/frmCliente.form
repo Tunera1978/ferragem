@@ -63,6 +63,10 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup4">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup5">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup6">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
@@ -2015,9 +2019,9 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="rdbFisico" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbFisico" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="rdbJuridico" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbJuridico" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -2028,8 +2032,8 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rdbFisico" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rdbJuridico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbFisico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbJuridico" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -2042,15 +2046,21 @@
             <Property name="text" type="java.lang.String" value="Selecione o tipo :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rdbFisico">
+        <Component class="javax.swing.JRadioButton" name="rbFisico">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fisico"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbFisicoActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rdbJuridico">
+        <Component class="javax.swing.JRadioButton" name="rbJuridico">
           <Properties>
             <Property name="text" type="java.lang.String" value="Juridico"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbJuridicoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
