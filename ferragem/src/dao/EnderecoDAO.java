@@ -1,6 +1,8 @@
 package dao;
 
+import beans.Cidade;
 import beans.Endereco;
+import beans.TipoEndereco;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -46,7 +48,7 @@ public class EnderecoDAO extends GenericDAO
       u.setDescricao(rs.getString("endereco"));
       u.setIdcidade(rs.getInt("idcidade"));
       u.setIdtipoendereco(rs.getInt("idtipoendereco"));
-      u.setIdcliente(rs.getInt("idcliente"));      
+      u.setIdcliente(rs.getInt("idcliente"));
       return u;
     }
     catch (Exception e)
@@ -118,25 +120,36 @@ public class EnderecoDAO extends GenericDAO
       return null;
     }
   }
-  
-  
-  public ArrayList<Endereco> getClienteEndereco(int id){
-       ArrayList<Endereco> endereco = new ArrayList<Endereco>();
-        String sql = " SELECT * FROM tblendereco LEFT JOIN tblendereco ON tblendereco.idcliente =  ? ";
-        try
+
+  public ArrayList<Endereco> getClienteEndereco(int id)
+  {
+    ArrayList<Endereco> endereco = new ArrayList<Endereco>();
+    String sql = "SELECT tbltipoendereco.descricao , tblendereco.endereco, tblcidade.nome  FROM tblendereco "
+            + "LEFT JOIN tbltipoendereco ON tbltipoendereco.idtipoendereco = tblendereco.idtipoendereco"
+            + "LEFT JOIN tblcidade ON tblcidade.idcidade = tblendereco.idcidade"
+            + "where tblendereco.idcliente = ? ";
+    try
     {
       this.prepareStmte(sql);
       this.stmte.setInt(1, id);
-      ResultSet rs = this.stmte.executeQuery(); 
+      ResultSet rs = this.stmte.executeQuery();
 
       while (rs.next())
       {
         Endereco e = new Endereco();
-        e.setIdtipoendereco(rs.getInt("idendentrega"));
+        Cidade c = new Cidade();
+        TipoEndereco t = new TipoEndereco();
+        t.setDescricao(rs.getString("descricao"));
+        e.setDescricao(rs.getString("endereco"));
+        c.setNome(rs.getString("nome"));
+        
+        /*e.setIdtipoendereco(rs.getInt("idendentrega"));
         e.setDescricao(rs.getString("endereco"));
         e.setIdtipoendereco(rs.getInt("idtipoendereco"));
         e.setIdcliente(rs.getInt("idcliente"));
-        e.setIdcidade(rs.getInt("idcidade"));
+        e.setIdcidade(rs.getInt("idcidade")); */
+        
+                
         endereco.add(e);
       }
       return endereco;
@@ -146,6 +159,6 @@ public class EnderecoDAO extends GenericDAO
     {
       return null;
     }
-    }
+  }
 
 }

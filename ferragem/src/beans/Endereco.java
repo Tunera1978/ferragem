@@ -8,6 +8,8 @@ public class Endereco {
     private int idcidade;
     private int idtipoendereco;
     private int idtblcliente;
+    
+    private String 
 
   public int getIdentrega()
   {
