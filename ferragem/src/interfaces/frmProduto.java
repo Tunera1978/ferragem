@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import utilitarios.AceitaNumerosPonto;
 //import utils.ControleForms;
 import static utils.ControleForms.mproduto;
-import utils.LimitarNumeros;
+//import utils.LimitarNumeros;
 
 
 public class frmProduto extends javax.swing.JInternalFrame {

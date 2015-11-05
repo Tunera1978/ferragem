@@ -68,7 +68,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblentidade` (
   `idcliente` INT(11) NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
-  `fisicoJuridico` TINYINT(1) NOT NULL ,
+  `fisicoJuridico` INT(1) NOT NULL ,
   `cnpj` VARCHAR(19) NULL DEFAULT NULL ,
   `inscricao` VARCHAR(12) NULL DEFAULT NULL ,
   `cpf` VARCHAR(12) NULL DEFAULT NULL ,

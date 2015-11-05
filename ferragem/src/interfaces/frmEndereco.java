@@ -1,41 +1,45 @@
-
 package interfaces;
 
+import beans.Cidade;
+import beans.Cliente;
 import beans.Produto;
+import beans.TipoEndereco;
+import dao.CidadeDAO;
+import dao.ClienteDAO;
 import dao.ProdutoDAO;
+import java.util.ArrayList;
 //import java.util.Locale;
 import javax.swing.JOptionPane;
-import utilitarios.AceitaNumerosPonto;
+//import utilitarios.AceitaNumerosPonto;
 //import utils.ControleForms;
 import static utils.ControleForms.mendereco;
-import utils.LimitarNumeros;
+//import utils.LimitarNumeros;
 
+public class frmEndereco extends javax.swing.JInternalFrame
+{
 
-public class frmEndereco extends javax.swing.JInternalFrame {
+  private boolean status;
+  private ProdutoDAO produtoDAO;
+  private ArrayList<Cidade> list;
+  private ArrayList<Cliente> listCl;
+  private ArrayList<TipoEndereco> listEn;
 
-  
-    private boolean status;
-    private ProdutoDAO produtoDAO;
-      
+  public frmEndereco()
+  {
+    initComponents();
+    this.produtoDAO = new ProdutoDAO();
 
-    public frmEndereco() {
-        initComponents();
-        this.produtoDAO = new ProdutoDAO();
-        
-        /*
-         txtIdProduto.setDocument(new AceitaNumeros());
-        txtIdProduto.setDocument(new LimitarNumeros(6));
-        txtDescricao.setDocument(new AceitaStrings()); 
-        txtDescricao.setDocument();
-        */
-        
+    /*
+     txtIdProduto.setDocument(new AceitaNumeros());
+     txtIdProduto.setDocument(new LimitarNumeros(6));
+     txtDescricao.setDocument(new AceitaStrings()); 
+     txtDescricao.setDocument();
+     */
        // txtTipo.setDocument(new AceitaNumerosPonto());
-        
-        estadoInicial();
-    }
+    estadoInicial();
+  }
 
-    
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
@@ -44,7 +48,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     jSeparator1 = new javax.swing.JSeparator();
-    txtIdProduto = new javax.swing.JTextField();
+    txtId = new javax.swing.JTextField();
     txtDescricao = new javax.swing.JTextField();
     jPanel1 = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
@@ -106,9 +110,9 @@ public class frmEndereco extends javax.swing.JInternalFrame {
     jLabel13 = new javax.swing.JLabel();
     jLabel14 = new javax.swing.JLabel();
     jLabel15 = new javax.swing.JLabel();
-    jComboBox1 = new javax.swing.JComboBox();
-    jComboBox2 = new javax.swing.JComboBox();
-    jComboBox3 = new javax.swing.JComboBox();
+    cbTipo = new javax.swing.JComboBox();
+    cbCliente = new javax.swing.JComboBox();
+    cbCidade = new javax.swing.JComboBox();
 
     setClosable(true);
     addInternalFrameListener(new javax.swing.event.InternalFrameListener()
@@ -817,7 +821,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
             .addGap(12, 12, 12)
             .addComponent(jLabel2)
             .addGap(4, 4, 4)
-            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addComponent(jLabel3)
             .addGap(4, 4, 4)
@@ -827,7 +831,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
             .addComponent(jLabel13)
             .addGap(7, 7, 7)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(layout.createSequentialGroup()
                 .addGap(315, 315, 315)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -837,12 +841,12 @@ public class frmEndereco extends javax.swing.JInternalFrame {
             .addGap(11, 11, 11)
             .addComponent(jLabel14)
             .addGap(8, 8, 8)
-            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addGap(11, 11, 11)
             .addComponent(jLabel15)
             .addGap(8, 8, 8)
-            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addGap(12, 12, 12)
         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(10, 10, 10))
@@ -864,7 +868,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
               .addGroup(layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jLabel2))
-              .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel3)
@@ -877,7 +881,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
               .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -886,14 +890,13 @@ public class frmEndereco extends javax.swing.JInternalFrame {
               .addGroup(layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jLabel14))
-              .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jLabel15))
-              .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+              .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
           .addGroup(layout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -905,226 +908,282 @@ public class frmEndereco extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-    private void estadoInicial() {     
-            
-        txtIdProduto.setEditable(false);
-        txtDescricao.setEditable(false);
-       // txtTipo.setEditable(false);
-        txtMensagem.setEditable(false);
+  private void estadoInicial()
+  {
 
-        btnAlterar.setEnabled(false);
-        btnBuscar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
-        
-        txtIdProduto.setText("");
-        txtDescricao.setText("");
-      //  txtTipo.setText("");
+    ComboCidade();
+    //cbCidade.removeAllItems();
+    cbCliente.removeAllItems();
+    cbTipo.removeAllItems();
+
+    txtId.setEditable(false);
+    txtDescricao.setEditable(false);
+    //txtTipo.setEditable(false);
+    txtMensagem.setEditable(false);
+
+    btnAlterar.setEnabled(false);
+    btnBuscar.setEnabled(true);
+    btnDeletar.setEnabled(false);
+    btnNovo.setEnabled(true);
+    btnSalvar.setEnabled(false);
+    btnCancelar.setEnabled(false);
+
+    txtId.setText("");
+    txtDescricao.setText("");
+    //txtTipo.setText("");
+  }
+    
+  public void ComboCliente()
+    {
+
+        ClienteDAO dAO = new ClienteDAO();
+        list = dAO.getClientes();
+        if (list.isEmpty())
+        {
+            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+             + "\nMenu - Cadastrar - Cidades");*/
+          
+            this.dispose();
+        }
+        else
+        {
+            for (int i = 0; i < list.size(); i++)
+            {
+                cbCliente.addItem(list.get(i));
+            }
+        }
     }
+  
+  public void ComboCidade()
+    {
 
+        CidadeDAO dAO = new CidadeDAO();
+        list = dAO.getCidades();
+        if (list.isEmpty())
+        {
+            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+             + "\nMenu - Cadastrar - Cidades");*/
+          
+            this.dispose();
+        }
+        else
+        {
+            for (int i = 0; i < list.size(); i++)
+            {
+                cbCidade.addItem(list.get(i));
+            }
+        }
+    }
+  
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
-        estadoInicial();
-        
-        txtIdProduto.setText(String.valueOf(produtoDAO.getProdutoUltimo()));        
-        //txtIdProduto.setText("");
-        txtDescricao.setText("");
+      // TODO add your handling code here:
+      estadoInicial();
+
+      txtId.setText(String.valueOf(produtoDAO.getProdutoUltimo()));
+      //txtIdProduto.setText("");
+      txtDescricao.setText("");
        // txtTipo.setText("");
-        
-        btnSalvar.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnCancelar.setEnabled(true);
 
-        txtDescricao.setEditable(true);
+      btnSalvar.setEnabled(true);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnCancelar.setEnabled(true);
+
+      txtDescricao.setEditable(true);
       //  txtTipo.setEditable(true);
-        status = true;
-
+      status = true;
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        
-        Produto u = new Produto();
 
-        if (status == (true)) {
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-            u.setDescricao(txtDescricao.getText());
-       //     u.setPeso(Double.parseDouble(txtTipo.getText()));
-            if (this.produtoDAO.inserir(u) == true) {
-                
-                txtMensagem.setText("Produto Adicionado com sucesso !");
-                
-            } else {
-                //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
-                txtMensagem.setText("Erro ao Adicionar");
-            }
-        } else {
-            u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-            u.setDescricao(txtDescricao.getText());
-       //     u.setPeso(Double.parseDouble(txtTipo.getText()));//Fabio: adicionado para alterar peso na edição
-            if (this.produtoDAO.editar(u) == true) {
-                txtMensagem.setText("Produto Editado");
-                
-            } else {
-                txtMensagem.setText("Erro ao Editar");
-            }
+      Produto u = new Produto();
+
+      if (status == (true))
+      {
+        u.setIdProduto(Integer.parseInt(txtId.getText()));
+        u.setDescricao(txtDescricao.getText());
+        //     u.setPeso(Double.parseDouble(txtTipo.getText()));
+        if (this.produtoDAO.inserir(u) == true)
+        {
+
+          txtMensagem.setText("Produto Adicionado com sucesso !");
+
         }
-        estadoInicial();
+        else
+        {
+          //JOptionPane.showMessageDialog(null, "Erro ao Adicionar");
+          txtMensagem.setText("Erro ao Adicionar");
+        }
+      }
+      else
+      {
+        u.setIdProduto(Integer.parseInt(txtId.getText()));
+        u.setDescricao(txtDescricao.getText());
+        //     u.setPeso(Double.parseDouble(txtTipo.getText()));//Fabio: adicionado para alterar peso na edição
+        if (this.produtoDAO.editar(u) == true)
+        {
+          txtMensagem.setText("Produto Editado");
 
+        }
+        else
+        {
+          txtMensagem.setText("Erro ao Editar");
+        }
+      }
+      estadoInicial();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        estadoInicial();
-        txtMensagem.setText("");
-        txtMensagem.setText("Produto não sofreu alteração !");
-
-
+      // TODO add your handling code here:
+      estadoInicial();
+      txtMensagem.setText("");
+      txtMensagem.setText("Produto não sofreu alteração !");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        
-        txtMensagem.setText("");
-        
-        btnSalvar.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        btnCancelar.setEnabled(true);
-        btnDeletar.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        txtDescricao.setEditable(true);
-      //  txtTipo.setEditable(true);//Fabio: adicionei para poder editar o campo peso
-        
-        status = false;
-  
+
+      txtMensagem.setText("");
+
+      btnSalvar.setEnabled(true);
+      btnBuscar.setEnabled(false);
+      btnNovo.setEnabled(false);
+      btnCancelar.setEnabled(true);
+      btnDeletar.setEnabled(false);
+      btnAlterar.setEnabled(false);
+      txtDescricao.setEditable(true);
+      //txtTipo.setEditable(true);//Fabio: adicionei para poder editar o campo peso
+
+      status = false;
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");       
+      // TODO add your handling code here:
+      txtMensagem.setText("");
 
-        Produto u = new Produto();
-        u.setIdProduto(Integer.parseInt(txtIdProduto.getText()));
-        u.setDescricao(txtDescricao.getText());
-   //     u.setPeso(Double.parseDouble(txtTipo.getText()));
+      Produto u = new Produto();
+      u.setIdProduto(Integer.parseInt(txtId.getText()));
+      u.setDescricao(txtDescricao.getText());
+      //u.setPeso(Double.parseDouble(txtTipo.getText()));
 
-        if (this.produtoDAO.excluir(u) == true) {
-            txtMensagem.setText("Produto Excluido com sucesso !");
-            estadoInicial();
-        } else {
-            txtMensagem.setText("Erro ao Excluir");
-        }
-        
-        txtIdProduto.setText("");
-        txtDescricao.setText("");
-     //   txtTipo.setText("");//Fabio: adicionei
+      if (this.produtoDAO.excluir(u) == true)
+      {
+        txtMensagem.setText("Produto Excluido com sucesso !");
+        estadoInicial();
+      }
+      else
+      {
+        txtMensagem.setText("Erro ao Excluir");
+      }
+
+      txtId.setText("");
+      txtDescricao.setText("");
+      //   txtTipo.setText("");//Fabio: adicionei
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        txtMensagem.setText("");
-        int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-        Produto u = this.produtoDAO.getProdutoById(idproduto);
-        
-             
-        if (u == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-            txtMensagem.setText("Produto não encontrado !");
+      // TODO add your handling code here:
+      txtMensagem.setText("");
+      int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+      Produto u = this.produtoDAO.getProdutoById(idproduto);
 
-        } else{
-            
-            txtIdProduto.setText(String.valueOf(u.getIdProduto()));
-            txtDescricao.setText(u.getDescricao());
+      if (u == null)
+      {
+        //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+        txtMensagem.setText("Produto não encontrado !");
+
+      }
+      else
+      {
+
+        txtId.setText(String.valueOf(u.getIdProduto()));
+        txtDescricao.setText(u.getDescricao());
        //     txtTipo.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
-            
-            btnCancelar.setEnabled(true);
-            btnNovo.setEnabled(false);
-            btnAlterar.setEnabled(true);
-            btnDeletar.setEnabled(true);
 
-        }
+        btnCancelar.setEnabled(true);
+        btnNovo.setEnabled(false);
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+      }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar1ActionPerformed
 
     private void btnNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo1ActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnDeletar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar2ActionPerformed
 
     private void btnNovo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo2ActionPerformed
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void btnAlterar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar2ActionPerformed
 
     private void btnSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar2ActionPerformed
 
     private void btnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar2ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar2ActionPerformed
 
     private void btnDeletar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletar3ActionPerformed
 
     private void btnNovo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnNovo3ActionPerformed
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
     private void btnAlterar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterar3ActionPerformed
 
     private void btnSalvar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvar3ActionPerformed
 
     private void btnCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar3ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelar3ActionPerformed
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
   {//GEN-HEADEREND:event_formInternalFrameClosing
     // TODO add your handling code here:
-      mendereco = 0;
+    mendereco = 0;
   }//GEN-LAST:event_formInternalFrameClosing
 
 
@@ -1153,9 +1212,9 @@ public class frmEndereco extends javax.swing.JInternalFrame {
   private javax.swing.JButton btnSalvar1;
   private javax.swing.JButton btnSalvar2;
   private javax.swing.JButton btnSalvar3;
-  private javax.swing.JComboBox jComboBox1;
-  private javax.swing.JComboBox jComboBox2;
-  private javax.swing.JComboBox jComboBox3;
+  private javax.swing.JComboBox cbCidade;
+  private javax.swing.JComboBox cbCliente;
+  private javax.swing.JComboBox cbTipo;
   private javax.swing.JInternalFrame jInternalFrame1;
   private javax.swing.JInternalFrame jInternalFrame2;
   private javax.swing.JInternalFrame jInternalFrame3;
@@ -1190,7 +1249,7 @@ public class frmEndereco extends javax.swing.JInternalFrame {
   private javax.swing.JTextField txtDescricao1;
   private javax.swing.JTextField txtDescricao2;
   private javax.swing.JTextField txtDescricao3;
-  private javax.swing.JTextField txtIdProduto;
+  private javax.swing.JTextField txtId;
   private javax.swing.JTextField txtIdProduto1;
   private javax.swing.JTextField txtIdProduto2;
   private javax.swing.JTextField txtIdProduto3;
