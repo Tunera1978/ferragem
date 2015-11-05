@@ -137,7 +137,7 @@ public class ClienteDAO extends GenericDAO
       while (rs.next())
       {
         Cliente cl = new Cliente();
-        cl.getIdcliente(rs.getInt("idcliente"));                
+      //  cl.getIdcliente(rs.getInt("idcliente"));                
         cl.setNome(rs.getString("nome"));
         cliente.add(cl);  //fazer no o mesmo no DAO Estado
       }
