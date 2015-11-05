@@ -242,25 +242,25 @@ public class CidadeDAO extends GenericDAO
   }
 
   public ArrayList<Cidade> getCidades()
-  { //L I S T A
+  { 
 
-    ArrayList<Cidade> estado = new ArrayList<>();
+    ArrayList<Cidade> cid = new ArrayList<>();
 
     String sql = "SELECT * FROM tblcidade order by nome";
 
     try
     {
       this.prepareStmte(sql);
-      ResultSet rs = this.stmte.executeQuery(sql); //sempre usar quando fazer uma consulta(SELECT)
+      ResultSet rs = this.stmte.executeQuery(sql); 
       rs.beforeFirst();
       while (rs.next())
       {
         Cidade ci = new Cidade();
         ci.setIdcidade(rs.getInt("idestado"));
         ci.setNome(rs.getString("nome"));
-        estado.add(ci);                //fazer no o mesmo no DAO Estado
+        cid.add(ci);                
       }
-      return estado;
+      return cid;
     }
     catch (Exception e)
     {

@@ -7,6 +7,7 @@ import beans.TipoEndereco;
 import dao.CidadeDAO;
 import dao.ClienteDAO;
 import dao.ProdutoDAO;
+import dao.TipoEndDAO;
 import java.util.ArrayList;
 //import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -20,8 +21,8 @@ public class frmEndereco extends javax.swing.JInternalFrame
 
   private boolean status;
   private ProdutoDAO produtoDAO;
-  private ArrayList<Cidade> list;
-  private ArrayList<Cliente> listCl;
+  private ArrayList<Cliente> list;
+  private ArrayList<Cidade> listCl;
   private ArrayList<TipoEndereco> listEn;
 
   public frmEndereco()
@@ -35,7 +36,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
      txtDescricao.setDocument(new AceitaStrings()); 
      txtDescricao.setDocument();
      */
-       // txtTipo.setDocument(new AceitaNumerosPonto());
+    // txtTipo.setDocument(new AceitaNumerosPonto());
     estadoInicial();
   }
 
@@ -912,9 +913,12 @@ public class frmEndereco extends javax.swing.JInternalFrame
   {
 
     ComboCidade();
+    ComboCliente();
+    ComboTipo();
+
     //cbCidade.removeAllItems();
-    cbCliente.removeAllItems();
-    cbTipo.removeAllItems();
+    //cbCliente.removeAllItems();
+    //cbTipo.removeAllItems();
 
     txtId.setEditable(false);
     txtDescricao.setEditable(false);
@@ -932,49 +936,64 @@ public class frmEndereco extends javax.swing.JInternalFrame
     txtDescricao.setText("");
     //txtTipo.setText("");
   }
-    
+
   public void ComboCliente()
+  {
+    ClienteDAO dAO = new ClienteDAO();
+    list = dAO.getClientes();
+    if (list.isEmpty())
     {
-
-        ClienteDAO dAO = new ClienteDAO();
-        list = dAO.getClientes();
-        if (list.isEmpty())
-        {
-            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-             + "\nMenu - Cadastrar - Cidades");*/
-          
-            this.dispose();
-        }
-        else
-        {
-            for (int i = 0; i < list.size(); i++)
-            {
-                cbCliente.addItem(list.get(i));
-            }
-        }
+      /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+       + "\nMenu - Cadastrar - Cidades");*/
+      this.dispose();
     }
-  
+    else
+    {
+      for (int i = 0; i < list.size(); i++)
+      {
+        cbCliente.addItem(list.get(i));
+      }
+    }
+  }
+
   public void ComboCidade()
+  {
+    CidadeDAO dAO = new CidadeDAO();
+    listCl = dAO.getCidades();
+    if (listCl.isEmpty())
     {
-
-        CidadeDAO dAO = new CidadeDAO();
-        list = dAO.getCidades();
-        if (list.isEmpty())
-        {
-            /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-             + "\nMenu - Cadastrar - Cidades");*/
-          
-            this.dispose();
-        }
-        else
-        {
-            for (int i = 0; i < list.size(); i++)
-            {
-                cbCidade.addItem(list.get(i));
-            }
-        }
+      /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+       + "\nMenu - Cadastrar - Cidades");*/
+      this.dispose();
     }
+    else
+    {
+      for (int i = 0; i < listCl.size(); i++)
+      {
+        cbCidade.addItem(listCl.get(i));
+      }
+    }
+  }
   
+  public void ComboTipo()
+  {
+    TipoEndDAO dAO = new TipoEndDAO();
+    listEn = dAO.gettipoEnds();
+    if (listEn.isEmpty())
+    {
+      /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
+       + "\nMenu - Cadastrar - Cidades");*/
+      this.dispose();
+    }
+    else
+    {
+      for (int i = 0; i < listEn.size(); i++)
+      {
+        cbTipo.addItem(listEn.get(i));
+      }
+    }
+  }
+
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
       // TODO add your handling code here:
       estadoInicial();
@@ -982,7 +1001,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
       txtId.setText(String.valueOf(produtoDAO.getProdutoUltimo()));
       //txtIdProduto.setText("");
       txtDescricao.setText("");
-       // txtTipo.setText("");
+      // txtTipo.setText("");
 
       btnSalvar.setEnabled(true);
       btnBuscar.setEnabled(false);
@@ -995,7 +1014,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
 
       Produto u = new Produto();
 
@@ -1042,7 +1061,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
 
       txtMensagem.setText("");
 
@@ -1099,7 +1118,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
 
         txtId.setText(String.valueOf(u.getIdProduto()));
         txtDescricao.setText(u.getDescricao());
-       //     txtTipo.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
+        //     txtTipo.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
 
         btnCancelar.setEnabled(true);
         btnNovo.setEnabled(false);

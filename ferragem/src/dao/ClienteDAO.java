@@ -125,28 +125,28 @@ public class ClienteDAO extends GenericDAO
     }
   }
   
+  // Combo Cliente
   public ArrayList<Cliente> getClientes()
-  { //L I S T A        
-    ArrayList<Cliente> cliente = new ArrayList<>();
-    String sql = "SELECT * FROM tblentidade order by nome";
+  {         
+    ArrayList<Cliente> cli = new ArrayList<>();
+    String sql = "SELECT idcliente, nome FROM tblentidade order by nome";
     try
     {
       this.prepareStmte(sql);
-      ResultSet rs = this.stmte.executeQuery(sql); //sempre usar quando fazer uma consulta(SELECT)
-      rs.beforeFirst();
+      ResultSet rs = this.stmte.executeQuery(sql); 
+      //rs.beforeFirst();
       while (rs.next())
       {
         Cliente cl = new Cliente();
-      //  cl.getIdcliente(rs.getInt("idcliente"));                
+        cl.setIdcliente(rs.getInt("idcliente"));                
         cl.setNome(rs.getString("nome"));
-        cliente.add(cl);  //fazer no o mesmo no DAO Estado
+        cli.add(cl);  
       }
-      return cliente;
+      return cli;
     }
     catch (Exception e)
     {
       return null;
     }
   }
-
 }

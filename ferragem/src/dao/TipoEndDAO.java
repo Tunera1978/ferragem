@@ -107,5 +107,29 @@ public class TipoEndDAO extends GenericDAO
       return null;
     }
   }
-
+  
+  //combo tipo endereco
+  public ArrayList<TipoEndereco> gettipoEnds()
+  { 
+    ArrayList<TipoEndereco> tp = new ArrayList<>();
+    String sql = "SELECT * FROM tbltipoendereco order by descricao";
+    try
+    {
+      this.prepareStmte(sql);
+      ResultSet rs = this.stmte.executeQuery(sql); 
+      rs.beforeFirst();
+      while (rs.next())
+      {
+        TipoEndereco t = new TipoEndereco();
+        t.setIdtipoendereco(rs.getInt("idtipoendereco"));
+        t.setDescricao(rs.getString("descricao"));
+        tp.add(t);                
+      }
+      return tp;
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
+  }
 }
