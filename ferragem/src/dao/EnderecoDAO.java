@@ -5,7 +5,10 @@ import beans.ClienteEndereco;
 import beans.Endereco;
 import beans.TipoEndereco;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EnderecoDAO extends GenericDAO {
 
@@ -14,14 +17,14 @@ public class EnderecoDAO extends GenericDAO {
     }
 
     public boolean inserir(Endereco endereco) {
-        String sql = "INSERT INTO tblEndereco( identrega, endereco, idcidade, idtipoendereco, idcliente ) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tblEndereco( endereco, idcidade, idtipoendereco, idcliente ) VALUES( ?, ?, ?, ?)";
         try {
             this.prepareStmte(sql);
-            this.stmte.setInt(1, endereco.getIdentrega());
-            this.stmte.setString(2, endereco.getDescricao());
-            this.stmte.setInt(3, endereco.getIdcidade());
-            this.stmte.setInt(4, endereco.getIdtipoendereco());
-            this.stmte.setInt(5, endereco.getIdcliente());
+            //this.stmte.setInt(1, endereco.getIdentrega());
+            this.stmte.setString(1, endereco.getDescricao());
+            this.stmte.setInt(2, endereco.getIdcidade());
+            this.stmte.setInt(3, endereco.getIdtipoendereco());
+            this.stmte.setInt(4, endereco.getIdcliente());
             this.stmte.execute();
             return true;
         } catch (Exception e) {
@@ -127,5 +130,23 @@ public class EnderecoDAO extends GenericDAO {
             return null;
         }
     }
+    
+    //puxar ultimo id
+  public int getEnderecoUltimo(){
+        String sql = "SELECT (MAX(idendentrega) + 1) as id FROM tblendereco";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+    
 
 }

@@ -2,7 +2,10 @@ package dao;
 
 import beans.TipoEndereco;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TipoEndDAO extends GenericDAO
 {
@@ -107,6 +110,9 @@ public class TipoEndDAO extends GenericDAO
       return null;
     }
   }
+  
+  
+  
   
   //combo tipo endereco
   public ArrayList<TipoEndereco> gettipoEnds()

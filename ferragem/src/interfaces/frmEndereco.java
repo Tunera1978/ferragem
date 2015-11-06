@@ -2,11 +2,13 @@ package interfaces;
 
 import beans.Cidade;
 import beans.Cliente;
-import beans.Produto;
+import beans.Endereco;
+
 import beans.TipoEndereco;
 import dao.CidadeDAO;
 import dao.ClienteDAO;
-import dao.ProdutoDAO;
+import dao.EnderecoDAO;
+
 import dao.TipoEndDAO;
 import java.util.ArrayList;
 //import java.util.Locale;
@@ -20,7 +22,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
 {
 
   private boolean status;
-  private ProdutoDAO produtoDAO;
+  private EnderecoDAO enderecoDAO;
   private ArrayList<Cliente> list;
   private ArrayList<Cidade> listCl;
   private ArrayList<TipoEndereco> listEn;
@@ -28,7 +30,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
   public frmEndereco()
   {
     initComponents();
-    this.produtoDAO = new ProdutoDAO();
+    this.enderecoDAO = new EnderecoDAO();
 
     /*
      txtIdProduto.setDocument(new AceitaNumeros());
@@ -916,13 +918,12 @@ public class frmEndereco extends javax.swing.JInternalFrame
     ComboCliente();
     ComboTipo();
 
-    //cbCidade.removeAllItems();
-    //cbCliente.removeAllItems();
-    //cbTipo.removeAllItems();
+    cbCidade.removeAllItems();
+    cbCliente.removeAllItems();
+    cbTipo.removeAllItems();
 
     txtId.setEditable(false);
     txtDescricao.setEditable(false);
-    //txtTipo.setEditable(false);
     txtMensagem.setEditable(false);
 
     btnAlterar.setEnabled(false);
@@ -934,7 +935,8 @@ public class frmEndereco extends javax.swing.JInternalFrame
 
     txtId.setText("");
     txtDescricao.setText("");
-    //txtTipo.setText("");
+    txtMensagem.setText("");
+
   }
 
   public void ComboCliente()
@@ -943,8 +945,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
     list = dAO.getClientes();
     if (list.isEmpty())
     {
-      /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
-       + "\nMenu - Cadastrar - Cidades");*/
+      txtMensagem.setText("Lista de Clientes em Branco! Cadastrar ao menos uma!");
       this.dispose();
     }
     else
@@ -962,6 +963,7 @@ public class frmEndereco extends javax.swing.JInternalFrame
     listCl = dAO.getCidades();
     if (listCl.isEmpty())
     {
+      txtMensagem.setText("Lista de Cidades em Branco ! Cadastrar ao menos um!");
       /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
        + "\nMenu - Cadastrar - Cidades");*/
       this.dispose();
@@ -974,13 +976,14 @@ public class frmEndereco extends javax.swing.JInternalFrame
       }
     }
   }
-  
+
   public void ComboTipo()
   {
     TipoEndDAO dAO = new TipoEndDAO();
     listEn = dAO.gettipoEnds();
     if (listEn.isEmpty())
     {
+      txtMensagem.setText("Lista de Tipo de Endereço em Branco ! Cadastrar ao menos um!");
       /*JOptionPane.showMessageDialog(null, "Cadastre pelo menos um idioma em:"
        + "\nMenu - Cadastrar - Cidades");*/
       this.dispose();
@@ -997,11 +1000,12 @@ public class frmEndereco extends javax.swing.JInternalFrame
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
       // TODO add your handling code here:
       estadoInicial();
+      ComboCidade();
+      ComboCliente();
+      ComboTipo();
 
-      txtId.setText(String.valueOf(produtoDAO.getProdutoUltimo()));
-      //txtIdProduto.setText("");
+      //txtId.setText(String.valueOf(enderecoDAO.getEnderecoUltimo()));
       txtDescricao.setText("");
-      // txtTipo.setText("");
 
       btnSalvar.setEnabled(true);
       btnBuscar.setEnabled(false);
@@ -1016,18 +1020,25 @@ public class frmEndereco extends javax.swing.JInternalFrame
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
       // TODO add your handling code here:
 
-      Produto u = new Produto();
+      Endereco e = new Endereco();
 
-      if (status == (true))
+      if (status == true)
       {
-        u.setIdProduto(Integer.parseInt(txtId.getText()));
-        u.setDescricao(txtDescricao.getText());
-        //     u.setPeso(Double.parseDouble(txtTipo.getText()));
-        if (this.produtoDAO.inserir(u) == true)
+        //e.setIdentrega(Integer.parseInt(txtId.getText()));
+        e.setDescricao(txtDescricao.getText());
+        
+        TipoEndereco t = (TipoEndereco) cbTipo.getSelectedItem();
+        e.setIdtipoendereco(t.getIdtipoendereco());
+        
+        Cliente c = (Cliente) cbCliente.getSelectedItem();
+        e.setIdcliente(c.getIdcliente());
+        
+        Cidade cd = (Cidade) cbCidade.getSelectedItem();
+        e.setIdcidade(cd.getIdcidade());
+
+        if (this.enderecoDAO.inserir(e) == true)
         {
-
-          txtMensagem.setText("Produto Adicionado com sucesso !");
-
+          txtMensagem.setText("Endereco Adicionado com sucesso !");
         }
         else
         {
@@ -1037,13 +1048,12 @@ public class frmEndereco extends javax.swing.JInternalFrame
       }
       else
       {
-        u.setIdProduto(Integer.parseInt(txtId.getText()));
-        u.setDescricao(txtDescricao.getText());
+        e.setIdentrega(Integer.parseInt(txtId.getText()));
+        e.setDescricao(txtDescricao.getText());
         //     u.setPeso(Double.parseDouble(txtTipo.getText()));//Fabio: adicionado para alterar peso na edição
-        if (this.produtoDAO.editar(u) == true)
+        if (this.enderecoDAO.editar(e) == true)
         {
-          txtMensagem.setText("Produto Editado");
-
+          txtMensagem.setText("Endereço Editado");
         }
         else
         {
@@ -1081,14 +1091,13 @@ public class frmEndereco extends javax.swing.JInternalFrame
       // TODO add your handling code here:
       txtMensagem.setText("");
 
-      Produto u = new Produto();
-      u.setIdProduto(Integer.parseInt(txtId.getText()));
-      u.setDescricao(txtDescricao.getText());
-      //u.setPeso(Double.parseDouble(txtTipo.getText()));
+      Endereco e = new Endereco();
+      e.setIdentrega(Integer.parseInt(txtId.getText()));
+      e.setDescricao(txtDescricao.getText());
 
-      if (this.produtoDAO.excluir(u) == true)
+      if (this.enderecoDAO.excluir(e) == true)
       {
-        txtMensagem.setText("Produto Excluido com sucesso !");
+        txtMensagem.setText("Endereco Excluido com sucesso !");
         estadoInicial();
       }
       else
@@ -1104,21 +1113,20 @@ public class frmEndereco extends javax.swing.JInternalFrame
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
       // TODO add your handling code here:
       txtMensagem.setText("");
-      int idproduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
-      Produto u = this.produtoDAO.getProdutoById(idproduto);
+      int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da busca!"));
+      Endereco e = this.enderecoDAO.getEnderecoById(id);
 
-      if (u == null)
+      if (e == null)
       {
         //JOptionPane.showMessageDialog(null, "Usuario não encontrado");
-        txtMensagem.setText("Produto não encontrado !");
+        txtMensagem.setText("Endereco não encontrado !");
 
       }
       else
       {
 
-        txtId.setText(String.valueOf(u.getIdProduto()));
-        txtDescricao.setText(u.getDescricao());
-        //     txtTipo.setText(String.valueOf(u.getPeso()));//Fabio: exibe o peso como string
+        txtId.setText(String.valueOf(e.getIdentrega()));
+        txtDescricao.setText(e.getDescricao());
 
         btnCancelar.setEnabled(true);
         btnNovo.setEnabled(false);
