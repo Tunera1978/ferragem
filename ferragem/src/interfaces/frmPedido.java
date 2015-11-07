@@ -165,7 +165,7 @@ public class frmPedido extends javax.swing.JInternalFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tbFerragem = new javax.swing.JTable();
         txtIdCliente = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         txtNomeCliente = new javax.swing.JTextField();
@@ -1125,16 +1125,28 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Produto", "Tipo", "Qtde Ferro", "Qtde Peças", "Qtde Material"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1162,19 +1174,32 @@ public class frmPedido extends javax.swing.JInternalFrame {
         ));
         jScrollPane7.setViewportView(jTable3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tbFerragem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Qtde Colunas", "Comprimento", "Altura Estribo", "Largura Estribo", "Espaçamento Estribos"
             }
-        ));
-        jScrollPane8.setViewportView(jTable4);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tbFerragem);
+        if (tbFerragem.getColumnModel().getColumnCount() > 0) {
+            tbFerragem.getColumnModel().getColumn(0).setResizable(false);
+            tbFerragem.getColumnModel().getColumn(1).setResizable(false);
+            tbFerragem.getColumnModel().getColumn(2).setResizable(false);
+            tbFerragem.getColumnModel().getColumn(3).setResizable(false);
+            tbFerragem.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        txtIdCliente.setToolTipText("Enter para procurar cliente");
         txtIdCliente.setPreferredSize(new java.awt.Dimension(80, 20));
         txtIdCliente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -1220,11 +1245,13 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Quantidade Ferros na Coluna :");
 
+        txtQtdeFerroColuna.setToolTipText("Digite Qtde de Vergalhão");
         txtQtdeFerroColuna.setPreferredSize(new java.awt.Dimension(80, 20));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Inserção de produtos que compoem a ferragem");
 
+        btnSalvar8.setBackground(new java.awt.Color(255, 255, 255));
         btnSalvar8.setText("Adicionar");
         btnSalvar8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalvar8.addActionListener(new java.awt.event.ActionListener() {
@@ -2046,7 +2073,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
@@ -2062,6 +2088,7 @@ public class frmPedido extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rdbVergalhao1;
     private javax.swing.JRadioButton rdbVergalhao2;
     private javax.swing.JRadioButton rdbVergalhao3;
+    private javax.swing.JTable tbFerragem;
     private javax.swing.JTextField txtComprimentoColuna;
     private javax.swing.JTextField txtComprimentoColuna1;
     private javax.swing.JTextField txtComprimentoColuna2;
