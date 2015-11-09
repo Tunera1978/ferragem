@@ -24,11 +24,29 @@ public class frmCliente extends javax.swing.JInternalFrame {
         initComponents();
          buttonGroup1.add(rbFisico);
          buttonGroup1.add(rbJuridico);
-         //rbJuridico.setSelected(true);
+         estadoInicial();
     }
 
     @SuppressWarnings("unchecked")
 
+    
+    private void estadoInicial() {     
+            
+        
+        
+        txtMensagem.setEditable(false);
+
+        btnAlterar.setEnabled(false);
+        btnBuscar.setEnabled(true);
+        btnDeletar.setEnabled(false);
+        btnNovo.setEnabled(true);
+        btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        
+        
+        
+    }
+    
     private void preencheTabelaContato(int VarId) {
         DefaultTableModel tabelaContato = (DefaultTableModel) tbContato.getModel();
         tabelaContato.setNumRows(0);
