@@ -81,9 +81,9 @@
                               <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtData" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="jLabel44" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel44" min="-2" pref="88" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtDataEntrega" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -1883,8 +1883,6 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="rbVergalhao" min="-2" max="-2" attributes="0"/>
@@ -1892,15 +1890,19 @@
                           <Component id="rbEstribo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="rbArame" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="rbVergalhaoAdicional" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txtQtdeFerroColuna" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAddProduto" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtIdProduto" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="txtDescricaoProduto" min="-2" pref="609" max="-2" attributes="0"/>
@@ -1929,6 +1931,7 @@
                       <Component id="rbVergalhao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbEstribo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbArame" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbVergalhaoAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -2020,6 +2023,11 @@
         <Component class="javax.swing.JRadioButton" name="rbArame">
           <Properties>
             <Property name="text" type="java.lang.String" value="Arame"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbVergalhaoAdicional">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Vergalhao Adicional"/>
           </Properties>
         </Component>
       </SubComponents>
