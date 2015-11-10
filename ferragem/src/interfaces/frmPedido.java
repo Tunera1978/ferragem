@@ -32,10 +32,9 @@ public class frmPedido extends javax.swing.JInternalFrame
   private double varQtdeArame;
   private String varTipo;
 
- private int cont;
-  private int contCol;
-  private int contEst;
-  private int contArame;
+ private int contaFerragem;
+  private int contaItens;
+  
 
   private CalculoDeFerragem calc;
 
@@ -2120,24 +2119,24 @@ public class frmPedido extends javax.swing.JInternalFrame
          //**************************************************
 
         DefaultTableModel tabelaFerragem = (DefaultTableModel) tbFerragem.getModel();
-        tabelaFerragem.setNumRows(cont);
+        tabelaFerragem.setNumRows(contaFerragem);
         Object[] obj = new Object[]
         {
           txtQtdeColunas.getText(), txtComprimentoColuna.getText(), txtEstriboAltura.getText(), txtEstriboLargura.getText(), txtEspacoEstribo.getText()
         };
         tabelaFerragem.addRow(obj);
-        cont++;
+        contaFerragem++;
         
         //**************************************************
         
         DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaItens.setNumRows(contCol);
+        tabelaItens.setNumRows(contaItens);
         Object[] obj2 = new Object[]
         {
           txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraColuna
         };
         tabelaItens.addRow(obj2);
-        contCol++;        
+        contaItens++;        
         
       }
 
@@ -2154,13 +2153,13 @@ public class frmPedido extends javax.swing.JInternalFrame
          //**************************************************
 
         DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaItens.setNumRows(contEst);
+        tabelaItens.setNumRows(contaItens);
         Object[] obj = new Object[]
         {
           txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraEstribo
         };
         tabelaItens.addRow(obj);
-        contEst++;
+        contaItens++;
 
       }
       else if (rbArame.isSelected() == true)
@@ -2174,13 +2173,13 @@ public class frmPedido extends javax.swing.JInternalFrame
          //**************************************************
         
         DefaultTableModel tabelaArames = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaArames.setNumRows(contEst);
+        tabelaArames.setNumRows(contaItens);
         Object[] objArame = new Object[]
         {
           txtIdProduto.getText(), varTipo, null, varQtdeArame
         };
         tabelaArames.addRow(objArame);
-        contEst++;
+        contaItens++;
       }
 
 
