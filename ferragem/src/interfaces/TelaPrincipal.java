@@ -600,7 +600,7 @@ public class TelaPrincipal extends javax.swing.JFrame
       else
       {
 
-        JOptionPane.showMessageDialog(null, "Tela Produtos já esta aberta !!!");
+        JOptionPane.showMessageDialog(null, "Tela Pedido já esta aberta !!!");
         //frmProduto.moveToFront();
 
       }
