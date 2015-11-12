@@ -66,7 +66,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `ferragem`.`tblentidade`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblentidade` (
-  `idcliente` INT(11) NOT NULL AUTO_INCREMENT ,
+  `idcliente` INT(11) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `fisicoJuridico` INT(1) NOT NULL ,
   `cnpj` VARCHAR(19) NULL DEFAULT NULL ,
@@ -207,12 +207,13 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblferragem` (
   `idferragem` INT(11) NOT NULL AUTO_INCREMENT,
-  `qtde` INT(11) NOT NULL ,
+  `qtde` INT(11) NULL DEFAULT NULL ,
   `estriboaltura` DOUBLE NULL DEFAULT NULL ,
   `estribolargura` DOUBLE NULL DEFAULT NULL ,
   `comprimento` DOUBLE NULL DEFAULT NULL ,
   `estriboespaco` DOUBLE NULL DEFAULT NULL ,
   `idpedido` INT(11) NOT NULL ,
+  `idagrupamento` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`idferragem`, `idpedido`) ,
   INDEX `fk_tblferragem_tblpedido1_idx` (`idpedido` ASC) ,
   CONSTRAINT `fk_tblferragem_tblpedido1`
@@ -242,12 +243,13 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `ferragem`.`tblitemferragem` (
   `iditemferragem` INT(11) NOT NULL AUTO_INCREMENT,
-  `diametro` VARCHAR(10) NOT NULL ,
-  `qtdeferro` DOUBLE NOT NULL ,
-  `qtdepecas` DOUBLE NOT NULL ,
-  `qtdematerial` DOUBLE NOT NULL ,
+  `diametro` VARCHAR(15) NOT NULL ,
+  `qtdeferro` DOUBLE NULL DEFAULT NULL ,
+  `qtdepecas` DOUBLE NULL DEFAULT NULL ,
+  `qtdematerial` DOUBLE NULL DEFAULT NULL ,
   `idferragem` INT(11) NOT NULL ,
   `idproduto` INT(11) NOT NULL ,
+  `idagrupamento` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`iditemferragem`, `idferragem`, `idproduto`) ,
   INDEX `fk_tblitemferragem_tblferragem1_idx` (`idferragem` ASC) ,
   INDEX `fk_tblitemferragem_tblproduto1_idx` (`idproduto` ASC) ,
