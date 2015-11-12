@@ -213,7 +213,6 @@ CREATE  TABLE IF NOT EXISTS `ferragem`.`tblferragem` (
   `comprimento` DOUBLE NULL DEFAULT NULL ,
   `estriboespaco` DOUBLE NULL DEFAULT NULL ,
   `idpedido` INT(11) NOT NULL ,
-  `idagrupamento` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`idferragem`, `idpedido`) ,
   INDEX `fk_tblferragem_tblpedido1_idx` (`idpedido` ASC) ,
   CONSTRAINT `fk_tblferragem_tblpedido1`
@@ -249,7 +248,6 @@ CREATE  TABLE IF NOT EXISTS `ferragem`.`tblitemferragem` (
   `qtdematerial` DOUBLE NULL DEFAULT NULL ,
   `idferragem` INT(11) NOT NULL ,
   `idproduto` INT(11) NOT NULL ,
-  `idagrupamento` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`iditemferragem`, `idferragem`, `idproduto`) ,
   INDEX `fk_tblitemferragem_tblferragem1_idx` (`idferragem` ASC) ,
   INDEX `fk_tblitemferragem_tblproduto1_idx` (`idproduto` ASC) ,

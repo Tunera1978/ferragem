@@ -17,8 +17,7 @@ public class TelaPedido {
     private double estriboLargura;
     private double estriboAltura;
     private double comprimento;
-    private double espacoEstribo;
-    
+    private double espacoEstribo;    
    
     //item da ferragem
     private int idItemFerragem;
@@ -27,12 +26,8 @@ public class TelaPedido {
     private double qtdepecas;
     private double qtdematerial;
     private int idferragem;
-    private int idproduto;
+    private int idproduto;  
     
-    //salva na ferragem e no item - so muda de numero quando opção nova coluna for true
-    private int idagrupamento;
-    
-
     public int getIdPedido() {
         return idPedido;
     }

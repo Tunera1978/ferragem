@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import beans.Pedido;
+import beans.TelaPedido;
 
 public class PedidoDAO extends GenericDAO
 {
@@ -143,5 +144,22 @@ public class PedidoDAO extends GenericDAO
       return null;
     }
   }
+    
+  public TelaPedido getConferencia(int idferragem, int idproduto){
+        TelaPedido u = new TelaPedido();
+        String sql = "SELECT idproduto FROM tblferragem f, tblitemferragem i WHERE i.idferragem = f.idferragem and f.idferragem = ? and i.idproduto = ?" ;
+        try{
+            this.prepareStmte(sql);
+            this.stmte.setInt(1, idferragem);//parametro
+            this.stmte.setInt(2, idproduto);//parametro
+            ResultSet rs = this.stmte.executeQuery();//return um resultset
+            rs.first();//ResultSet na primeira posição                
+            u.setIdproduto(rs.getInt("idproduto"));            
+            return u;
+        }
+        catch(Exception e){
+            return null;// não tem produto para retornar retorna null
+        }
+    }
 
 }
