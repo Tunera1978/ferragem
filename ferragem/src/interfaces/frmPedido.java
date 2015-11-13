@@ -824,156 +824,167 @@ public class frmPedido extends javax.swing.JInternalFrame
       txtDataEntrega.setEditable(false);
       txtQtdeFerroColuna.setEditable(false);
 
-      if (txtIdProduto.getText() != "")
+      //verificaProduto();
+      /* TelaPedido p = this.pedidoDAO.getConferencia(varIdFerragem, varIdProduto);
+
+       if (p != null)
+       {
+       txtMensagem.setText("Produto já inserido nessa ferragem !");
+       txtIdProduto.setText("");
+       txtDescricaoProduto.setText("");
+       txtIdProduto.grabFocus();
+       } */
+      if ("".equals(txtIdProduto.getText()))
       {
         txtMensagem.setText("Produto precisa ser inserido !");
         txtIdProduto.setText("");
         txtDescricaoProduto.setText("");
         txtIdProduto.grabFocus();
       }
-
-//verificaProduto();
-      TelaPedido p = this.pedidoDAO.getConferencia(varIdFerragem, varIdProduto);
-
-      if (p != null)
+      else
       {
-        txtMensagem.setText("Produto já inserido nessa ferragem !");
-        txtIdProduto.setText("");
-        txtDescricaoProduto.setText("");
-        txtIdProduto.grabFocus();
-      }
+        TelaPedido p = this.pedidoDAO.getConferencia(varIdFerragem, varIdProduto);
 
-      if (rbVergalhao.isSelected() == true)
-      {
-
-        varQtdeBarraColuna = calculoQtdeBarrasColunas((Double.parseDouble(txtQtdeColunas.getText())), (Double.parseDouble(txtQtdeFerroColuna.getText())), (Integer.parseInt(txtComprimentoColuna.getText())));
-        //JOptionPane.showMessageDialog(null, "Qtde Barra Coluna" + varQtdeBarraColuna);
-        varTipo = "VERGALHAO";
-
-        //**************************************************
-        DefaultTableModel tabelaFerragem = (DefaultTableModel) tbFerragem.getModel();
-        tabelaFerragem.setNumRows(contaFerragem);
-        Object[] obj = new Object[]
+        if (p != null)
         {
-          txtQtdeColunas.getText(), txtComprimentoColuna.getText(), txtEstriboAltura.getText(), txtEstriboLargura.getText(), txtEspacoEstribo.getText()
-        };
-        tabelaFerragem.addRow(obj);
-        contaFerragem++;
-
-        //**************************************************
-        DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaItens.setNumRows(contaItens);
-        Object[] obj2 = new Object[]
+          txtMensagem.setText("Produto já inserido nessa ferragem !");
+          txtIdProduto.setText("");
+          txtDescricaoProduto.setText("");
+          txtIdProduto.grabFocus();
+        }
+        else
         {
-          txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
-        };
-        tabelaItens.addRow(obj2);
-        contaItens++;
 
-        btnCancelar.setEnabled(false);
-        btnNovo.setEnabled(false);
-        rbEstribo.setEnabled(true);
-        rbEstribo.setSelected(true);
-        rbVergalhao.setEnabled(false);
+          if (rbVergalhao.isSelected() == true)
+          {
+            varQtdeBarraColuna = calculoQtdeBarrasColunas((Double.parseDouble(txtQtdeColunas.getText())), (Double.parseDouble(txtQtdeFerroColuna.getText())), (Integer.parseInt(txtComprimentoColuna.getText())));
+            //JOptionPane.showMessageDialog(null, "Qtde Barra Coluna" + varQtdeBarraColuna);
+            varTipo = "VERGALHAO";
 
-        txtIdProduto.setText("");
+            //**************************************************
+            DefaultTableModel tabelaFerragem = (DefaultTableModel) tbFerragem.getModel();
+            tabelaFerragem.setNumRows(contaFerragem);
+            Object[] obj = new Object[]
+            {
+              txtQtdeColunas.getText(), txtComprimentoColuna.getText(), txtEstriboAltura.getText(), txtEstriboLargura.getText(), txtEspacoEstribo.getText()
+            };
+            tabelaFerragem.addRow(obj);
+            contaFerragem++;
 
-        // varIdFerragem = (buscar codigo ferragem)
-        varIdFerragem = 1; //temporario
-        varIdProduto = Integer.parseInt(txtIdProduto.getText());
+            //**************************************************
+            DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
+            tabelaItens.setNumRows(contaItens);
+            Object[] obj2 = new Object[]
+            {
+              txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
+            };
+            tabelaItens.addRow(obj2);
+            contaItens++;
 
+            btnCancelar.setEnabled(false);
+            btnNovo.setEnabled(false);
+            rbEstribo.setEnabled(true);
+            rbEstribo.setSelected(true);
+            rbVergalhao.setEnabled(false);
+
+            txtIdProduto.setText("");
+
+            // varIdFerragem = (buscar codigo ferragem)
+            varIdFerragem = 1; //temporario
+            varIdProduto = Integer.parseInt(txtIdProduto.getText());
+
+          }
+
+          else if (rbEstribo.isSelected() == true)
+          {
+            //estribo
+
+            varEstriboTotal = calculoTotalEstribo((Double.parseDouble(txtEstriboAltura.getText())), (Double.parseDouble(txtEstriboAltura.getText())));
+            varQtdeEstribo = calculoQtdeEstribos(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeColunas.getText()));
+            varQtdeBarraEstribo = calculoQtdeBarrasEstribos(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeColunas.getText()), varEstriboTotal);
+            //JOptionPane.showMessageDialog(null, "Estribo Total" + varEstriboTotal + "Qtde Estribo" + varQtdeEstribo + "Qtde Barra Estribo" + varQtdeBarraEstribo);
+            varTipo = "ESTRIBO";
+
+            //**************************************************
+            DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
+            tabelaItens.setNumRows(contaItens);
+            Object[] obj = new Object[]
+            {
+              txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraEstribo
+            };
+            tabelaItens.addRow(obj);
+            contaItens++;
+
+            rbArame.setEnabled(true);
+            rbArame.setSelected(true);
+
+            rbEstribo.setEnabled(false);
+            rbVergalhao.setEnabled(false);
+            rbVergalhaoAdicional.setEnabled(false);
+            txtIdProduto.setText("");
+
+            varIdFerragem = 1; //temporario
+            varIdProduto = Integer.parseInt(txtIdProduto.getText());
+
+          }
+          else if (rbArame.isSelected() == true)
+          {
+            // arame
+
+            varQtdeArame = calculoQtdeArames(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeFerroColuna.getText()), Double.parseDouble(txtQtdeColunas.getText()));
+            //JOptionPane.showMessageDialog(null, "Qtde Arame" + varQtdeArame);
+            varTipo = "ARAME";
+
+            //**************************************************
+            DefaultTableModel tabelaArames = (DefaultTableModel) tbItemProduto.getModel();
+            tabelaArames.setNumRows(contaItens);
+            Object[] objArame = new Object[]
+            {
+              txtIdProduto.getText(), varTipo, null, varQtdeArame
+            };
+            tabelaArames.addRow(objArame);
+            contaItens++;
+
+            rbVergalhaoAdicional.setEnabled(true);
+            rbVergalhaoAdicional.setSelected(true);
+
+            rbArame.setEnabled(false);
+            rbEstribo.setEnabled(false);
+            rbVergalhao.setEnabled(false);
+
+            btnNovoFerragem.setEnabled(true);
+            txtIdProduto.setText("");
+            txtQtdeFerroColuna.setEditable(true);
+            txtQtdeFerroColuna.setText("");
+
+            varIdFerragem = 1; //temporario
+            varIdProduto = Integer.parseInt(txtIdProduto.getText());
+          }
+          else if (rbVergalhaoAdicional.isSelected() == true)
+          {
+            varQtdeBarraColuna = calculoQtdeBarrasColunas((Double.parseDouble(txtQtdeColunas.getText())), (Double.parseDouble(txtQtdeFerroColuna.getText())), (Integer.parseInt(txtComprimentoColuna.getText())));
+            //JOptionPane.showMessageDialog(null, "Qtde Barra Coluna" + varQtdeBarraColuna);
+            varTipo = "ADICIONAL";
+
+            //**************************************************
+            DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
+            tabelaItens.setNumRows(contaItens);
+            Object[] obj2 = new Object[]
+            {
+              txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
+            };
+            tabelaItens.addRow(obj2);
+            contaItens++;
+
+            txtIdProduto.setText("");
+            txtQtdeFerroColuna.setText("");
+
+            varIdFerragem = 1; //temporario
+            varIdProduto = Integer.parseInt(txtIdProduto.getText());
+
+          }
+        }
       }
-
-      else if (rbEstribo.isSelected() == true)
-      {
-        //estribo
-
-        varEstriboTotal = calculoTotalEstribo((Double.parseDouble(txtEstriboAltura.getText())), (Double.parseDouble(txtEstriboAltura.getText())));
-        varQtdeEstribo = calculoQtdeEstribos(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeColunas.getText()));
-        varQtdeBarraEstribo = calculoQtdeBarrasEstribos(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeColunas.getText()), varEstriboTotal);
-        //JOptionPane.showMessageDialog(null, "Estribo Total" + varEstriboTotal + "Qtde Estribo" + varQtdeEstribo + "Qtde Barra Estribo" + varQtdeBarraEstribo);
-        varTipo = "ESTRIBO";
-
-        //**************************************************
-        DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaItens.setNumRows(contaItens);
-        Object[] obj = new Object[]
-        {
-          txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraEstribo
-        };
-        tabelaItens.addRow(obj);
-        contaItens++;
-
-        rbArame.setEnabled(true);
-        rbArame.setSelected(true);
-
-        rbEstribo.setEnabled(false);
-        rbVergalhao.setEnabled(false);
-        rbVergalhaoAdicional.setEnabled(false);
-        txtIdProduto.setText("");
-
-        varIdFerragem = 1; //temporario
-        varIdProduto = Integer.parseInt(txtIdProduto.getText());
-
-      }
-      else if (rbArame.isSelected() == true)
-      {
-        // arame
-
-        varQtdeArame = calculoQtdeArames(Double.parseDouble(txtComprimentoColuna.getText()), Double.parseDouble(txtEspacoEstribo.getText()), Double.parseDouble(txtQtdeFerroColuna.getText()), Double.parseDouble(txtQtdeColunas.getText()));
-        //JOptionPane.showMessageDialog(null, "Qtde Arame" + varQtdeArame);
-        varTipo = "ARAME";
-
-        //**************************************************
-        DefaultTableModel tabelaArames = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaArames.setNumRows(contaItens);
-        Object[] objArame = new Object[]
-        {
-          txtIdProduto.getText(), varTipo, null, varQtdeArame
-        };
-        tabelaArames.addRow(objArame);
-        contaItens++;
-
-        rbVergalhaoAdicional.setEnabled(true);
-        rbVergalhaoAdicional.setSelected(true);
-
-        rbArame.setEnabled(false);
-        rbEstribo.setEnabled(false);
-        rbVergalhao.setEnabled(false);
-
-        btnNovoFerragem.setEnabled(true);
-        txtIdProduto.setText("");
-        txtQtdeFerroColuna.setEditable(true);
-        txtQtdeFerroColuna.setText("");
-
-        varIdFerragem = 1; //temporario
-        varIdProduto = Integer.parseInt(txtIdProduto.getText());
-      }
-      else if (rbVergalhaoAdicional.isSelected() == true)
-      {
-        varQtdeBarraColuna = calculoQtdeBarrasColunas((Double.parseDouble(txtQtdeColunas.getText())), (Double.parseDouble(txtQtdeFerroColuna.getText())), (Integer.parseInt(txtComprimentoColuna.getText())));
-        //JOptionPane.showMessageDialog(null, "Qtde Barra Coluna" + varQtdeBarraColuna);
-        varTipo = "ADICIONAL";
-
-        //**************************************************
-        DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
-        tabelaItens.setNumRows(contaItens);
-        Object[] obj2 = new Object[]
-        {
-          txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
-        };
-        tabelaItens.addRow(obj2);
-        contaItens++;
-
-        txtIdProduto.setText("");
-        txtQtdeFerroColuna.setText("");
-
-        varIdFerragem = 1; //temporario
-        varIdProduto = Integer.parseInt(txtIdProduto.getText());
-
-      }
-
-
     }//GEN-LAST:event_btnAddProdutoActionPerformed
 
   private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameClosing
