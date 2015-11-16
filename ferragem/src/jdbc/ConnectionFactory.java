@@ -58,6 +58,8 @@ public class ConnectionFactory {
             ScriptRunner runner = new ScriptRunner(conn, true, true);
             runner.runScript(new BufferedReader(new FileReader(f)));
             
+            System.exit(0);
+            
         } catch (SQLException e) {
             System.out.println("Erro com o BD");
             System.out.println(e.getMessage());

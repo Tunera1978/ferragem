@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import beans.Pedido;
 import beans.TelaPedido;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PedidoDAO extends GenericDAO
 {
@@ -16,14 +19,15 @@ public class PedidoDAO extends GenericDAO
 
   public boolean inserir(Pedido pedido)
   {
-    String sql = "INSERT INTO tblpedido(data, dataentrega, idtblcliente, idusuario) VALUES(?,?,?,?)";
+    String sql = "INSERT INTO tblpedido(idpedido, data, dataentrega, idtblcliente, idusuario) VALUES(?, ?, ?, ?, ?)";
     try
     {
       this.prepareStmte(sql);
-      this.stmte.setString(1, pedido.getData());
-      this.stmte.setString(2, pedido.getDataentrega());
-      this.stmte.setInt(3, pedido.getIdcliente());
-      this.stmte.setInt(4, pedido.getIdusuario());
+      this.stmte.setInt(1, pedido.getIdPedido());
+      this.stmte.setString(2, pedido.getData());
+      this.stmte.setString(3, pedido.getDataentrega());
+      this.stmte.setInt(4, pedido.getIdcliente());
+      this.stmte.setInt(5, pedido.getIdusuario());
       this.stmte.execute();
       return true;
     }
@@ -161,5 +165,22 @@ public class PedidoDAO extends GenericDAO
             return null;// não tem produto para retornar retorna null
         }
     }
+  
+  public int getPedidoUltimo(){
+        String sql = "SELECT (MAX(idpedido) + 1) as id FROM tblpedido";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+   
 
 }

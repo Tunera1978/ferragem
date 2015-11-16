@@ -2,7 +2,10 @@ package dao;
 
 import beans.Ferragem;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FerragemDAO extends GenericDAO
@@ -149,5 +152,39 @@ public class FerragemDAO extends GenericDAO
       return null;
     }
   }
+  
+  public int getUltimo(){
+        String sql = "SELECT (MAX(idferragem)) as id FROM tblferragem";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(FerragemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+  
+  public int getFerragemUltimo(){
+        String sql = "SELECT (MAX(idferragem) + 1) as id FROM tblferragem";
+        this.prepareStmte(sql);
+        ResultSet rs;
+        int retorno = 0;
+        try{
+            rs = this.stmte.executeQuery(); //sempre usar quando fazer uma consulta(SELECT)
+            rs.first();
+            retorno = rs.getInt("id");
+        }
+        catch(SQLException ex){
+            Logger.getLogger(FerragemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+  
+  
 
 }
