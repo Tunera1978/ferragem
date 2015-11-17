@@ -6,7 +6,9 @@
 package interfaces;
 
 import beans.Cliente;
+import beans.Ferragem;
 import beans.Pedido;
+import beans.PedidoItem;
 import beans.Produto;
 import beans.TelaPedido;
 import java.text.DateFormat;
@@ -15,6 +17,7 @@ import java.util.Date;
 import calculodeferragem.CalculoDeFerragem;
 import dao.ClienteDAO;
 import dao.FerragemDAO;
+import dao.ItemFerragemDAO;
 import dao.PedidoDAO;
 import dao.ProdutoDAO;
 import java.math.BigDecimal;
@@ -730,6 +733,9 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         PedidoDAO pd = new PedidoDAO();
         txtPedido.setText(String.valueOf(pd.getPedidoUltimo()));
+        if(Integer.parseInt(txtPedido.getText()) == 0){
+          txtPedido.setText("1");
+        }
 
 // txtIdFerragem.setText(String.valueOf(this.ferragemDAO.getFerragemByMaxId()));
 
@@ -879,15 +885,49 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     Pedido pd = new Pedido();
                     pd.setIdPedido(Integer.parseInt(txtPedido.getText()));
                     pd.setIdcliente(Integer.parseInt(txtIdCliente.getText()));
-                    pd.setData("11.11.2015");
-                    pd.setDataentrega("11.11.2015");
+                    pd.setData("2015.11.11");
+                    pd.setDataentrega("2015.11.11");
                     pd.setIdusuario(frmSenha.IdUsuarioLogado);
-
+                    
                     if (pdd.inserir(pd) == true) {
-                        txtMensagem.setText("Pedido Inserido com sucesso");
+                        txtMensagem.setText("Pedido inserido com sucesso");
                     } else {
                         txtMensagem.setText("Erro ao Inserir");
-                    }
+                    }                    
+                    
+                    FerragemDAO feDAO = new FerragemDAO();
+                    Ferragem fe = new Ferragem();
+                    fe.setIdPedido(Integer.parseInt(txtPedido.getText()));
+                    fe.setComprimento(Double.parseDouble(txtComprimentoColuna.getText()));
+                    fe.setEspacoEstribo(Double.parseDouble(txtEspacoEstribo.getText()));
+                    fe.setEstriboAltura(Double.parseDouble(txtEstriboAltura.getText()));
+                    fe.setEstriboLargura(Double.parseDouble(txtEstriboLargura.getText()));
+                    fe.setIdFerragem(varIdFerragem);
+                    fe.setQtdeFerragem(Integer.parseInt(txtQtdeColunas.getText()));
+                    
+                    if (feDAO.inserir(fe) == true) {
+                        txtMensagem.setText("Ferragem inserida com sucesso");
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }  
+                                                          
+                    ItemFerragemDAO ifDAO = new ItemFerragemDAO();
+                    PedidoItem pi = new PedidoItem();
+                    pi.setDiametro(varTipo);
+                   // pi.setIdItemFerragem(contaFerragem);
+                    pi.setIdferragem(varIdFerragem);
+                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                    pi.setQtdematerial(varQtdeBarraColuna);
+                   // pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+                    
+                    if (ifDAO.inserir(pi) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }  
+
+                    
 
                 } else if (rbEstribo.isSelected() == true) {
                     //estribo
@@ -914,6 +954,23 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     rbVergalhao.setEnabled(false);
                     rbVergalhaoAdicional.setEnabled(false);
                     txtIdProduto.setText("");
+                    
+                    ItemFerragemDAO ifDAO = new ItemFerragemDAO();
+                    PedidoItem pi = new PedidoItem();
+                    pi.setDiametro(varTipo);
+                   // pi.setIdItemFerragem(contaFerragem);
+                    pi.setIdferragem(varIdFerragem);
+                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    //pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                    pi.setQtdematerial(varQtdeBarraColuna);
+                    pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+                    
+                    if (ifDAO.inserir(pi) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }
+                    
 
                     // varIdFerragem = 1; //temporario
                     // varIdProduto = Integer.parseInt(txtIdProduto.getText());
@@ -944,6 +1001,24 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     txtIdProduto.setText("");
                     txtQtdeFerroColuna.setEditable(true);
                     txtQtdeFerroColuna.setText("");
+                    
+                    
+                    ItemFerragemDAO ifDAO = new ItemFerragemDAO();
+                    PedidoItem pi = new PedidoItem();
+                    pi.setDiametro(varTipo);
+                   // pi.setIdItemFerragem(contaFerragem);
+                    pi.setIdferragem(varIdFerragem);
+                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                   // pi.setQtdematerial(varQtdeBarraColuna);
+                   // pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+                    
+                    if (ifDAO.inserir(pi) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }
+                    
 
                     //varIdFerragem = 1; //temporario
                     //varIdProduto = Integer.parseInt(txtIdProduto.getText());
