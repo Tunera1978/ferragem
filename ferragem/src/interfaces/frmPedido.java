@@ -14,7 +14,7 @@ import beans.TelaPedido;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import calculodeferragem.CalculoDeFerragem;
+//import calculodeferragem.CalculoDeFerragem;
 import dao.ClienteDAO;
 import dao.FerragemDAO;
 import dao.ItemFerragemDAO;
@@ -45,8 +45,7 @@ public class frmPedido extends javax.swing.JInternalFrame {
     private int contaFerragem;
     private int contaItens;
 
-    private CalculoDeFerragem calc;
-
+    //private CalculoDeFerragem calc;
     public frmPedido() {
         initComponents();
         buttonGroup1.add(rbArame);
@@ -156,7 +155,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Qtde Colunas (Un) :");
 
-        txtQtdeColunas.setText("1");
         txtQtdeColunas.setMinimumSize(new java.awt.Dimension(28, 28));
         txtQtdeColunas.setName(""); // NOI18N
         txtQtdeColunas.setPreferredSize(new java.awt.Dimension(50, 28));
@@ -168,14 +166,12 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Comprimento Coluna (Mts) :");
 
-        txtComprimentoColuna.setText("12");
         txtComprimentoColuna.setMinimumSize(new java.awt.Dimension(28, 28));
         txtComprimentoColuna.setName(""); // NOI18N
         txtComprimentoColuna.setPreferredSize(new java.awt.Dimension(50, 28));
 
         jLabel6.setText("Estribo Altura (cm):");
 
-        txtEstriboAltura.setText("20");
         txtEstriboAltura.setMinimumSize(new java.awt.Dimension(28, 28));
         txtEstriboAltura.setName(""); // NOI18N
         txtEstriboAltura.setPreferredSize(new java.awt.Dimension(50, 28));
@@ -184,7 +180,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Espaçamento entre os estribos (cm):");
 
-        txtEspacoEstribo.setText("20");
         txtEspacoEstribo.setMinimumSize(new java.awt.Dimension(28, 28));
         txtEspacoEstribo.setName(""); // NOI18N
         txtEspacoEstribo.setPreferredSize(new java.awt.Dimension(50, 28));
@@ -206,7 +201,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Pedido");
 
-        txtEstriboLargura.setText("20");
         txtEstriboLargura.setMinimumSize(new java.awt.Dimension(28, 28));
         txtEstriboLargura.setName(""); // NOI18N
         txtEstriboLargura.setPreferredSize(new java.awt.Dimension(50, 28));
@@ -220,11 +214,11 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id Produto", "Tipo", "Qtde Estribo (Pçs)", "Total Barra / Arame kg"
+                "IdVergalhao", "Id Produto", "Tipo", "Qtde Estribo (Pçs)", "Total Barra / Arame kg"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -237,6 +231,7 @@ public class frmPedido extends javax.swing.JInternalFrame {
             tbItemProduto.getColumnModel().getColumn(1).setResizable(false);
             tbItemProduto.getColumnModel().getColumn(2).setResizable(false);
             tbItemProduto.getColumnModel().getColumn(3).setResizable(false);
+            tbItemProduto.getColumnModel().getColumn(4).setResizable(false);
         }
 
         tbFerragem.setModel(new javax.swing.table.DefaultTableModel(
@@ -244,11 +239,11 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Qtde Colunas", "Comprimento", "Altura Estribo", "Largura Estribo", "Espaçamento Estribos"
+                "IdVergalhao", "Qtde Colunas", "Comprimento", "Altura Estribo", "Largura Estribo", "Espaçamento Estribos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -262,9 +257,9 @@ public class frmPedido extends javax.swing.JInternalFrame {
             tbFerragem.getColumnModel().getColumn(2).setResizable(false);
             tbFerragem.getColumnModel().getColumn(3).setResizable(false);
             tbFerragem.getColumnModel().getColumn(4).setResizable(false);
+            tbFerragem.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        txtIdCliente.setText("1");
         txtIdCliente.setToolTipText("Enter para procurar cliente");
         txtIdCliente.setMinimumSize(new java.awt.Dimension(28, 28));
         txtIdCliente.setName(""); // NOI18N
@@ -312,7 +307,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Produto :");
 
-        txtIdProduto.setText("1");
         txtIdProduto.setMinimumSize(new java.awt.Dimension(28, 28));
         txtIdProduto.setPreferredSize(new java.awt.Dimension(50, 28));
         txtIdProduto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -681,6 +675,9 @@ public class frmPedido extends javax.swing.JInternalFrame {
         rbEstribo.setEnabled(false);
         rbArame.setEnabled(false);
         rbVergalhaoAdicional.setEnabled(false);
+        
+        txtData.setText(getDateTime());       
+        txtDataEntrega.setText(getDateEntrega());
 
     }
 
@@ -701,9 +698,19 @@ public class frmPedido extends javax.swing.JInternalFrame {
         return dateFormat.format(date);
     }
 
-    private String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat();
+    private String getDateEntrega() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
+        date.setDate(date.getDate() + 7);
+        //DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        /* 
+        Date a = new Date("2004/09/01"<img src="http://javafree.uol.com.br/forum/images/smiles/icon_wink.gif">;         
+        a.setDate(a.getDate() + 10);          
+  
+        String formato = "dd/MM/yyyy";  
+        SimpleDateFormat dataFormatada = new SimpleDateFormat(formato);   
+         System.out.println("Daqui há dez dias: " + dataFormatada.format(a)); 
+        */
         return dateFormat.format(date);
     }
 
@@ -729,12 +736,12 @@ public class frmPedido extends javax.swing.JInternalFrame {
         //  btnBuscar.setEnabled(false);
         btnAddProduto.setEnabled(true);
 
-        status = true;
+        status = false;
 
         PedidoDAO pd = new PedidoDAO();
         txtPedido.setText(String.valueOf(pd.getPedidoUltimo()));
-        if(Integer.parseInt(txtPedido.getText()) == 0){
-          txtPedido.setText("1");
+        if (Integer.parseInt(txtPedido.getText()) == 0) {
+            txtPedido.setText("1");
         }
 
 // txtIdFerragem.setText(String.valueOf(this.ferragemDAO.getFerragemByMaxId()));
@@ -800,6 +807,7 @@ public class frmPedido extends javax.swing.JInternalFrame {
         } else {
 
             txtDescricaoProduto.setText(u.getDescricao());
+            varIdProduto = Integer.parseInt(txtIdProduto.getText());
             txtMensagem.setText("");
         }
     }
@@ -835,11 +843,20 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
             PedidoDAO p = new PedidoDAO();
             FerragemDAO f = new FerragemDAO();
-            varIdFerragem = f.getUltimo();
-            varIdProduto = Integer.parseInt(txtIdProduto.getText());
+            if (status == true) {
+                varIdFerragem = f.getUltimo();
+            } else {
+                varIdFerragem = f.getFerragemUltimo();
+
+                if (varIdFerragem == 0) {
+                    varIdFerragem = 1;
+                }
+                status = true;
+            }
+            //varIdProduto = Integer.parseInt(txtIdProduto.getText());
             TelaPedido t = p.getConferencia(varIdFerragem, varIdProduto);
 
-            //JOptionPane.showMessageDialog(null, p+" "+t);
+            //JOptionPane.showMessageDialog(null, varIdFerragem + " " + varIdProduto);
             if (t != null) {
                 txtMensagem.setText("Produto já inserido nessa ferragem !");
                 txtIdProduto.setText("");
@@ -851,15 +868,14 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     varQtdeBarraColuna = calculoQtdeBarrasColunas((Double.parseDouble(txtQtdeColunas.getText())), (Double.parseDouble(txtQtdeFerroColuna.getText())), (Integer.parseInt(txtComprimentoColuna.getText())));
                     //JOptionPane.showMessageDialog(null, "Qtde Barra Coluna" + varQtdeBarraColuna);
                     varTipo = "VERGALHAO";
+                    
 
-                    FerragemDAO fDAO = new FerragemDAO();
-                    varIdFerragem = fDAO.getFerragemUltimo();
-
+                    //FerragemDAO fDAO = new FerragemDAO();
                     //**************************************************
                     DefaultTableModel tabelaFerragem = (DefaultTableModel) tbFerragem.getModel();
                     tabelaFerragem.setNumRows(contaFerragem);
                     Object[] obj = new Object[]{
-                        txtQtdeColunas.getText(), txtComprimentoColuna.getText(), txtEstriboAltura.getText(), txtEstriboLargura.getText(), txtEspacoEstribo.getText()
+                        varIdFerragem ,txtQtdeColunas.getText(), txtComprimentoColuna.getText(), txtEstriboAltura.getText(), txtEstriboLargura.getText(), txtEspacoEstribo.getText()
                     };
                     tabelaFerragem.addRow(obj);
                     contaFerragem++;
@@ -868,18 +884,10 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
                     tabelaItens.setNumRows(contaItens);
                     Object[] obj2 = new Object[]{
-                        txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
+                       varIdFerragem ,txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
                     };
                     tabelaItens.addRow(obj2);
                     contaItens++;
-
-                    btnCancelar.setEnabled(false);
-                    btnNovo.setEnabled(false);
-                    rbEstribo.setEnabled(true);
-                    rbEstribo.setSelected(true);
-                    rbVergalhao.setEnabled(false);
-
-                    txtIdProduto.setText("");
 
                     PedidoDAO pdd = new PedidoDAO();
                     Pedido pd = new Pedido();
@@ -888,13 +896,13 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     pd.setData("2015.11.11");
                     pd.setDataentrega("2015.11.11");
                     pd.setIdusuario(frmSenha.IdUsuarioLogado);
-                    
+
                     if (pdd.inserir(pd) == true) {
                         txtMensagem.setText("Pedido inserido com sucesso");
                     } else {
                         txtMensagem.setText("Erro ao Inserir");
-                    }                    
-                    
+                    }
+
                     FerragemDAO feDAO = new FerragemDAO();
                     Ferragem fe = new Ferragem();
                     fe.setIdPedido(Integer.parseInt(txtPedido.getText()));
@@ -904,30 +912,40 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     fe.setEstriboLargura(Double.parseDouble(txtEstriboLargura.getText()));
                     fe.setIdFerragem(varIdFerragem);
                     fe.setQtdeFerragem(Integer.parseInt(txtQtdeColunas.getText()));
-                    
+
                     if (feDAO.inserir(fe) == true) {
                         txtMensagem.setText("Ferragem inserida com sucesso");
                     } else {
                         txtMensagem.setText("Erro ao Inserir");
-                    }  
-                                                          
+                    }
+
                     ItemFerragemDAO ifDAO = new ItemFerragemDAO();
                     PedidoItem pi = new PedidoItem();
                     pi.setDiametro(varTipo);
-                   // pi.setIdItemFerragem(contaFerragem);
+                    // pi.setIdItemFerragem(contaFerragem);
                     pi.setIdferragem(varIdFerragem);
-                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    pi.setIdproduto(varIdProduto);
+                    //pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
                     pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
                     pi.setQtdematerial(varQtdeBarraColuna);
-                   // pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
-                    
+                    pi.setQtdepecas(varQtdeEstribo);
+                    //pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+
                     if (ifDAO.inserir(pi) == true) {
                         txtMensagem.setText("Item inserido com sucesso");
+                        txtDescricaoProduto.setText("");
+                        txtIdProduto.grabFocus();
                     } else {
                         txtMensagem.setText("Erro ao Inserir");
-                    }  
+                    }
 
-                    
+                    btnCancelar.setEnabled(false);
+                    btnNovo.setEnabled(false);
+                    rbEstribo.setEnabled(true);
+                    rbEstribo.setSelected(true);
+                    rbVergalhao.setEnabled(false);
+
+                    txtIdProduto.setText("");
 
                 } else if (rbEstribo.isSelected() == true) {
                     //estribo
@@ -938,11 +956,31 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     //JOptionPane.showMessageDialog(null, "Estribo Total" + varEstriboTotal + "Qtde Estribo" + varQtdeEstribo + "Qtde Barra Estribo" + varQtdeBarraEstribo);
                     varTipo = "ESTRIBO";
 
+                    ItemFerragemDAO i2 = new ItemFerragemDAO();
+                    PedidoItem p2 = new PedidoItem();
+                    p2.setDiametro(varTipo);
+                    // pi.setIdItemFerragem(contaFerragem);
+                    p2.setIdferragem(varIdFerragem);
+                    p2.setIdproduto(varIdProduto);
+                    //pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    p2.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                    p2.setQtdematerial(varQtdeBarraColuna);
+                    p2.setQtdepecas(varQtdeEstribo);
+                    //pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+
+                    if (i2.inserir(p2) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                        txtDescricaoProduto.setText("");
+                        txtIdProduto.grabFocus();
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }
+
                     //**************************************************
                     DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
                     tabelaItens.setNumRows(contaItens);
                     Object[] obj = new Object[]{
-                        txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraEstribo
+                        varIdFerragem ,txtIdProduto.getText(), varTipo, varQtdeEstribo, varQtdeBarraEstribo
                     };
                     tabelaItens.addRow(obj);
                     contaItens++;
@@ -954,23 +992,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     rbVergalhao.setEnabled(false);
                     rbVergalhaoAdicional.setEnabled(false);
                     txtIdProduto.setText("");
-                    
-                    ItemFerragemDAO ifDAO = new ItemFerragemDAO();
-                    PedidoItem pi = new PedidoItem();
-                    pi.setDiametro(varTipo);
-                   // pi.setIdItemFerragem(contaFerragem);
-                    pi.setIdferragem(varIdFerragem);
-                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
-                    //pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
-                    pi.setQtdematerial(varQtdeBarraColuna);
-                    pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
-                    
-                    if (ifDAO.inserir(pi) == true) {
-                        txtMensagem.setText("Item inserido com sucesso");
-                    } else {
-                        txtMensagem.setText("Erro ao Inserir");
-                    }
-                    
 
                     // varIdFerragem = 1; //temporario
                     // varIdProduto = Integer.parseInt(txtIdProduto.getText());
@@ -985,9 +1006,30 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     DefaultTableModel tabelaArames = (DefaultTableModel) tbItemProduto.getModel();
                     tabelaArames.setNumRows(contaItens);
                     Object[] objArame = new Object[]{
-                        txtIdProduto.getText(), varTipo, null, varQtdeArame
+                        varIdFerragem ,txtIdProduto.getText(), varTipo, null, varQtdeArame
                     };
                     tabelaArames.addRow(objArame);
+
+                    ItemFerragemDAO i3 = new ItemFerragemDAO();
+                    PedidoItem p3 = new PedidoItem();
+                    p3.setDiametro(varTipo);
+                    // pi.setIdItemFerragem(contaFerragem);
+                    p3.setIdferragem(varIdFerragem);
+                    p3.setIdproduto(varIdProduto);
+                    //pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    //p3.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                    p3.setQtdematerial(varQtdeArame);
+                    //p3.setQtdepecas(varQtdeEstribo);
+                    //pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+
+                    if (i3.inserir(p3) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                        txtDescricaoProduto.setText("");
+                        txtIdProduto.grabFocus();
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }
+
                     contaItens++;
 
                     rbVergalhaoAdicional.setEnabled(true);
@@ -1001,24 +1043,6 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     txtIdProduto.setText("");
                     txtQtdeFerroColuna.setEditable(true);
                     txtQtdeFerroColuna.setText("");
-                    
-                    
-                    ItemFerragemDAO ifDAO = new ItemFerragemDAO();
-                    PedidoItem pi = new PedidoItem();
-                    pi.setDiametro(varTipo);
-                   // pi.setIdItemFerragem(contaFerragem);
-                    pi.setIdferragem(varIdFerragem);
-                    pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
-                    pi.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
-                   // pi.setQtdematerial(varQtdeBarraColuna);
-                   // pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
-                    
-                    if (ifDAO.inserir(pi) == true) {
-                        txtMensagem.setText("Item inserido com sucesso");
-                    } else {
-                        txtMensagem.setText("Erro ao Inserir");
-                    }
-                    
 
                     //varIdFerragem = 1; //temporario
                     //varIdProduto = Integer.parseInt(txtIdProduto.getText());
@@ -1031,17 +1055,36 @@ public class frmPedido extends javax.swing.JInternalFrame {
                     DefaultTableModel tabelaItens = (DefaultTableModel) tbItemProduto.getModel();
                     tabelaItens.setNumRows(contaItens);
                     Object[] obj2 = new Object[]{
-                        txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
+                        varIdFerragem ,txtIdProduto.getText(), varTipo, null, varQtdeBarraColuna
                     };
                     tabelaItens.addRow(obj2);
                     contaItens++;
 
+                    ItemFerragemDAO i4 = new ItemFerragemDAO();
+                    PedidoItem p4 = new PedidoItem();
+                    p4.setDiametro(varTipo);
+                    // pi.setIdItemFerragem(contaFerragem);
+                    p4.setIdferragem(varIdFerragem);
+                    p4.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    //pi.setIdproduto(Integer.parseInt(txtIdProduto.getText()));
+                    p4.setQtdeferro(Double.parseDouble(txtQtdeFerroColuna.getText()));
+                    p4.setQtdematerial(varQtdeBarraColuna);
+                    //p4.setQtdepecas(varQtdeEstribo);
+                    //pi.setQtdepecas(Double.parseDouble(txtQtdeColunas.getText()));
+
+                    if (i4.inserir(p4) == true) {
+                        txtMensagem.setText("Item inserido com sucesso");
+                        txtDescricaoProduto.setText("");
+                        txtIdProduto.grabFocus();
+                    } else {
+                        txtMensagem.setText("Erro ao Inserir");
+                    }
+
                     txtIdProduto.setText("");
                     txtQtdeFerroColuna.setText("");
 
-                    varIdFerragem = 1; //temporario
-                    varIdProduto = Integer.parseInt(txtIdProduto.getText());
-
+                    // varIdFerragem = 1; //temporario
+                    //varIdProduto = Integer.parseInt(txtIdProduto.getText());
                 }
             }
         }
@@ -1124,7 +1167,10 @@ public class frmPedido extends javax.swing.JInternalFrame {
 
   private void btnNovoFerragemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNovoFerragemActionPerformed
   {//GEN-HEADEREND:event_btnNovoFerragemActionPerformed
-      // TODO add your handling code here:    
+      // TODO add your handling code here: 
+
+      //contaItens++;
+      status = false;
 
       txtQtdeColunas.setText("");
       txtComprimentoColuna.setText("");

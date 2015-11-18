@@ -15,16 +15,16 @@ public class ItemFerragemDAO extends GenericDAO
 
   public boolean inserir(PedidoItem pedidoitem)
   {
-    String sql = "INSERT INTO tblitemferragem(diametro, qtdeferro,qtdepecas, qtdematerial, idferragem, idproduto) VALUES(?,?,?,?,?,?)";
+    String sql = "INSERT INTO tblitemferragem(diametro, qtdeferro, qtdepecas, qtdematerial, idferragem, idproduto) VALUES(?, ?, ?, ?, ?, ?)";
     try
     {
       this.prepareStmte(sql);
       this.stmte.setString(1, pedidoitem.getDiametro());
       this.stmte.setDouble(2, pedidoitem.getQtdeferro());
-      this.stmte.setDouble(3, pedidoitem.getQtdematerial());
-      this.stmte.setInt(4, pedidoitem.getIdferragem());
-      this.stmte.setInt(5, pedidoitem.getIdproduto());
-      this.stmte.setInt(6, pedidoitem.getIdItemFerragem());
+      this.stmte.setDouble(3, pedidoitem.getQtdepecas());
+      this.stmte.setDouble(4, pedidoitem.getQtdematerial());
+      this.stmte.setInt(5, pedidoitem.getIdferragem());
+      this.stmte.setInt(6, pedidoitem.getIdproduto());      
       this.stmte.execute();
       return true;
     }

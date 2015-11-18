@@ -222,7 +222,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtQtdeColunas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
         </Property>
@@ -242,7 +241,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtComprimentoColuna">
       <Properties>
-        <Property name="text" type="java.lang.String" value="12"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
         </Property>
@@ -259,7 +257,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEstriboAltura">
       <Properties>
-        <Property name="text" type="java.lang.String" value="20"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
         </Property>
@@ -281,7 +278,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEspacoEstribo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="20"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
         </Property>
@@ -325,7 +321,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEstriboLargura">
       <Properties>
-        <Property name="text" type="java.lang.String" value="20"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
         </Property>
@@ -361,7 +356,8 @@
         <Component class="javax.swing.JTable" name="tbItemProduto">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="IdVergalhao" type="java.lang.Object"/>
                 <Column editable="false" title="Id Produto" type="java.lang.Object"/>
                 <Column editable="false" title="Tipo" type="java.lang.Object"/>
                 <Column editable="false" title="Qtde Estribo (P&#xe7;s)" type="java.lang.Object"/>
@@ -370,6 +366,11 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
@@ -409,7 +410,8 @@
         <Component class="javax.swing.JTable" name="tbFerragem">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="6" rowCount="0">
+                <Column editable="false" title="IdVergalhao" type="java.lang.Object"/>
                 <Column editable="false" title="Qtde Colunas" type="java.lang.Object"/>
                 <Column editable="false" title="Comprimento" type="java.lang.Object"/>
                 <Column editable="false" title="Altura Estribo" type="java.lang.Object"/>
@@ -419,6 +421,11 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
@@ -455,7 +462,6 @@
     </Container>
     <Component class="javax.swing.JTextField" name="txtIdCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
         <Property name="toolTipText" type="java.lang.String" value="Enter para procurar cliente"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[28, 28]"/>
@@ -592,7 +598,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdProduto">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[28, 28]"/>
             </Property>

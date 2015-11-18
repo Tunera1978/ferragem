@@ -5,20 +5,20 @@
  */
 package interfaces;
 
-import beans.Produto;
-import dao.ProdutoDAO;
+import beans.Cliente;
+import dao.ClienteDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class frmConsultaProduto extends javax.swing.JInternalFrame {
+public class frmConsultaCliente extends javax.swing.JInternalFrame {
 
     
-    private ProdutoDAO produtoDAO;
+    private ClienteDAO clienteDAO;
     
     
-    public frmConsultaProduto() {
+    public frmConsultaCliente() {
         initComponents();
-        this.produtoDAO = new ProdutoDAO();
+        this.clienteDAO = new ClienteDAO();
     }
 
     
@@ -31,12 +31,12 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
         txtPesquisa = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProduto = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
 
         setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Consulta Produto por nome");
+        jLabel1.setText("Consulta Cliente por nome");
 
         jLabel2.setText("Digite o nome :");
 
@@ -47,7 +47,7 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -63,11 +63,12 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblProduto);
-        if (tblProduto.getColumnModel().getColumnCount() > 0) {
-            tblProduto.getColumnModel().getColumn(0).setMinWidth(100);
-            tblProduto.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblProduto.getColumnModel().getColumn(0).setMaxWidth(120);
+        jScrollPane1.setViewportView(tblCliente);
+        if (tblCliente.getColumnModel().getColumnCount() > 0) {
+            tblCliente.getColumnModel().getColumn(0).setMinWidth(100);
+            tblCliente.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblCliente.getColumnModel().getColumn(0).setMaxWidth(120);
+            tblCliente.getColumnModel().getColumn(1).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,7 +88,7 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
                         .addGap(183, 183, 183)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,17 +111,17 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-        ArrayList<Produto> produto = new ArrayList<Produto>();
-        produto = this.produtoDAO.getProdutoByLista(txtPesquisa.getText());
+        ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+        cliente = this.clienteDAO.getClienteByLista(txtPesquisa.getText());
 
-        DefaultTableModel tabela = (DefaultTableModel) tblProduto.getModel();
+        DefaultTableModel tabela = (DefaultTableModel) tblCliente.getModel();
         tabela.setNumRows(0);
 
-        for (Produto prod : produto) {
-            if (prod != null) {
+        for (Cliente cli : cliente) {
+            if (cli != null) {
                 Object[] obj = new Object[]{
-                    prod.getIdProduto(),
-                    prod.getDescricao()
+                    cli.getIdcliente(),
+                    cli.getNome()
                 };
                 tabela.addRow(obj);
             }
@@ -133,7 +134,7 @@ public class frmConsultaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProduto;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

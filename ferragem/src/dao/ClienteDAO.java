@@ -98,7 +98,7 @@ public class ClienteDAO extends GenericDAO
   public ArrayList<Cliente> getClienteByLista(String descricao)
   {
     ArrayList<Cliente> cliente = new ArrayList<Cliente>();
-    String sql = "SELECT nome, celular, telefone, email, observacao FROM tblentidade WHERE descricao LIKE ?";
+    String sql = "select * from tblentidade where tblentidade.nome like ?";
 
     try
     {
@@ -109,12 +109,13 @@ public class ClienteDAO extends GenericDAO
       while (rs.next())
       {
         Cliente u = new Cliente();
+        u.setIdcliente(rs.getInt("idcliente"));
         u.setNome(rs.getString("nome"));
-        u.setFisicoJuridico(rs.getByte("fisicoJuridico"));
-        u.setCnpj(rs.getString("cnpj"));
-        u.setInscricao(rs.getString("inscricao"));
-        u.setCpf(rs.getString("cpf"));
-        u.setRg(rs.getString("rg"));
+        //u.setFisicoJuridico(rs.getByte("fisicoJuridico"));
+        //u.setCnpj(rs.getString("cnpj"));
+        //u.setInscricao(rs.getString("inscricao"));
+        //u.setCpf(rs.getString("cpf"));
+        //u.setRg(rs.getString("rg"));
         cliente.add(u);
       }
       return cliente;
@@ -149,4 +150,6 @@ public class ClienteDAO extends GenericDAO
       return null;
     }
   }
+
+    
 }
