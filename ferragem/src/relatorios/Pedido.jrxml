@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb6bda08-9fad-44f4-b032-d85909599fed">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tblpedido.`idpedido` AS tblpedido_idpedido,
+     tblpedido.`data` AS tblpedido_data,
+     tblpedido.`dataentrega` AS tblpedido_dataentrega,
+     tblpedido.`idcliente` AS tblpedido_idcliente,
+     tblpedido.`idusuario` AS tblpedido_idusuario,
+     tblferragem.`idferragem` AS tblferragem_idferragem,
+     tblferragem.`qtde` AS tblferragem_qtde,
+     tblferragem.`estriboaltura` AS tblferragem_estriboaltura,
+     tblferragem.`estribolargura` AS tblferragem_estribolargura,
+     tblferragem.`comprimento` AS tblferragem_comprimento,
+     tblferragem.`estriboespaco` AS tblferragem_estriboespaco,
+     tblitemferragem.`iditemferragem` AS tblitemferragem_iditemferragem,
+     tblitemferragem.`diametro` AS tblitemferragem_diametro,
+     tblitemferragem.`qtdeferro` AS tblitemferragem_qtdeferro,
+     tblitemferragem.`qtdepecas` AS tblitemferragem_qtdepecas,
+     tblitemferragem.`qtdematerial` AS tblitemferragem_qtdematerial,
+     tblproduto.`descricao` AS tblproduto_descricao,
+     tblusuario.`nome` AS tblusuario_nome,
+     tblentidade.`idcliente` AS tblentidade_idcliente,
+     tblentidade.`nome` AS tblentidade_nome,
+     tblendereco.`idendentrega` AS tblendereco_idendentrega,
+     tblendereco.`endereco` AS tblendereco_endereco,
+     tblcontato.`nome` AS tblcontato_nome,
+     tblcontato.`telefone` AS tblcontato_telefone,
+     tblcontato.`celular` AS tblcontato_celular,
+     tblcontato.`email` AS tblcontato_email,
+     tblcontato.`setor` AS tblcontato_setor,
+     tblcontato.`observacao` AS tblcontato_observacao,
+     tblcidade.`nome` AS tblcidade_nome,
+     tblestado.`uf` AS tblestado_uf,
+     tblpais.`nome` AS tblpais_nome,
+     tblitemferragem.`idproduto` AS tblitemferragem_idproduto
+FROM
+     `tblpedido` tblpedido INNER JOIN `tblferragem` tblferragem ON tblpedido.`idpedido` = tblferragem.`idpedido`
+     INNER JOIN `tblitemferragem` tblitemferragem ON tblferragem.`idferragem` = tblitemferragem.`idferragem`
+     INNER JOIN `tblproduto` tblproduto ON tblitemferragem.`idproduto` = tblproduto.`idproduto`
+     INNER JOIN `tblusuario` tblusuario ON tblpedido.`idusuario` = tblusuario.`idusuario`
+     INNER JOIN `tblentidade` tblentidade ON tblpedido.`idcliente` = tblentidade.`idcliente`
+     INNER JOIN `tblendereco` tblendereco ON tblentidade.`idcliente` = tblendereco.`idcliente`
+     INNER JOIN `tblcontato` tblcontato ON tblentidade.`idcliente` = tblcontato.`idcliente`
+     INNER JOIN `tblcidade` tblcidade ON tblendereco.`idcidade` = tblcidade.`idcidade`
+     INNER JOIN `tblestado` tblestado ON tblcidade.`idestado` = tblestado.`idestado`
+     INNER JOIN `tblpais` tblpais ON tblestado.`idpais` = tblpais.`idpais`
+     order by tblferragem.idferragem]]>
+	</queryString>
+	<field name="tblpedido_idpedido" class="java.lang.Integer"/>
+	<field name="tblpedido_data" class="java.sql.Timestamp"/>
+	<field name="tblpedido_dataentrega" class="java.sql.Timestamp"/>
+	<field name="tblpedido_idcliente" class="java.lang.Integer"/>
+	<field name="tblpedido_idusuario" class="java.lang.Integer"/>
+	<field name="tblferragem_idferragem" class="java.lang.Integer"/>
+	<field name="tblferragem_qtde" class="java.lang.Integer"/>
+	<field name="tblferragem_estriboaltura" class="java.lang.Double"/>
+	<field name="tblferragem_estribolargura" class="java.lang.Double"/>
+	<field name="tblferragem_comprimento" class="java.lang.Double"/>
+	<field name="tblferragem_estriboespaco" class="java.lang.Double"/>
+	<field name="tblitemferragem_iditemferragem" class="java.lang.Integer"/>
+	<field name="tblitemferragem_diametro" class="java.lang.String"/>
+	<field name="tblitemferragem_qtdeferro" class="java.lang.Double"/>
+	<field name="tblitemferragem_qtdepecas" class="java.lang.Double"/>
+	<field name="tblitemferragem_qtdematerial" class="java.lang.Double"/>
+	<field name="tblproduto_descricao" class="java.lang.String"/>
+	<field name="tblusuario_nome" class="java.lang.String"/>
+	<field name="tblentidade_idcliente" class="java.lang.Integer"/>
+	<field name="tblentidade_nome" class="java.lang.String"/>
+	<field name="tblendereco_idendentrega" class="java.lang.Integer"/>
+	<field name="tblendereco_endereco" class="java.lang.String"/>
+	<field name="tblcontato_nome" class="java.lang.String"/>
+	<field name="tblcontato_telefone" class="java.lang.String"/>
+	<field name="tblcontato_celular" class="java.lang.String"/>
+	<field name="tblcontato_email" class="java.lang.String"/>
+	<field name="tblcontato_setor" class="java.lang.String"/>
+	<field name="tblcontato_observacao" class="java.lang.String"/>
+	<field name="tblcidade_nome" class="java.lang.String"/>
+	<field name="tblestado_uf" class="java.lang.String"/>
+	<field name="tblpais_nome" class="java.lang.String"/>
+	<field name="tblitemferragem_idproduto" class="java.lang.Integer"/>
+	<group name="tblpedido_idpedido">
+		<groupExpression><![CDATA[$F{tblpedido_idpedido}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#333333" uuid="76b4770f-1a32-4860-ae28-792e03f83f67"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tblpedido_idpedido}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="16ded67e-7993-4e02-92c5-e63160bd1333"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="5d910831-0635-42f2-a63a-0bb9e82f3a4f"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="8d83a773-8c12-49d1-9383-56394f0cceec"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Wood Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="e825f850-013b-4208-b58c-9819355e0508"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Wood SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="7c1ee01a-b4cf-400d-8212-cb61e4632bbf"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="17" height="15" uuid="7f5a752d-8a38-4c56-9778-ea135838e265"/>
+				<text><![CDATA[tblpedido_data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="17" y="19" width="17" height="15" uuid="c90eaa48-a02b-45bd-a665-233fffe76626"/>
+				<text><![CDATA[tblpedido_dataentrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="34" y="19" width="17" height="15" uuid="f209bad0-e3a3-4718-bd71-304e0bb0ed3e"/>
+				<text><![CDATA[tblpedido_idcliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="51" y="19" width="17" height="15" uuid="40ea229a-8fb9-440c-81d6-e341fdd833da"/>
+				<text><![CDATA[tblpedido_idusuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="68" y="19" width="17" height="15" uuid="f6c6a2b8-da38-43f6-94d3-d62fe5445dc0"/>
+				<text><![CDATA[tblferragem_idferragem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="85" y="19" width="17" height="15" uuid="43b7f2fb-8245-4139-8b54-485c768162fa"/>
+				<text><![CDATA[tblferragem_qtde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="102" y="19" width="17" height="15" uuid="3267682c-afa3-4ce9-9fd0-fb6dfe690143"/>
+				<text><![CDATA[tblferragem_estriboaltura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="119" y="19" width="17" height="15" uuid="a9758ee2-9aa8-4ab8-be78-57189fd709fe"/>
+				<text><![CDATA[tblferragem_estribolargura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="136" y="19" width="17" height="15" uuid="85d01a49-8ee0-4282-aea9-4b78a39ddc7b"/>
+				<text><![CDATA[tblferragem_comprimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="153" y="19" width="17" height="15" uuid="33d7bbf8-47ce-4a97-b3d7-7fb26163c45a"/>
+				<text><![CDATA[tblferragem_estriboespaco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="170" y="19" width="17" height="15" uuid="0bb89abb-5deb-4120-b759-7caf199e89b8"/>
+				<text><![CDATA[tblitemferragem_iditemferragem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="187" y="19" width="17" height="15" uuid="aaad1779-8e0d-47f4-9d0c-7cded7681927"/>
+				<text><![CDATA[tblitemferragem_diametro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="204" y="19" width="17" height="15" uuid="dd612b30-4ef4-4f43-9fa7-183d2adfd276"/>
+				<text><![CDATA[tblitemferragem_qtdeferro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="221" y="19" width="17" height="15" uuid="07dc13fa-0c74-488e-b05a-a624df6b98ca"/>
+				<text><![CDATA[tblitemferragem_qtdepecas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="238" y="19" width="17" height="15" uuid="f0437629-58b3-4750-bf32-ed96774bfdec"/>
+				<text><![CDATA[tblitemferragem_qtdematerial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="255" y="19" width="17" height="15" uuid="f02ef13d-a95e-4177-820c-b23ab75e4a0d"/>
+				<text><![CDATA[tblproduto_descricao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="272" y="19" width="17" height="15" uuid="69f5a5ca-25cc-4a35-9cf9-fbf3ac0e9fd1"/>
+				<text><![CDATA[tblusuario_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="289" y="19" width="17" height="15" uuid="3a346d61-c206-4989-8b4c-cb5b7838f4c5"/>
+				<text><![CDATA[tblentidade_idcliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="306" y="19" width="17" height="15" uuid="c8997f23-0159-4c59-b053-268dcc544cdf"/>
+				<text><![CDATA[tblentidade_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="323" y="19" width="17" height="15" uuid="b7d255c0-4032-45b0-ab84-59785c000482"/>
+				<text><![CDATA[tblendereco_idendentrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="340" y="19" width="17" height="15" uuid="c032c917-a065-4d5d-ab9f-bcda0fd69387"/>
+				<text><![CDATA[tblendereco_endereco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="357" y="19" width="17" height="15" uuid="81965f95-f998-415e-9276-fafc05be2cb9"/>
+				<text><![CDATA[tblcontato_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="374" y="19" width="17" height="15" uuid="91362f1c-3835-4cdf-9515-914c4a7a01d6"/>
+				<text><![CDATA[tblcontato_telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="391" y="19" width="17" height="15" uuid="75ac2910-4978-42d8-9ca2-23fea170ce0a"/>
+				<text><![CDATA[tblcontato_celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="408" y="19" width="17" height="15" uuid="e3db426a-9cf7-48b2-b9cd-2b0e855e409e"/>
+				<text><![CDATA[tblcontato_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="425" y="19" width="17" height="15" uuid="9a31a52b-4ac1-42f5-8c52-5938b6de3c8b"/>
+				<text><![CDATA[tblcontato_setor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="442" y="19" width="17" height="15" uuid="0d8cd920-4933-493c-9595-435d58958b31"/>
+				<text><![CDATA[tblcontato_observacao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="459" y="19" width="17" height="15" uuid="24073843-3a09-46c7-b866-b49e2d9277e9"/>
+				<text><![CDATA[tblcidade_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="476" y="19" width="17" height="15" uuid="2356779d-c787-458c-bdd4-a418d18aca30"/>
+				<text><![CDATA[tblestado_uf]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="493" y="19" width="17" height="15" uuid="ac29fb6b-8798-43c8-b983-40e3222997d9"/>
+				<text><![CDATA[tblpais_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="510" y="19" width="17" height="15" uuid="983c0faf-3223-40e1-890e-deab0b453bb8"/>
+				<text><![CDATA[tblitemferragem_idproduto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="9954a68f-9561-4e22-9797-c8ac9ec44b5a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="17" height="15" uuid="24b9b429-3986-493e-ad9e-e5c2ad3491df"/>
+				<textFieldExpression><![CDATA[$F{tblpedido_data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="17" y="0" width="17" height="15" uuid="7959fca5-e72e-4a71-bf13-df669ab95e94"/>
+				<textFieldExpression><![CDATA[$F{tblpedido_dataentrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="34" y="0" width="17" height="15" uuid="c6a9b77b-acd9-419d-bf07-93769e71d088"/>
+				<textFieldExpression><![CDATA[$F{tblpedido_idcliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="51" y="0" width="17" height="15" uuid="cdc80e9f-7a92-488c-8566-308b143a2995"/>
+				<textFieldExpression><![CDATA[$F{tblpedido_idusuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="68" y="0" width="17" height="15" uuid="2e43a426-14d2-41a0-b724-ce38b6c4a537"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_idferragem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="85" y="0" width="17" height="15" uuid="64152a02-dfe7-4b92-b953-8e388d4293de"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_qtde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="102" y="0" width="17" height="15" uuid="e624bdd5-d16a-4ddc-8106-c045bec502f5"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_estriboaltura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="119" y="0" width="17" height="15" uuid="9f9e6203-933b-4309-a271-6caf2af756d0"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_estribolargura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="136" y="0" width="17" height="15" uuid="bb171c0c-3006-4c5c-9cdd-cc2c4b80f63f"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_comprimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="153" y="0" width="17" height="15" uuid="b54bbdd8-e3f0-4c7d-8e35-5c5b998efee1"/>
+				<textFieldExpression><![CDATA[$F{tblferragem_estriboespaco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="170" y="0" width="17" height="15" uuid="0a339418-3452-426b-a0ae-b92ee2b64c76"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_iditemferragem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="187" y="0" width="17" height="15" uuid="637cdd01-8b45-47bd-92f4-28ac8e379f07"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_diametro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="204" y="0" width="17" height="15" uuid="4e97d7d4-9301-454c-9363-da1bae88a001"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_qtdeferro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="221" y="0" width="17" height="15" uuid="93e230e2-cacb-4673-a6f0-d0e3864105aa"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_qtdepecas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="238" y="0" width="17" height="15" uuid="06628bf0-9883-455e-b11e-048012787dfe"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_qtdematerial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="255" y="0" width="17" height="15" uuid="27ff2d60-85c5-431f-a382-751676766488"/>
+				<textFieldExpression><![CDATA[$F{tblproduto_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="272" y="0" width="17" height="15" uuid="02d7b1c6-083a-4fec-83e9-9779b6c3b982"/>
+				<textFieldExpression><![CDATA[$F{tblusuario_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="289" y="0" width="17" height="15" uuid="54c9cc1d-fec2-4dea-aa4e-3e62ce538ffa"/>
+				<textFieldExpression><![CDATA[$F{tblentidade_idcliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="306" y="0" width="17" height="15" uuid="4db39680-5189-40df-acd1-01f6b869cf36"/>
+				<textFieldExpression><![CDATA[$F{tblentidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="323" y="0" width="17" height="15" uuid="4be436e5-8966-4797-9f38-ef29f536b740"/>
+				<textFieldExpression><![CDATA[$F{tblendereco_idendentrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="340" y="0" width="17" height="15" uuid="7a914a03-d4fe-4209-b9ff-86332ab780e0"/>
+				<textFieldExpression><![CDATA[$F{tblendereco_endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="357" y="0" width="17" height="15" uuid="b41ca593-a199-47d7-a2bb-9ea6f929d7a6"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="374" y="0" width="17" height="15" uuid="b0970783-74f7-4403-989d-1f95403b74c8"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="391" y="0" width="17" height="15" uuid="972a88fb-a7d0-4484-9f80-d20e13242b68"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_celular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="408" y="0" width="17" height="15" uuid="fbd54615-6376-4202-9633-645f4b92c9a9"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="425" y="0" width="17" height="15" uuid="73602f15-1fa2-4094-81aa-b9bdaced9549"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_setor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="442" y="0" width="17" height="15" uuid="077b3056-28dc-4e31-b12b-af2f14e09ad3"/>
+				<textFieldExpression><![CDATA[$F{tblcontato_observacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="459" y="0" width="17" height="15" uuid="10afc211-d123-442d-a219-3b43a240b904"/>
+				<textFieldExpression><![CDATA[$F{tblcidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="476" y="0" width="17" height="15" uuid="e5b36f38-4dab-4515-b0ec-179c7c3f2dbe"/>
+				<textFieldExpression><![CDATA[$F{tblestado_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="493" y="0" width="17" height="15" uuid="7d27d15e-12ed-471c-9ae1-7bf6ff634cb4"/>
+				<textFieldExpression><![CDATA[$F{tblpais_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="510" y="0" width="17" height="15" uuid="ebd0d90d-64c8-4b00-b358-984864ea316a"/>
+				<textFieldExpression><![CDATA[$F{tblitemferragem_idproduto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="88ba078b-0a80-486c-a3e4-1ab065fb6130"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="ba9f9c88-a583-4299-8704-4a526cbb0a69"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="ede49e9a-1afa-446d-ac8b-389c76d70247"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="c7ae20ed-e8cf-40b1-8b06-fe8ccef92149"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
